@@ -59,16 +59,34 @@ _The above analysis indicates that we are in a position to implement all feature
 The average household grocery shopper with an access to a mobile phone and an interest in using technology to make their everyday life more efficient.
 
 #### Principles of organisation:
+The nature the app, its use and its audience, dictate a linear and simple structure to the app, wherea: a landing page initially informs the user what this is about and the actual app once clicked is on a single page in the form of an interactive list with intuitive navigation.
 
 ### Skeleton
+1. Index page:
+   * A landing page with a hero image showing some grocery bags and a button that clearly indicates to the user that if they proceed further, they will start making a list for grocery shopping.
+
+2. Tracker page:
+   * The main application interface with the grocery list broken down into sections of categories with nested lists in each of them. 
+   * Buttons allow the user to hide/show each category section, add items to a section, tick/cross-off an item, delete an item and finally add a category.
 
 ### Colour Scheme
+The colour scheme was generated with the help of [coolors.co](https://coolors.co/8bc34a-37474f-b2ebf2-ffeb3b-d32f2f) colour palette generator. The choice was made on the basis of getting a few different colours to resemble how a grocery bag usually has different colours. A choice of vibrant colours with contrast where required to make some buttons and app elements stick out more for an easier and clearer use while on the go.
+
+![screenshot](documentation/grocery-tracker-color-palette.png)
 
 ### Typography
+To explore various font options and combinations, [fontjoy.com](https://fontjoy.com/) was utilised with the choice of a balance contrast between fonts. [Google Fonts](https://fonts.google.com/) was used to source the fonts for the project.
+
+* [Asap](https://fonts.google.com/specimen/Asap) was used for primary headers.
+* [Raleway](https://fonts.google.com/specimen/Raleway) was used for secondary headers.
+* [Martel Sans](https://fonts.google.com/specimen/Martel+Sans) was used for main body text.
 
 ## Wireframes
+Wireframes were developed using [Figma](https://www.figma.com/) for mobile, table and laptop/desktop screen sizes.
 
-### Mobile Wireframes
+### Mobile Wireframe
+
+![screenshot](documentation/grocery-tracker-wireframe-mobile.png)
 
 ## Features
 
