@@ -50,14 +50,13 @@ h5 {
 
 #hero-content>h1 {
   color: #FFEB3B;
-  font-size: 2.8em;
 }
 
 #hero-content>p {
   color: #B2EBF2;
-  font-size: 1.2em;
 }
 
+/* button */
 #cta-button {
   background-color: #8BC34A;
   color: #FCFCFC;
@@ -66,13 +65,39 @@ h5 {
   font-weight: 400;
   border: none;
   padding: 15px 30px;
-  font-size: 1.2em;
+  font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: inset -11px 18px 10px 0px rgba(252, 252, 252, 0.3);
 }
 
+#cta-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#cta-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#cta-button:hover span {
+  padding-right: 25px;
+}
+
+#cta-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* credits div */
 #credits {
   margin-top: 10px;
   font-size: 0.5em;
