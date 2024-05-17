@@ -122,31 +122,30 @@ h5 {
 
     /* landing page div */
     #hero-section {
-      padding: 50px 35px;
-      height: 40%;
+      padding: 20px 10px;
     }
   
     /* hero content */
     #hero-content>h1 {
-      font-size: 6em;
-      padding-bottom: 20px;
+      font-size: 5em;
+      padding-bottom: 10px;
     }
   
     #hero-content>p {
-      font-size: 3em;
-      padding-bottom: 20px;
+      font-size: 2.5em;
+      padding-bottom: 10px;
     }
   
     /* button */
     #cta-button {
-      font-size: 3.5em;
-      padding: 50px 30px;
+      font-size: 3em;
+      padding: 30px 15px;
     }
   
     /* credits div */
     #credits {
       margin-top: 50px;
-      font-size: 1.5em;
+      font-size: 1.2em;
     }
 
 }
