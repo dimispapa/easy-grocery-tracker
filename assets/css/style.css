@@ -1,3 +1,10 @@
+/* General wildcard styles to override browser defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Global styles */
 
 /* main body text */
@@ -5,6 +12,8 @@ body {
   font-family: "Martel Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
+  text-align: center;
+  background-color: #FCFCFC;
 }
 
 /* primary header text */
@@ -28,15 +37,13 @@ h5 {
   font-style: bold;
 }
 
-/* landing page div */
+/* LANDING PAGE */
 #landing-page {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   height: 100vh;
   background: url('../images/grocery-basket-hero-img.webp') no-repeat center center/cover;
-  background-color: #FCFCFC;
-  text-align: center;
 }
 
 /* hero section */
@@ -149,3 +156,13 @@ h5 {
     }
 
 }
+
+/* TRACKER PAGE */
+header {
+  background-color: rgb(255, 235, 59, 0.3);
+  /* width: 100%; */
+}
+
+/* header > h1 {
+  margin: 0;
+} */
