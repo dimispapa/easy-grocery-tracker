@@ -85,3 +85,68 @@ h5 {
 #credits a {
   color: #FCFCFC;
 }
+
+/* Media query: tablets and larger (>=768px) */
+@media screen and (min-width: 768px) {
+
+  /* landing page div */
+  #hero-section {
+    width: 70%;
+    padding: 40px 30px;
+  }
+
+  /* hero content */
+  #hero-content>h1 {
+    font-size: 3em;
+  }
+
+  #hero-content>p {
+    font-size: 1.5em;
+  }
+
+  /* button */
+  #cta-button {
+    font-size: 1.8em;
+  }
+
+  /* credits div */
+  #credits {
+    margin-top: 20px;
+    font-size: 0.8em;
+  }
+  
+}
+
+/* Media query: laptops and larger (>=992px) */
+@media screen and (min-width: 992px) {
+
+    /* landing page div */
+    #hero-section {
+      padding: 50px 35px;
+      height: 40%;
+    }
+  
+    /* hero content */
+    #hero-content>h1 {
+      font-size: 6em;
+      padding-bottom: 20px;
+    }
+  
+    #hero-content>p {
+      font-size: 3em;
+      padding-bottom: 20px;
+    }
+  
+    /* button */
+    #cta-button {
+      font-size: 3.5em;
+      padding: 50px 30px;
+    }
+  
+    /* credits div */
+    #credits {
+      margin-top: 50px;
+      font-size: 1.5em;
+    }
+
+}
