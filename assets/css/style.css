@@ -47,3 +47,24 @@ h5 {
   border-radius: 10px;
   color: #FCFCFC;
 }
+
+.hero-content>h1 {
+  color: #FFEB3B;
+  font-size: 2.8em;
+}
+
+.hero-content>p {
+  color: #B2EBF2;
+  font-size: 1.2em;
+}
+
+.cta-button {
+  background-color: #8BC34A;
+  color: #FCFCFC;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
