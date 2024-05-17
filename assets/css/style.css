@@ -31,10 +31,19 @@ h5 {
 /* landing page div */
 .landing-page {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   height: 100vh;
   background: url('../images/grocery-basket-hero-img.webp') no-repeat center center/cover;
   background-color: #FCFCFC;
   text-align: center;
+}
+
+/* hero section */
+.hero-section {
+  background: rgba(55, 71, 79, 0.5);
+  /* Dark overlay for better text readability */
+  padding: 20px;
+  border-radius: 10px;
+  color: #FCFCFC;
 }
