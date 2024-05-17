@@ -27,3 +27,14 @@ h5 {
   font-weight: 400;
   font-style: semi-bold;
 }
+
+/* landing page div */
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url('../images/grocery-basket-hero-img.webp') no-repeat center center/cover;
+  background-color: #FCFCFC;
+  text-align: center;
+}
