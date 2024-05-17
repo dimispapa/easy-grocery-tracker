@@ -164,6 +164,8 @@ h5 {
 header {
   background-color: rgb(255, 235, 59, 0.3);
   /* width: 100%; */
+  color: #37474F;
+  padding: 10px 5px;
 }
 
 /* header > h1 {
