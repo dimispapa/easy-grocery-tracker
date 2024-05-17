@@ -57,6 +57,7 @@ h5 {
   color: #B2EBF2;
   font-size: 1.2em;
 }
+
 #cta-button {
   background-color: #8BC34A;
   color: #FCFCFC;
@@ -70,4 +71,13 @@ h5 {
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: inset -11px 18px 10px 0px rgba(252, 252, 252, 0.3);
+}
+
+#credits {
+  margin-top: 10px;
+  font-size: 0.5em;
+}
+
+#credits a {
+  color: #FCFCFC;
 }
