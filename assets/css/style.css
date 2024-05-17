@@ -72,29 +72,8 @@ h5 {
   box-shadow: inset -11px 18px 10px 0px rgba(252, 252, 252, 0.3);
 }
 
-#cta-button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-#cta-button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-#cta-button:hover span {
-  padding-right: 25px;
-}
-
-#cta-button:hover span:after {
-  opacity: 1;
-  right: 0;
+#cta-button:hover {
+  background-color: #477116;
 }
 
 /* credits div */
