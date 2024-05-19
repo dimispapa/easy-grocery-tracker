@@ -1,13 +1,24 @@
-function addItem() {
+// define function for adding new items
+function addItem(event) {
   console.log('You clicked the add-item button.')
+  console.log(event.id);
+  // Get the button that triggered the event
+  let button = event.target;
+  console.log('Button ID:', button.id);
+
+  // Get the next sibling element (the ul element)
+  let ul = button.nextElementSibling;
+  console.log('Next Element:', ul);
 };
 
-// add event listener for click on buttons
+// get an array of buttons
 let buttons = document.getElementsByTagName('button');
 console.log(buttons.length);
 
+// add event listeners for buttons
 for (let button of buttons) {
   if (button.className === "new-item-btn") {
-    button.addEventListener("click", addItem)
+    // add event listener for adding items
+    button.addEventListener("click", addItem);
   }
 };
