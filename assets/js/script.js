@@ -9,13 +9,20 @@ function addItem(event) {
 
   // get the input element and user entry
   let input = button.previousElementSibling;
-  console.log('User entry:', input.value);
+  let userInput = input.value;
+  console.log('User entry:', userInput);
 
   // Get the next sibling element (the ul element)
   let ul = button.nextElementSibling;
   console.log('Next Element:', ul);
 
-  // add li item
+
+  // add li item with user entry text
+  let newLi = document.createElement('li');
+  newLi.textContent = userInput;
+  ul.appendChild(newLi);
+  console.log('New list:', ul.innerHTML);
+
 };
 
 // get an array of buttons
