@@ -1,11 +1,15 @@
 // define function to check for duplicate list item
 function validateIfDuplicate(userInput, ulElement) {
+
   // get array of li elements in ul
   let items = ulElement.getElementsByTagName('span');
+
   // check if ul has at least one li element
   if (items.length !== 0) {
+
     // loop through li elements to check if new text input exists
     for (let item of items) {
+
       // check for a case insesitive match
       if (item.textContent.toLowerCase().trim() === userInput.toLowerCase().trim()) {
         alert('This item already exists in the list!');
@@ -31,9 +35,9 @@ function validateIfBlank(userInput) {
 // define function for adding new items
 function addItem(event) {
 
-  // Get the button that triggered the event and the ul element next to it
+  // Get the button that triggered the event and the ul element before it
   let button = event.target;
-  let ul = button.parentElement.nextElementSibling;
+  let ul = button.parentElement.previousElementSibling;
 
   // get the user input text and apply trim method to ensure no spaces
   let inputBox = button.previousElementSibling
@@ -92,12 +96,17 @@ function updateEventListeners() {
   // add event listeners for buttons based on class
   for (let button of buttons) {
     if (button.className === "new-item-btn") {
+
       // add event listener for adding items
       button.addEventListener("click", addItem);
+
     } else if (button.className === "dlt-item-btn") {
+
       // add event listener for deleting items
       button.addEventListener("click", deleteItem);
+
     } else if (button.className === "tick-item-btn") {
+
       // add event listener for ticking-off items
       button.addEventListener("click", tickItem);
     }
