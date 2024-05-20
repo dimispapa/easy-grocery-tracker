@@ -36,7 +36,8 @@ function addItem(event) {
   let ul = button.parentElement.nextElementSibling;
 
   // get the user input text and apply trim method to ensure no spaces
-  let userInput = button.previousElementSibling.value.trim();
+  let inputBox = button.previousElementSibling
+  let userInput = inputBox.value.trim();
 
   // Validate input
   if (validateIfBlank(userInput) && validateIfDuplicate(userInput, ul)) {
@@ -52,6 +53,9 @@ function addItem(event) {
 
     // append the new li item to the ul
     ul.insertAdjacentHTML('beforeend', newLi);
+
+    // clear the input box
+    inputBox.value = '';
   };
 
 };
