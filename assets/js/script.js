@@ -33,7 +33,7 @@ function addItem(event) {
 
   // Get the button that triggered the event and the ul element next to it
   let button = event.target;
-  let ul = button.nextElementSibling;
+  let ul = button.parentElement.nextElementSibling;
 
   // get the user input text and apply trim method to ensure no spaces
   let userInput = button.previousElementSibling.value.trim();
