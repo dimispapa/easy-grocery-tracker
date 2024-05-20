@@ -6,8 +6,6 @@ function validateIfDuplicate(userInput, ulElement) {
   if (items.length !== 0) {
     // loop through li elements to check if new text input exists
     for (let item of items) {
-      console.log(item.childNodes[0].nodeValue.toLowerCase());
-      console.log(item.childNodes[0].nodeValue.toLowerCase() === userInput.toLowerCase());
       // check for a case insesitive match
       if (item.childNodes[0].nodeValue.toLowerCase().trim() === userInput.toLowerCase().trim()) {
         alert('This item already exists in the list!');
