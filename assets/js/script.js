@@ -41,10 +41,17 @@ function addItem(event) {
   // Validate input
   if (validateIfBlank(userInput) && validateIfDuplicate(userInput, ul)) {
 
-    // add li item with user entry text
-    let newLi = document.createElement('li');
-    newLi.textContent = userInput;
-    ul.appendChild(newLi);
+    // define the list item along with a delete button,
+    // using template literal with the user input text
+    let newLi = `
+    <li>
+      ${userInput}
+      <button class="delete-item-btn">Delete</button>
+    </li>
+    `;
+
+    // append the new li item to the ul
+    ul.insertAdjacentHTML('beforeend', newLi);
   };
 
 };
