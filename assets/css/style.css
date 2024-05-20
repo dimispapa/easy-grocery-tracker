@@ -183,3 +183,13 @@ header {
   padding-left: 20%;
   text-align: left;
 }
+
+/* grocery lists */
+.shop-list {
+  list-style: none;
+}
+
+/* ticked-off item style */
+.ticked-off {
+  text-decoration: line-through;
+}

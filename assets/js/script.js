@@ -46,7 +46,8 @@ function addItem(event) {
     // using template literal with the user input text
     let newLi = `
     <li>
-      ${userInput}
+      <button class="tick-item-btn">Tick</button>
+      <span>${userInput}</span>
       <button class="dlt-item-btn">Delete</button>
     </li>
     `;
@@ -66,12 +67,20 @@ function addItem(event) {
 // add Delete function for delete button
 function deleteItem(event) {
 
-  // update event listeners based on latest DOM
-  updateEventListeners()
-
   // target the li element that the button is a child of
   let li = event.target.parentElement;
   li.remove();
+}
+
+// add Tick function for items that have been fulfilled
+function tickItem(event) {
+
+  // target the span element that is the next sibling of the trigger button
+  let span = event.target.nextElementSibling;
+
+  // toggle on/off the class to apply/remove line-through text decoration
+  span.classList.toggle('ticked-off');
+
 }
 
 function updateEventListeners() {
@@ -88,6 +97,9 @@ function updateEventListeners() {
     } else if (button.className === "dlt-item-btn") {
       // add event listener for deleting items
       button.addEventListener("click", deleteItem);
+    } else if (button.className === "tick-item-btn") {
+      // add event listener for ticking-off items
+      button.addEventListener("click", tickItem);
     }
   };
 }
