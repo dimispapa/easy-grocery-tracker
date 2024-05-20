@@ -173,9 +173,9 @@ header {
   width: 50%;
 }
 
-/* ul grocery list */
-.shop-list {
+/* category area */
+.category-area {
   position: relative;
-  left: 22%;
+  left: 20%;
   text-align: left;
 }
