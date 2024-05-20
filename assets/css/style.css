@@ -171,6 +171,7 @@ header {
 /* new item input box */
 #new-item {
   width: 50%;
+  max-width: 300px;
 }
 
 /* category area */
