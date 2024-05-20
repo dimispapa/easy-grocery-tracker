@@ -36,7 +36,7 @@ function validateIfBlank(userInput) {
 function addItem(event) {
 
   // Get the button that triggered the event and the ul element before it
-  let button = event.target;
+  let button = event.currentTarget;
   let ul = button.parentElement.previousElementSibling;
 
   // get the user input text and apply trim method to ensure no spaces
@@ -52,7 +52,7 @@ function addItem(event) {
     <li>
       <button class="tick-item-btn">Tick</button>
       <span>${userInput}</span>
-      <button class="dlt-item-btn">Delete</button>
+      <button class="dlt-item-btn"><i class="fa-regular fa-trash-can"></i></button>
     </li>
     `;
 
@@ -72,7 +72,7 @@ function addItem(event) {
 function deleteItem(event) {
 
   // target the li element that the button is a child of
-  let li = event.target.parentElement;
+  let li = event.currentTarget.parentElement;
   li.remove();
 }
 
@@ -80,7 +80,7 @@ function deleteItem(event) {
 function tickItem(event) {
 
   // target the span element that is the next sibling of the trigger button
-  let span = event.target.nextElementSibling;
+  let span = event.currentTarget.nextElementSibling;
 
   // toggle on/off the class to apply/remove line-through text decoration
   span.classList.toggle('ticked-off');
@@ -123,7 +123,7 @@ function updateEventListeners() {
 function toggleList(event) {
 
   // get category list to target
-  let categoryArea = event.target.parentElement.nextElementSibling;
+  let categoryArea = event.currentTarget.parentElement.nextElementSibling;
 
   // show or hide the div based on the current state of the display style
   categoryArea.style.display = categoryArea.style.display === 'none' ? 'block' : 'none';
