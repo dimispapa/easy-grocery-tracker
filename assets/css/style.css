@@ -180,12 +180,6 @@ header {
   max-width: 300px;
 }
 
-/* category area */
-.category-area {
-  display: none;
-  /* initially set to none */
-}
-
 /* grocery lists */
 .shop-list {
   list-style: none;
