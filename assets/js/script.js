@@ -56,28 +56,42 @@ function addItem(event) {
 
     // clear the input box
     inputBox.value = '';
+
+    // update event listeners based on latest DOM
+    updateEventListeners()
   };
 
 };
 
 // add Delete function for delete button
 function deleteItem(event) {
+
+  // update event listeners based on latest DOM
+  updateEventListeners()
+
   // target the li element that the button is a child of
+  console.log('attempting to delete');
   let li = event.target.parentElement;
   li.remove();
 }
 
-// get an array of buttons
-let buttons = document.getElementsByTagName('button');
-console.log(buttons.length);
+function updateEventListeners() {
 
-// add event listeners for buttons
-for (let button of buttons) {
-  if (button.className === "new-item-btn") {
-    // add event listener for adding items
-    button.addEventListener("click", addItem);
-  } else if (button.className === "dlt-item-btn") {
-    // add event listener for deleting items
-    button.addEventListener("click", deleteItem);
-  }
-};
+  // get the latest array of buttons
+  let buttons = document.getElementsByTagName('button');
+  console.log(buttons.length);
+
+  // add event listeners for buttons based on class
+  for (let button of buttons) {
+    if (button.className === "new-item-btn") {
+      // add event listener for adding items
+      button.addEventListener("click", addItem);
+    } else if (button.className === "dlt-item-btn") {
+      // add event listener for deleting items
+      button.addEventListener("click", deleteItem);
+    }
+  };
+}
+
+// add initial eventListeners once the page has loaded
+window.onload = updateEventListeners();
