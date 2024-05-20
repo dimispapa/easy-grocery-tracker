@@ -68,7 +68,7 @@ function addItem(event) {
 
 };
 
-// add Delete function for delete button
+// define Delete function for delete button
 function deleteItem(event) {
 
   // target the li element that the button is a child of
@@ -76,7 +76,7 @@ function deleteItem(event) {
   li.remove();
 }
 
-// add Tick function for items that have been fulfilled
+// define Tick function for items that have been fulfilled
 function tickItem(event) {
 
   // target the span element that is the next sibling of the trigger button
@@ -87,6 +87,7 @@ function tickItem(event) {
 
 }
 
+// define reusable function for updating event listeners when new buttons are added
 function updateEventListeners() {
 
   // get the latest array of buttons
@@ -109,9 +110,24 @@ function updateEventListeners() {
 
       // add event listener for ticking-off items
       button.addEventListener("click", tickItem);
+
+    } else if (button.className === "toggle-list-btn") {
+
+      // add event listener for ticking-off items
+      button.addEventListener("click", toggleList);
     }
   };
 }
+
+// Define function for toggling category list visibility
+function toggleList(event) {
+
+  // get category list to target
+  let categoryArea = event.target.parentElement.nextElementSibling;
+
+  // show or hide the div based on the current state of the display style
+  categoryArea.style.display = categoryArea.style.display === 'none' ? 'block' : 'none';
+};
 
 // add initial eventListeners once the page has loaded
 window.onload = updateEventListeners();

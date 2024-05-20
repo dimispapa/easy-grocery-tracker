@@ -182,6 +182,8 @@ header {
   position: relative;
   padding-left: 20%;
   text-align: left;
+  display: none;
+  /* initially set to none */
 }
 
 /* grocery lists */
