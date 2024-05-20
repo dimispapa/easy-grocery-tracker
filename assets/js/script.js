@@ -1,13 +1,13 @@
 // define function to check for duplicate list item
 function validateIfDuplicate(userInput, ulElement) {
   // get array of li elements in ul
-  let items = ulElement.getElementsByTagName('li');
+  let items = ulElement.getElementsByTagName('span');
   // check if ul has at least one li element
   if (items.length !== 0) {
     // loop through li elements to check if new text input exists
     for (let item of items) {
       // check for a case insesitive match
-      if (item.childNodes[0].nodeValue.toLowerCase().trim() === userInput.toLowerCase().trim()) {
+      if (item.textContent.toLowerCase().trim() === userInput.toLowerCase().trim()) {
         alert('This item already exists in the list!');
         return false;
       }
