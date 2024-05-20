@@ -171,6 +171,13 @@ header {
   padding: 10px 5px;
 }
 
+/* application area */
+.app-area {
+  position: relative;
+  padding-left: 20%;
+  text-align: left;
+}
+
 /* new item input box */
 #new-item {
   width: 50%;
@@ -179,9 +186,6 @@ header {
 
 /* category area */
 .category-area {
-  position: relative;
-  padding-left: 20%;
-  text-align: left;
   display: none;
   /* initially set to none */
 }
