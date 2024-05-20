@@ -46,7 +46,7 @@ function addItem(event) {
     let newLi = `
     <li>
       ${userInput}
-      <button class="delete-item-btn">Delete</button>
+      <button class="dlt-item-btn">Delete</button>
     </li>
     `;
 
@@ -55,6 +55,13 @@ function addItem(event) {
   };
 
 };
+
+// add Delete function for delete button
+function deleteItem(event) {
+  // target the li element that the button is a child of
+  let li = event.target.parentElement;
+  li.remove();
+}
 
 // get an array of buttons
 let buttons = document.getElementsByTagName('button');
@@ -65,5 +72,8 @@ for (let button of buttons) {
   if (button.className === "new-item-btn") {
     // add event listener for adding items
     button.addEventListener("click", addItem);
+  } else if (button.className === "dlt-item-btn") {
+    // add event listener for deleting items
+    button.addEventListener("click", deleteItem);
   }
 };
