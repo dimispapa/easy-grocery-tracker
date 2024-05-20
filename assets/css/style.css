@@ -124,39 +124,39 @@ h5 {
     margin-top: 20px;
     font-size: 0.8em;
   }
-  
+
 }
 
 /* Media query: laptops and larger (>=992px) */
 @media screen and (min-width: 992px) {
 
-    /* landing page div */
-    #hero-section {
-      padding: 20px 10px;
-    }
-  
-    /* hero content */
-    #hero-content>h1 {
-      font-size: 5em;
-      padding-bottom: 10px;
-    }
-  
-    #hero-content>p {
-      font-size: 2.5em;
-      padding-bottom: 10px;
-    }
-  
-    /* button */
-    #cta-button {
-      font-size: 3em;
-      padding: 30px 15px;
-    }
-  
-    /* credits div */
-    #credits {
-      margin-top: 50px;
-      font-size: 1.2em;
-    }
+  /* landing page div */
+  #hero-section {
+    padding: 20px 10px;
+  }
+
+  /* hero content */
+  #hero-content>h1 {
+    font-size: 5em;
+    padding-bottom: 10px;
+  }
+
+  #hero-content>p {
+    font-size: 2.5em;
+    padding-bottom: 10px;
+  }
+
+  /* button */
+  #cta-button {
+    font-size: 3em;
+    padding: 30px 15px;
+  }
+
+  /* credits div */
+  #credits {
+    margin-top: 50px;
+    font-size: 1.2em;
+  }
 
 }
 
@@ -166,4 +166,16 @@ header {
   /* width: 100%; */
   color: #37474F;
   padding: 10px 5px;
+}
+
+/* new item input box */
+#new-item {
+  width: 50%;
+}
+
+/* ul grocery list */
+.shop-list {
+  position: relative;
+  left: 22%;
+  text-align: left;
 }
