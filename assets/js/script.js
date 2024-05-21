@@ -25,7 +25,7 @@ function validateIfDuplicate(userInput, ulElement) {
 function validateIfBlank(userInput) {
   // if input is empty string/blank
   if (userInput == "") {
-    alert("Item must be filled out!")
+    alert("Please fill out the text box!")
     return false;
   } else {
     return true;
@@ -94,6 +94,60 @@ function tickItem(event) {
 
 }
 
+// define function for adding a new category
+function addCategory(event) {
+  // debugger;
+  // Get the parent of the btn that triggered the event
+  let button = event.currentTarget;
+  let newCatArea = button.parentElement;
+
+  // get the user input text and apply trim method to ensure no spaces
+  let inputBox = button.previousElementSibling
+  let userInput = inputBox.value.trim();
+
+  // Validate input
+  if (validateIfBlank(userInput)) {
+
+    // define the list item along with a delete button,
+    // using template literal with the user input text
+    let newCat = `
+    <!-- New category area -->
+    <div class="new-category-area">
+      <!-- New category input -->
+      <input type="text" name="category" class="new-category" placeholder="Add new category">
+      <!-- Add item button -->
+      <button id="add-category-btn" class="new-category-btn"><i class="fa-solid fa-basket-shopping"></i></button>
+    </div>
+    <!-- Category header -->
+    <h2 class="category-heading"><button class="toggle-list-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput}
+    </h2>
+    <!-- Category area -->
+    <div class="category-area">
+      <!-- Shopping list area -->
+      <ul class="shop-list">
+      </ul>
+      <!-- New item area -->
+      <div class="new-item-area">
+        <!-- New item input -->
+        <input type="text" name="item" class="new-item" placeholder="Add grocery item">
+        <!-- Add item button -->
+        <button id="add-item-btn" class="new-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+      </div>
+    </div>
+    `;
+
+    // append the new li item to the ul
+    newCatArea.insertAdjacentHTML('beforebegin', newCat);
+
+    // clear the input box
+    inputBox.value = '';
+
+    // update event listeners based on latest DOM
+    updateEventListeners()
+
+  };
+}
+
 // define reusable function for updating event listeners when new buttons are added
 function updateEventListeners() {
 
@@ -122,6 +176,12 @@ function updateEventListeners() {
 
       // add event listener for ticking-off items
       button.addEventListener("click", toggleList);
+
+      // add event listener for adding new category
+    } else if (button.className === "new-category-btn") {
+
+      // add event listener for ticking-off items
+      button.addEventListener("click", addCategory);
     }
   };
 }
