@@ -74,6 +74,7 @@ function deleteItem(event) {
   // target the li element that the button is a child of
   let li = event.currentTarget.parentElement;
   li.remove();
+
 }
 
 // define Tick function for items that have been fulfilled
@@ -111,12 +112,13 @@ function addCategory(event) {
     // define the list item along with a delete button,
     // using template literal with the user input text
     let newCat = `
-    <!-- New category area -->
-    <div class="new-category-area">
-      <!-- New category input -->
-      <input type="text" name="category" class="new-category" placeholder="Add new category">
-      <!-- Add item button -->
-      <button id="add-category-btn" class="new-category-btn"><i class="fa-solid fa-basket-shopping"></i></button>
+
+    <!-- Add category area -->
+    <div class="add-category-area">
+      <!-- Add category input -->
+      <input type="text" name="category" class="add-category" placeholder="Add new category">
+      <!-- Add category button -->
+      <button id="add-category-btn" class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i></button>
     </div>
 
     <!-- Category area -->
@@ -131,13 +133,14 @@ function addCategory(event) {
       <ul class="shop-list">
       </ul>
 
-      <!-- New item area -->
-      <div class="new-item-area">
-        <!-- New item input -->
-        <input type="text" name="item" class="new-item" placeholder="Add grocery item">
+      <!-- Add item area -->
+      <div class="add-item-area">
+        <!-- Add item input -->
+        <input type="text" name="item" class="add-item" placeholder="Add grocery item">
         <!-- Add item button -->
-        <button id="add-item-btn" class="new-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+        <button id="add-item-btn" class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
       </div>
+
     </div>
     `;
 
@@ -166,8 +169,10 @@ function toggleList(event) {
 // define Delete category function
 function deleteCategory(event) {
 
-  // target the li element that the button is a child of
+  // target the category area and the addCategory area preceding it
   let catArea = event.currentTarget.parentElement.parentElement;
+  let newCatAreaAbove = catArea.previousElementSibling;
+  newCatAreaAbove.remove();
   catArea.remove();
 }
 
@@ -180,7 +185,7 @@ function updateEventListeners() {
 
   // add event listeners for buttons based on class
   for (let button of buttons) {
-    if (button.className === "new-item-btn") {
+    if (button.className === "add-item-btn") {
 
       // add event listener for adding items
       button.addEventListener("click", addItem);
@@ -201,7 +206,7 @@ function updateEventListeners() {
       button.addEventListener("click", toggleList);
 
       // add event listener for adding new category
-    } else if (button.className === "new-category-btn") {
+    } else if (button.className === "add-category-btn") {
 
       // add event listener for ticking-off items
       button.addEventListener("click", addCategory);

@@ -175,8 +175,8 @@ header {
 }
 
 /* new item input box */
-.new-item,
-.new-category {
+.add-item,
+.add-category {
   width: 50%;
   max-width: 300px;
 }
