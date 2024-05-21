@@ -38,7 +38,6 @@ h2 {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
-  margin-bottom: 10px;
 }
 
 /* LANDING PAGE */
@@ -179,6 +178,13 @@ header {
 /* category area */
 .category-area {
   margin: 10px 0;
+}
+
+/* category heading */
+.category-heading {
+  margin-bottom: 10px;
+  background-color: #B2EBF2;
+  width: fit-content;
 }
 
 /* new item input area */
