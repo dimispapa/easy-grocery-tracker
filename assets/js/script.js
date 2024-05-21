@@ -118,14 +118,18 @@ function addCategory(event) {
       <!-- Add item button -->
       <button id="add-category-btn" class="new-category-btn"><i class="fa-solid fa-basket-shopping"></i></button>
     </div>
-    <!-- Category header -->
-    <h2 class="category-heading"><button class="toggle-list-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput}
-    </h2>
+
     <!-- Category area -->
     <div class="category-area">
+
+      <!-- Category header -->
+      <h2 class="category-heading"><button class="toggle-list-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput}
+      </h2>
+
       <!-- Shopping list area -->
       <ul class="shop-list">
       </ul>
+      
       <!-- New item area -->
       <div class="new-item-area">
         <!-- New item input -->
@@ -147,6 +151,16 @@ function addCategory(event) {
 
   };
 }
+
+// Define function for toggling category list visibility
+function toggleList(event) {
+
+  // get category list to target
+  let listArea = event.currentTarget.parentElement.nextElementSibling;
+
+  // show or hide the div based on the current state of the display style
+  listArea.style.display = listArea.style.display === 'none' ? 'block' : 'none';
+};
 
 // define reusable function for updating event listeners when new buttons are added
 function updateEventListeners() {
@@ -185,16 +199,6 @@ function updateEventListeners() {
     }
   };
 }
-
-// Define function for toggling category list visibility
-function toggleList(event) {
-
-  // get category list to target
-  let categoryArea = event.currentTarget.parentElement.nextElementSibling;
-
-  // show or hide the div based on the current state of the display style
-  categoryArea.style.display = categoryArea.style.display === 'none' ? 'block' : 'none';
-};
 
 // add initial eventListeners once the page has loaded
 window.onload = updateEventListeners();
