@@ -123,13 +123,14 @@ function addCategory(event) {
     <div class="category-area">
 
       <!-- Category header -->
-      <h2 class="category-heading"><button class="toggle-list-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput}
+      <h2 class="category-heading"><button class="toggle-list-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput} 
+        <button class="dlt-category-btn"><i class="fa-regular fa-trash-can"></i></button>
       </h2>
 
       <!-- Shopping list area -->
       <ul class="shop-list">
       </ul>
-      
+
       <!-- New item area -->
       <div class="new-item-area">
         <!-- New item input -->
@@ -161,6 +162,14 @@ function toggleList(event) {
   // show or hide the div based on the current state of the display style
   listArea.style.display = listArea.style.display === 'none' ? 'block' : 'none';
 };
+
+// define Delete category function
+function deleteCategory(event) {
+
+  // target the li element that the button is a child of
+  let catArea = event.currentTarget.parentElement.parentElement;
+  catArea.remove();
+}
 
 // define reusable function for updating event listeners when new buttons are added
 function updateEventListeners() {
@@ -196,6 +205,12 @@ function updateEventListeners() {
 
       // add event listener for ticking-off items
       button.addEventListener("click", addCategory);
+
+      // add event listener for deleting categories
+    } else if (button.className === "dlt-category-btn") {
+
+      // add event listener for ticking-off items
+      button.addEventListener("click", deleteCategory);
     }
   };
 }
