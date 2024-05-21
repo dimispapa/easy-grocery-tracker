@@ -38,6 +38,7 @@ h2 {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
+  margin-bottom: 10px;
 }
 
 /* LANDING PAGE */
@@ -172,9 +173,21 @@ header {
   position: relative;
   padding-left: 20%;
   text-align: left;
+  margin: 10px 0;
 }
 
-/* new item input box */
+/* category area */
+.category-area {
+  margin: 10px 0;
+}
+
+/* new item input area */
+.add-item-area,
+.shop-list {
+  padding-left: 1rem;
+}
+
+/* new item/category input box */
 .add-item,
 .add-category {
   width: 50%;
