@@ -50,7 +50,7 @@ function addItem(event) {
     // using template literal with the user input text
     let newLi = `
     <li>
-      <button class="tick-item-btn">Tick</button>
+      <button class="tick-item-btn"><i class="fa-regular fa-circle"></i></button>
       <span>${userInput}</span>
       <button class="dlt-item-btn"><i class="fa-regular fa-trash-can"></i></button>
     </li>
@@ -84,6 +84,13 @@ function tickItem(event) {
 
   // toggle on/off the class to apply/remove line-through text decoration
   span.classList.toggle('ticked-off');
+
+  // target icon of the tick button
+  let icon = event.currentTarget.getElementsByTagName('i')[0];
+
+  // togglee icon with checked circle or unchecked circle
+  icon.classList.toggle("fa-circle-check");
+  icon.classList.toggle("fa-circle");
 
 }
 
