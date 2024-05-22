@@ -35,12 +35,12 @@ function validateIfBlank(userInput) {
 // define function for adding new items
 function addItem(event) {
 
-  // Get the button that triggered the event and the ul element before it
-  let button = event.currentTarget;
-  let ul = button.parentElement.previousElementSibling;
+  // Get the parent of the btn that triggered the event
+  let triggerElement = event.currentTarget;
+  let ul = triggerElement.parentElement.previousElementSibling;
 
   // get the user input text and apply trim method to ensure no spaces
-  let inputBox = button.previousElementSibling
+  let inputBox = triggerElement.className === "add-item-btn" ? triggerElement.previousElementSibling : triggerElement;
   let userInput = inputBox.value.trim();
 
   // Validate input
@@ -98,13 +98,13 @@ function tickItem(event) {
 
 // define function for adding a new category
 function addCategory(event) {
-  // debugger;
+
   // Get the parent of the btn that triggered the event
-  let button = event.currentTarget;
-  let newCatArea = button.parentElement;
+  let triggerElement = event.currentTarget;
+  let newCatArea = triggerElement.parentElement;
 
   // get the user input text and apply trim method to ensure no spaces
-  let inputBox = button.previousElementSibling
+  let inputBox = triggerElement.className === "add-category-btn" ? triggerElement.previousElementSibling : triggerElement;
   let userInput = inputBox.value.trim();
 
   // Validate input
@@ -178,12 +178,23 @@ function deleteCategory(event) {
   catArea.remove();
 }
 
+// define a function to handle keyboard events
+function handleKeyEvents(event) {
+  // if enter key was pressed down
+  if (event.key === "Enter" && this.className === "add-category") {
+    // run addcategory function
+    addCategory(event);
+  } else if (event.key === "Enter" && this.className === "add-item") {
+    // run additem function
+    addItem(event);
+  }
+}
+
 // define reusable function for updating event listeners when new buttons are added
 function updateEventListeners() {
 
   // get the latest array of buttons
   let buttons = document.getElementsByTagName('button');
-  console.log(buttons.length);
 
   // add event listeners for buttons based on class
   for (let button of buttons) {
@@ -220,7 +231,15 @@ function updateEventListeners() {
       button.addEventListener("click", deleteCategory);
     }
   };
-}
+
+  // get the latest array of input boxes
+  let inputBoxes = document.getElementsByTagName('input');
+
+  // add enter keydown event listeners to input boxes
+  for (let input of inputBoxes) {
+    input.addEventListener("keypress", handleKeyEvents);
+  };
+};
 
 // add initial eventListeners once the page has loaded
 window.onload = updateEventListeners();
