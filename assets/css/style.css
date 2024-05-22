@@ -281,3 +281,8 @@ button {
 .smaller-btn {
   font-size: small;
 }
+
+/* list items */
+li {
+  margin: 5px 0;
+}
