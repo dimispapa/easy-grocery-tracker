@@ -109,8 +109,7 @@ function addCategory(event) {
   // Validate input
   if (validateIfBlank(userInput)) {
 
-    // define the list item along with a delete button,
-    // using template literal with the user input text
+    // define the HTML for a new category to be added, with areas to add new items/categories
     let newCat = `
 
     <!-- Add category area -->
@@ -118,7 +117,7 @@ function addCategory(event) {
       <!-- Add category input -->
       <input type="text" name="category" class="add-category" placeholder="Add new category">
       <!-- Add category button -->
-      <button id="add-category-btn" class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i></button>
+      <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus" id="smaller-btn"></i></button>
     </div>
 
     <!-- Category area -->
@@ -138,7 +137,7 @@ function addCategory(event) {
         <!-- Add item input -->
         <input type="text" name="item" class="add-item" placeholder="Add grocery item">
         <!-- Add item button -->
-        <button id="add-item-btn" class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+        <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
       </div>
 
     </section>

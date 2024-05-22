@@ -209,3 +209,12 @@ header {
 .ticked-off {
   text-decoration: line-through;
 }
+
+/* add category button */
+.add-category-btn {
+  height: fit-content;
+  width: fit-content;
+  font-size: 20px;
+  vertical-align: middle;
+  color: #8BC34A;
+}
