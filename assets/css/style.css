@@ -286,3 +286,29 @@ button {
 li {
   margin: 5px 0;
 }
+
+/* Media query: laptops and larger (>=992px) */
+@media screen and (min-width: 992px) {
+
+  /* main */
+  main {
+    display: grid;
+    justify-items: center;
+  }
+
+  /* category area */
+  .category-area {
+    width: 50%;
+  }
+
+  /* add item input box */
+  .add-item {
+    width: auto;
+  }
+
+  /* add category input box */
+  .add-category {
+    width: 80%;
+  }
+
+}
