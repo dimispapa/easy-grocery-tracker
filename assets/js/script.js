@@ -50,9 +50,9 @@ function addItem(event) {
     // using template literal with the user input text
     let newLi = `
     <li>
-      <button class="tick-item-btn"><i class="fa-regular fa-circle"></i></button>
+      <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
       <span>${userInput}</span>
-      <button class="dlt-item-btn"><i class="fa-regular fa-trash-can"></i></button>
+      <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
     </li>
     `;
 
@@ -91,6 +91,7 @@ function tickItem(event) {
 
   // togglee icon with checked circle or unchecked circle
   icon.classList.toggle("fa-circle-check");
+  icon.classList.toggle("ticked-shadow");
   icon.classList.toggle("fa-circle");
 
 }
@@ -117,15 +118,15 @@ function addCategory(event) {
       <!-- Add category input -->
       <input type="text" name="category" class="add-category" placeholder="Add new category">
       <!-- Add category button -->
-      <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus" id="smaller-btn"></i></button>
+      <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
     </div>
 
     <!-- Category area -->
     <section class="category-area">
 
       <!-- Category header -->
-      <h2 class="category-heading"><button class="toggle-list-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput} 
-        <button class="dlt-category-btn"><i class="fa-regular fa-trash-can"></i></button>
+      <h2 class="category-heading"><button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput} 
+        <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
       </h2>
 
       <!-- Shopping list area -->
@@ -184,34 +185,34 @@ function updateEventListeners() {
 
   // add event listeners for buttons based on class
   for (let button of buttons) {
-    if (button.className === "add-item-btn") {
+    if (button.classList.contains("add-item-btn")) {
 
       // add event listener for adding items
       button.addEventListener("click", addItem);
 
-    } else if (button.className === "dlt-item-btn") {
+    } else if (button.classList.contains("dlt-item-btn")) {
 
       // add event listener for deleting items
       button.addEventListener("click", deleteItem);
 
-    } else if (button.className === "tick-item-btn") {
+    } else if (button.classList.contains("tick-item-btn")) {
 
       // add event listener for ticking-off items
       button.addEventListener("click", tickItem);
 
-    } else if (button.className === "toggle-list-btn") {
+    } else if (button.classList.contains("toggle-list-btn")) {
 
       // add event listener for ticking-off items
       button.addEventListener("click", toggleList);
 
       // add event listener for adding new category
-    } else if (button.className === "add-category-btn") {
+    } else if (button.classList.contains("add-category-btn")) {
 
       // add event listener for ticking-off items
       button.addEventListener("click", addCategory);
 
       // add event listener for deleting categories
-    } else if (button.className === "dlt-category-btn") {
+    } else if (button.classList.contains("dlt-category-btn")) {
 
       // add event listener for ticking-off items
       button.addEventListener("click", deleteCategory);
