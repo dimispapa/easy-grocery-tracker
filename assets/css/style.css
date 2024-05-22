@@ -198,6 +198,7 @@ header {
 .add-category {
   width: 50%;
   max-width: 300px;
+  font-size: 16px;
 }
 
 /* grocery lists */
@@ -211,10 +212,47 @@ header {
 }
 
 /* add category button */
-.add-category-btn {
+.add-category-btn,
+.add-item-btn {
   height: fit-content;
   width: fit-content;
-  font-size: 20px;
-  vertical-align: middle;
+  font-size: 16px;
+  padding: 1px;
+  vertical-align: baseline;
   color: #8BC34A;
+  box-shadow: 1px 1px 5px 1px #37474F;
+  background-color: #FCFCFC;
+  border: none;
+}
+
+/* delete button */
+.dlt-category-btn,
+.dlt-item-btn {
+  height: fit-content;
+  width: fit-content;
+  font-size: 16px;
+  padding: 1px;
+  vertical-align: 4px;
+  color: #D32F2F;
+  box-shadow: 1px 1px 5px 1px #37474F;
+  background: none;
+  border: none;
+}
+
+/* toggle list button */
+.toggle-list-btn {
+  height: fit-content;
+  width: fit-content;
+  font-size: 16px;
+  padding: 1px;
+  vertical-align: 4px;
+  color: #37474F;
+  box-shadow: 1px 1px 5px 1px #37474F;
+  background: none;
+  border: none;
+}
+
+/* smaller btn */
+.smaller-btn {
+  font-size: small;
 }
