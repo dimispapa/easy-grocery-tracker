@@ -168,7 +168,7 @@ header {
 }
 
 /* application area */
-.app-area {
+#app-area {
   position: relative;
   padding-left: 20%;
   text-align: left;

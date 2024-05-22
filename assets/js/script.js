@@ -122,7 +122,7 @@ function addCategory(event) {
     </div>
 
     <!-- Category area -->
-    <div class="category-area">
+    <section class="category-area">
 
       <!-- Category header -->
       <h2 class="category-heading"><button class="toggle-list-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput} 
@@ -141,7 +141,7 @@ function addCategory(event) {
         <button id="add-item-btn" class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
       </div>
 
-    </div>
+    </section>
     `;
 
     // append the new li item to the ul
