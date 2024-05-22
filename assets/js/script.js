@@ -159,11 +159,13 @@ function addCategory(event) {
 // Define function for toggling category list visibility
 function toggleList(event) {
 
-  // get category list to target
+  // get category list to target and the add-item area
   let listArea = event.currentTarget.parentElement.nextElementSibling;
+  let addItemArea = listArea.nextElementSibling;
 
   // show or hide the div based on the current state of the display style
   listArea.style.display = listArea.style.display === 'none' ? 'block' : 'none';
+  addItemArea.style.display = addItemArea.style.display === 'none' ? 'block' : 'none';
 };
 
 // define Delete category function
