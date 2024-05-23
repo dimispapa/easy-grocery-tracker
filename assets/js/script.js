@@ -143,7 +143,10 @@ function addItem(event) {
     inputBox.value = '';
 
     // update event listeners based on latest DOM
-    updateEventListeners()
+    updateEventListeners();
+
+    // save the list to local storage
+    saveGroceryList();
   };
 
 };
@@ -154,6 +157,9 @@ function deleteItem(event) {
   // target the li element that the button is a child of
   let li = event.currentTarget.parentElement;
   li.remove();
+
+  // save the list to local storage
+  saveGroceryList();
 
 }
 
@@ -173,6 +179,9 @@ function tickItem(event) {
   icon.classList.toggle("fa-circle-check");
   icon.classList.toggle("ticked-shadow");
   icon.classList.toggle("fa-circle");
+
+  // save the list to local storage
+  saveGroceryList();
 
 }
 
@@ -233,6 +242,9 @@ function addCategory(event) {
     // update event listeners based on latest DOM
     updateEventListeners()
 
+    // save the list to local storage
+    saveGroceryList();
+
   };
 }
 
@@ -256,6 +268,9 @@ function deleteCategory(event) {
   let newCatAreaAbove = catArea.previousElementSibling;
   newCatAreaAbove.remove();
   catArea.remove();
+
+  // save the list to local storage
+  saveGroceryList();
 }
 
 // define a function to handle keyboard events
@@ -320,6 +335,3 @@ function updateEventListeners() {
     input.addEventListener("keypress", handleKeyEvents);
   };
 };
-
-// add initial eventListeners once the page has loaded
-window.onload = updateEventListeners();
