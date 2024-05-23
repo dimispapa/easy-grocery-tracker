@@ -1,3 +1,30 @@
+// ****** FUNCTIONS FOR SAVING/LOADING USER DATA AND RECREATING DOM ******
+
+// add event listener on page load
+document.addEventListener('DOMContentLoaded', function () {
+
+  // load the grocery list when the page is loaded
+  loadGroceryList();
+
+  // update the event listeners for key functionality
+  updateEventListeners();
+
+});
+
+// define function for saving data to local storage in json format
+function saveDataToLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// define function for loading data from local storage
+function loadDataFromLocalStorage(key, data) {
+  const data = localStorage.getItem(key);
+  // return data parse from json if it exists otherwise return null
+  return data ? JSON.parse(data) : null;
+}
+
+// ****** FUNCTIONALITY CODE FOR MANIPULATING THE DOM *******
+
 // define function to check for duplicate list item
 function validateIfDuplicate(userInput, ulElement) {
 
