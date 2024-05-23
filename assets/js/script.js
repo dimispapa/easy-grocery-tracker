@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   // load the grocery list when the page is loaded
-  // loadGroceryList();
+  loadGroceryList();
 
   // update the event listeners for key functionality
   updateEventListeners();
@@ -75,6 +75,73 @@ function saveGroceryList() {
   saveDataToLocalStorage('grocery_list', groceryList)
 };
 
+// define function that loads grocery list data from local storage
+function loadGroceryList() {
+
+  // attempt to load data from local storage using the key "grocery_list"
+  const GROCERYLIST = loadDataFromLocalStorage('grocery_list');
+  // if no data exists, then return nothing
+  if (!GROCERYLIST) return;
+
+  // loop through the categories in the data
+  for (let categoryData of GROCERYLIST) {
+
+    // call the function that populates the DOM with containing the data
+    populateListFromData(categoryData.category, categoryData.items);
+
+  };
+
+};
+
+// define function that builds the html template literals and inserts into the DOM
+function populateListFromData(categoryName, items) {
+
+  // build the html structure using template literal with the category name from the data
+  let loadCat = `
+  <div class="add-category-area">
+    <input type="text" name="category" class="add-category" placeholder="Add new category">
+    <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
+  </div>
+  <section class="category-area">
+    <h2 class="category-heading"><button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button> ${categoryName} 
+        <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
+    </h2>
+    <ul class="shop-list"></ul>
+    <div class="add-item-area">
+        <input type="text" name="item" class="add-item" placeholder="Add grocery item">
+        <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+    </div>
+  </section>
+`;
+
+  // insert the loaded category area in the app area main
+  let mainAppArea = document.getElementById('app-area');
+  mainAppArea.insertAdjacentHTML('beforeend', loadCat);
+
+  // get the ul element by referring to the last child (newly inserted category area) of the app area
+  let ul = mainAppArea.lastElementChild.getElementsByClassName('shop-list')[0];
+
+  // loop through items in the data and insert html li elements in the ul
+  for (let item of items) {
+
+    // define li element using item variable names and ticked-off status
+    // use a ternary operator within the template literal to conditionally set the ticked-off class
+    let loadLi = `
+    <li>
+      <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
+      <span class="${item.ticked ? 'ticked-off' : ''}">${item.name}</span>
+      <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
+    </li>    
+    `;
+
+    // insert the li element in the ul list
+    ul.insertAdjacentElement('beforeend', loadLi);
+  };
+
+  // update the event listeners on the new updated DOM
+  updateEventListeners();
+
+};
 
 // ****** FUNCTIONALITY CODE FOR MANIPULATING THE DOM *******
 
@@ -94,9 +161,9 @@ function validateIfDuplicate(userInput, ulElement) {
       if (item.textContent.toLowerCase().trim() === userInput.toLowerCase().trim()) {
         alert('This item already exists in the list!');
         return false;
-      }
-    }
-  }
+      };
+    };
+  };
   // default return as true if no duplicate found in loop
   return true;
 };
