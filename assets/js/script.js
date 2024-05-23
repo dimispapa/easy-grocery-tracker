@@ -4,7 +4,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   // load the grocery list when the page is loaded
-  loadGroceryList();
+  // loadGroceryList();
 
   // update the event listeners for key functionality
   updateEventListeners();
@@ -21,10 +21,10 @@ function saveDataToLocalStorage(key, data) {
 // define function for loading data from local storage
 function loadDataFromLocalStorage(key, data) {
 
-  const data = localStorage.getItem(key);
+  const LOCALDATA = localStorage.getItem(key);
 
   // return data parse from json if it exists otherwise return null
-  return data ? JSON.parse(data) : null;
+  return LOCALDATA ? JSON.parse(LOCALDATA) : null;
 }
 
 // define function to extract the data from the dom, process it in objects and save it
