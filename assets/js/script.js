@@ -1,4 +1,4 @@
-// ****** FUNCTIONS FOR SAVING/LOADING USER DATA AND RECREATING DOM ******
+// ****** FUNCTIONS FOR SAVING/LOADING USER DATA AND RECREATING THE DOM AS THE USER LEFT IT ******
 
 // add event listener on page load
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,15 +13,68 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // define function for saving data to local storage in json format
 function saveDataToLocalStorage(key, data) {
+
   localStorage.setItem(key, JSON.stringify(data));
+
 }
 
 // define function for loading data from local storage
 function loadDataFromLocalStorage(key, data) {
+
   const data = localStorage.getItem(key);
+
   // return data parse from json if it exists otherwise return null
   return data ? JSON.parse(data) : null;
 }
+
+// define function to extract the data from the dom, process it in objects and save it
+function saveGroceryList() {
+
+  // parse the category areas into a node list
+  const CATEGORIES = document.querySelectorAll('.category-area');
+  // create an empty grocery list array to store data
+  let groceryList = [];
+
+  // loop through each category area
+  for (let category of CATEGORIES) {
+
+    // extract the category heading name
+    let categoryName = category.querySelector('.category-heading').textContent.trim();
+    // create an empty items array to store data
+    let items = [];
+
+    // get the list items from the DOM
+    const LISTITEMS = category.querySelectorAll('li');
+
+    // loop through each list item
+    for (let li of LISTITEMS) {
+
+      // extract the item name from the span child
+      let itemName = li.querySelector('span').textContent.trim();
+
+      // get the state of the item if it is ticked-off or not
+      let isTicked = li.querySelector('span').classList.contains('ticked-off');
+
+      // store the item object in the items array
+      items.push({
+        item_name: itemName,
+        ticked: isTicked
+      });
+
+    };
+
+    // store the category object with the nested items array, in the overarching grocery list array
+    groceryList.push({
+      category: categoryName,
+      items: items
+    });
+
+  };
+
+  // finally save the grocery list data to local storage
+  saveDataToLocalStorage('grocery_list', groceryList)
+};
+
 
 // ****** FUNCTIONALITY CODE FOR MANIPULATING THE DOM *******
 
