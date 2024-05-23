@@ -346,37 +346,41 @@ function updateEventListeners() {
 
   // add event listeners for buttons based on class
   for (let button of buttons) {
-    if (button.classList.contains("add-item-btn")) {
+    switch (true) {
 
-      // add event listener for adding items
-      button.addEventListener("click", addItem);
+      // add event listener for adding list item
+      case button.classList.contains("add-item-btn"):
+        button.addEventListener("click", addItem);
+        break;
 
-    } else if (button.classList.contains("dlt-item-btn")) {
+        // add event listener for deleting list item
+      case button.classList.contains("dlt-item-btn"):
+        button.addEventListener("click", deleteItem);
+        break;
 
-      // add event listener for deleting items
-      button.addEventListener("click", deleteItem);
+        // add event listener for ticking list item
+      case button.classList.contains("tick-item-btn"):
+        button.addEventListener("click", tickItem);
+        break;
 
-    } else if (button.classList.contains("tick-item-btn")) {
+        // add event listener for showing/hiding list
+      case button.classList.contains("toggle-list-btn"):
+        button.addEventListener("click", toggleList);
+        break;
 
-      // add event listener for ticking-off items
-      button.addEventListener("click", tickItem);
+        // add event listener for adding category
+      case button.classList.contains("add-category-btn"):
+        button.addEventListener("click", addCategory);
+        break;
 
-    } else if (button.classList.contains("toggle-list-btn")) {
+        // add event listener for deleting category
+      case button.classList.contains("dlt-category-btn"):
+        button.addEventListener("click", deleteCategory);
+        break;
 
-      // add event listener for ticking-off items
-      button.addEventListener("click", toggleList);
-
-      // add event listener for adding new category
-    } else if (button.classList.contains("add-category-btn")) {
-
-      // add event listener for ticking-off items
-      button.addEventListener("click", addCategory);
-
-      // add event listener for deleting categories
-    } else if (button.classList.contains("dlt-category-btn")) {
-
-      // add event listener for ticking-off items
-      button.addEventListener("click", deleteCategory);
+        // default case if none of the above
+      default:
+        break;
     }
   };
 
