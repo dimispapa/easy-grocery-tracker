@@ -104,12 +104,12 @@ function populateListFromData(categoryName, items) {
   </div>
   <section class="category-area">
     <h2 class="category-heading"><button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button> ${categoryName} 
-        <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
+      <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
     </h2>
     <ul class="shop-list"></ul>
     <div class="add-item-area">
-        <input type="text" name="item" class="add-item" placeholder="Add grocery item">
-        <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+      <input type="text" name="item" class="add-item" placeholder="Add grocery item">
+      <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
     </div>
   </section>
 `;
@@ -129,13 +129,13 @@ function populateListFromData(categoryName, items) {
     let loadLi = `
     <li>
       <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
-      <span class="${item.ticked ? 'ticked-off' : ''}">${item.name}</span>
+      <span class="${item.isTicked ? 'ticked-off': ''}">${item.name}</span>
       <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
-    </li>    
+    </li> 
     `;
 
     // insert the li element in the ul list
-    ul.insertAdjacentElement('beforeend', loadLi);
+    ul.insertAdjacentElement('beforebegin', loadLi);
   };
 
   // update the event listeners on the new updated DOM
@@ -268,35 +268,19 @@ function addCategory(event) {
 
     // define the HTML for a new category to be added, with areas to add new items/categories
     let newCat = `
-
-    <!-- Add category area -->
     <div class="add-category-area">
-      <!-- Add category input -->
       <input type="text" name="category" class="add-category" placeholder="Add new category">
-      <!-- Add category button -->
       <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
     </div>
-
-    <!-- Category area -->
     <section class="category-area">
-
-      <!-- Category header -->
       <h2 class="category-heading"><button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput} 
         <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
       </h2>
-
-      <!-- Shopping list area -->
-      <ul class="shop-list">
-      </ul>
-
-      <!-- Add item area -->
+      <ul class="shop-list"></ul>
       <div class="add-item-area">
-        <!-- Add item input -->
         <input type="text" name="item" class="add-item" placeholder="Add grocery item">
-        <!-- Add item button -->
         <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
       </div>
-
     </section>
     `;
 
