@@ -98,11 +98,7 @@ function populateListFromData(categoryName, items) {
 
   // build the html structure using template literal with the category name from the data
   let loadCat = `
-  <div class="add-category-area">
-    <input type="text" name="category" class="add-category" placeholder="Add new category">
-    <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
-  </div>
-  <section class="category-area">
+  <section class="category-area" id="${categoryName}-area">
     <h2 class="category-heading"><button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button> ${categoryName} 
       <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
     </h2>
@@ -112,32 +108,38 @@ function populateListFromData(categoryName, items) {
       <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
     </div>
   </section>
+  <div class="add-category-area">
+  <input type="text" name="category" class="add-category" placeholder="Add new category">
+  <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
+  </div>
 `;
 
   // insert the loaded category area in the app area main
   let mainAppArea = document.getElementById('app-area');
   mainAppArea.insertAdjacentHTML('beforeend', loadCat);
 
-  // get the ul element by referring to the last child (newly inserted category area) of the app area
-  let ul = mainAppArea.lastElementChild.getElementsByClassName('shop-list')[0];
+  // check if there are any items
+  if (items.length !== 0) {
+    // get the ul element by referring to the last child (newly inserted category area) of the app area
+    let ul = document.getElementById(`${categoryName}-area`).querySelector('ul');
 
-  // loop through items in the data and insert html li elements in the ul
-  for (let item of items) {
+    // loop through items in the data and insert html li elements in the ul
+    for (let item of items) {
 
-    // define li element using item variable names and ticked-off status
-    // use a ternary operator within the template literal to conditionally set the ticked-off class
-    let loadLi = `
-    <li>
-      <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
-      <span class="${item.isTicked ? 'ticked-off': ''}">${item.name}</span>
-      <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
-    </li> 
-    `;
+      // define li element using item variable names and ticked-off status
+      // use a ternary operator within the template literal to conditionally set the ticked-off class
+      let loadLi = `
+      <li>
+        <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
+        <span class="${item.isTicked ? 'ticked-off': ''}">${item.item_name}</span>
+        <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
+      </li> 
+      `;
 
-    // insert the li element in the ul list
-    ul.insertAdjacentElement('beforebegin', loadLi);
+      // insert the li element in the ul list
+      ul.insertAdjacentHTML('beforeend', loadLi);
+    };
   };
-
   // update the event listeners on the new updated DOM
   updateEventListeners();
 
@@ -268,7 +270,7 @@ function addCategory(event) {
 
     // define the HTML for a new category to be added, with areas to add new items/categories
     let newCat = `
-    <div class="add-category-area">
+    <div class="add-category-area" id="${userInput}-area">
       <input type="text" name="category" class="add-category" placeholder="Add new category">
       <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
     </div>
