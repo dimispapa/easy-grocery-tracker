@@ -141,8 +141,8 @@ function populateListFromData(categoryName, items) {
       </div>
     </section>
     <div class="add-category-area">
-    <input type="text" name="category" class="add-category" placeholder="Add new category">
-    <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
+      <input type="text" name="category" class="add-category" placeholder="Add new category">
+      <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
     </div>
     `;
 
@@ -235,19 +235,65 @@ function validateIfDuplicateCategory(userInput) {
 };
 
 // define function to validate if blank
-function validateIfBlank(userInput) {
+function validateIfBlank(userInput, inputBox) {
 
   try {
     // if input is empty string/blank
     if (userInput == "") {
-      alert("Please fill out the text box!")
+      // call show error function for the error to appear on page
+      showError(inputBox, "Please fill out the text box!")
+      // return false to invalidate
       return false;
-    } else {
-      return true;
-    };
+    }
+    // return true to validate
+    return true;
 
   } catch (error) {
-    console.error('Error validating user input for blanks:', error)
+    console.error('Error validating user input for blanks:', error);
+    // return false to invalidate as function did not operate as expected
+    return false;
+  };
+};
+
+// add function for showing validation error on page
+function showError(inputBox, message) {
+
+  // add the "error" class styles to the input box to highlight
+  inputBox.classList.add('error');
+
+  // define the parent and the element that will show the error message
+  let parentElement = inputBox.parentElement;
+  let errorContainer = parentElement.nextElementSibling;
+
+  // check if the error container is populated or highlighted already
+  if (!errorContainer || !errorContainer.classList.contains('error-message')) {
+    // create the error container element
+    errorContainer = document.createElement('p');
+    // add error message class to the container for styles to apply
+    errorContainer.classList.add('error-message');
+    // insert the error container element after the input box
+    parentElement.parentNode.insertBefore(errorContainer, parentElement.nextSibling);
+  };
+
+  // write the message in the error container and make visible
+  errorContainer.textContent = message;
+  errorContainer.style.display = 'block';
+
+};
+
+// define function for clearing the error shown on page
+function clearError(inputBox) {
+
+  // remove the error class from the input box to remove highlighting
+  inputBox.classList.remove('error');
+
+  // get the error container element and parent
+  let parentElement = inputBox.parentElement;
+  let errorContainer = parentElement.nextElementSibling;
+  // check if the errorContainer exists and if it contains the "error-message" class
+  if (errorContainer && errorContainer.classList.contains('error-message')) {
+    // hide the error container
+    errorContainer.style.display = 'none';
   };
 };
 
@@ -259,12 +305,13 @@ function addItem(event) {
     let triggerElement = event.currentTarget;
     let ul = triggerElement.parentElement.previousElementSibling;
 
-    // get the user input text and apply trim method to ensure no spaces
+    // Get the input box element. Use ternary operator to capture the case where the enter key was used instead of the button
     let inputBox = triggerElement.className === "add-item-btn" ? triggerElement.previousElementSibling : triggerElement;
+    // get the user input text and apply trim method to ensure no spaces. 
     let userInput = inputBox.value.trim();
 
     // Validate input
-    if (validateIfBlank(userInput) && validateIfDuplicateItem(userInput, ul)) {
+    if (validateIfBlank(userInput, inputBox) && validateIfDuplicateItem(userInput, ul)) {
 
       // define the list item along with a delete button,
       // using template literal with the user input text
@@ -281,6 +328,9 @@ function addItem(event) {
 
       // clear the input box
       inputBox.value = '';
+
+      // clear the error if exists
+      clearError(inputBox);
 
       // update event listeners based on latest DOM
       updateEventListeners();
@@ -345,12 +395,13 @@ function addCategory(event) {
     let triggerElement = event.currentTarget;
     let newCatArea = triggerElement.parentElement;
 
-    // get the user input text and apply trim method to ensure no spaces
+    // Get the input box element. Use ternary operator to capture the case where the enter key was used instead of the button
     let inputBox = triggerElement.className === "add-category-btn" ? triggerElement.previousElementSibling : triggerElement;
+    // get the user input text and apply trim method to ensure no spaces
     let userInput = inputBox.value.trim();
 
     // Validate input
-    if (validateIfBlank(userInput) && validateIfDuplicateCategory(userInput)) {
+    if (validateIfBlank(userInput, inputBox) && validateIfDuplicateCategory(userInput)) {
 
       // define the HTML for a new category to be added, with areas to add new items/categories
       let newCat = `
@@ -377,6 +428,9 @@ function addCategory(event) {
 
       // clear the input box
       inputBox.value = '';
+
+      // clear the error if exists
+      clearError(inputBox);
 
       // update event listeners based on latest DOM
       updateEventListeners()
@@ -430,10 +484,10 @@ function handleKeyEvents(event) {
 
   try {
     // if enter key was pressed down
-    if (event.key === "Enter" && this.className === "add-category") {
+    if (event.key === "Enter" && this.classList.contains("add-category")) {
       // run addcategory function
       addCategory(event);
-    } else if (event.key === "Enter" && this.className === "add-item") {
+    } else if (event.key === "Enter" && this.classList.contains("add-item")) {
       // run additem function
       addItem(event);
     };
