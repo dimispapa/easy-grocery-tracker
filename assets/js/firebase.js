@@ -31,5 +31,14 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-  // Initialize Realtime Database and get a reference to the service
-  const database = getDatabase(app);
+  // write user data function
+  function writeUserData(userId, userName, password, email) {
+    // Initialize Realtime Database and get a reference to the service
+    const db = getDatabase(app);
+    // write user data to the users location on the database
+    set(ref(db, 'users/' + userId), {
+      username: userName,
+      password: password,
+      email: email
+    });
+  }
