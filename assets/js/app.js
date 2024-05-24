@@ -2,12 +2,8 @@ import {
   db,
   ref,
   set,
-  get,
-  child,
-  update,
-  remove,
   onValue
-} from "./firebase";
+} from "./firebase.js";
 
 // ****** FUNCTIONS FOR SAVING/LOADING USER DATA AND RECREATING THE DOM AS THE USER LEFT IT ******
 
@@ -50,7 +46,7 @@ function saveDataToLocalStorage(key, data) {
  */
 function saveDataToFirebase(groceryList) {
 
-  const dbRef = ref(database, 'groceryList');
+  const dbRef = ref(db, 'groceryList');
   set(dbRef, groceryList)
     // add error handling
     .then(function () {
@@ -68,7 +64,7 @@ function saveDataToFirebase(groceryList) {
  */
 function loadDataFromFirebase(dataPath) {
 
-  const dbRef = ref(database, dataPath);
+  const dbRef = ref(db, dataPath);
   // set up event listener to read static snapshots on data path
   onValue(dbRef, (snapshot) => {
 

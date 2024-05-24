@@ -1,12 +1,7 @@
-// initialize firebase
+// import required SDKs needed
 import {
   initializeApp
 } from 'https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js'
-
-// add the Firebase SDK for Google Analytics
-import {
-  getAnalytics
-} from 'https://www.gstatic.com/firebasejs/10.12.1/firebase-analytics.js'
 
 // Add Firebase products
 import {
@@ -37,9 +32,5 @@ export {
   db,
   ref,
   set,
-  get,
-  child,
-  update,
-  remove,
   onValue
 };
