@@ -1,6 +1,9 @@
 // ****** FUNCTIONS FOR SAVING/LOADING USER DATA AND RECREATING THE DOM AS THE USER LEFT IT ******
 
-// add event listener on page load
+/**
+ * Initializes the application.
+ * Loads the grocery list and sets up event listeners.
+ */
 document.addEventListener('DOMContentLoaded', function () {
 
   try {
@@ -12,11 +15,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   } catch (error) {
     console.error('Error during initialization:', error);
-  }
-
+  };
 });
 
-// define function for saving data to local storage in json format
+/**
+ * Saves data to local storage.
+ * @param {string} key - The key under which the data is stored.
+ * @param {any} data - The data to be stored.
+ */
 function saveDataToLocalStorage(key, data) {
 
   try {
@@ -24,13 +30,15 @@ function saveDataToLocalStorage(key, data) {
 
   } catch (error) {
     console.error('Error saving to local storage:', error);
-  }
+  };
+};
 
-
-}
-
-// define function for loading data from local storage
-function loadDataFromLocalStorage(key, data) {
+/**
+ * Loads data from local storage.
+ * @param {string} key - The key under which the data is stored.
+ * @returns {any} - The loaded data or null if not found.
+ */
+function loadDataFromLocalStorage(key) {
 
   try {
     // get data item from local storage
@@ -42,11 +50,12 @@ function loadDataFromLocalStorage(key, data) {
   } catch (error) {
     console.error('Error loading from local storage:', error);
     return null;
-  }
+  };
+};
 
-}
-
-// define function to extract the data from the dom, process it in objects and save it
+/**
+ * Saves the grocery list to local storage.
+ */
 function saveGroceryList() {
 
   try {
@@ -99,7 +108,9 @@ function saveGroceryList() {
   }
 };
 
-// define function that loads grocery list data from local storage
+/**
+ * Loads the grocery list from local storage.
+ */
 function loadGroceryList() {
 
   try {
@@ -122,7 +133,11 @@ function loadGroceryList() {
 
 };
 
-// define function that builds the html template literals and inserts into the DOM
+/**
+ * Populates html for a list category and its items from locally stored data.
+ * @param {string} categoryName - The name of the category.
+ * @param {Array} items - The items in the category.
+ */
 function populateListFromData(categoryName, items) {
 
   try {
@@ -180,9 +195,15 @@ function populateListFromData(categoryName, items) {
   }
 };
 
-// ****** FUNCTIONALITY CODE FOR MANIPULATING THE DOM *******
+// ****** FUNCTIONALITY/OPERATIONAL CODE FOR MANIPULATING THE DOM *******
 
-// define function to check for duplicate list item
+/**
+ * Validates if the input is already exists in the list.
+ * @param {string} userInput - The input text from the user.
+ * @param {HTMLElement} ulElement - The ul element to check within.
+ * @param {HTMLElement} inputBox - The input box element.
+ * @returns {boolean} - True if no duplicate i.e. validated, false otherwise.
+ */
 function validateIfDuplicateItem(userInput, ulElement, inputBox) {
 
   try {
@@ -211,7 +232,12 @@ function validateIfDuplicateItem(userInput, ulElement, inputBox) {
   };
 };
 
-// define function to check for duplicate category
+/**
+ * Validates if the input already exists as a category in the list.
+ * @param {string} userInput - The input text from the user.
+ * @param {HTMLElement} inputBox - The input box element.
+ * @returns {boolean} - True if no duplicate i.e. validated, false otherwise.
+ */
 function validateIfDuplicateCategory(userInput, inputBox) {
 
   try {
@@ -238,7 +264,12 @@ function validateIfDuplicateCategory(userInput, inputBox) {
   };
 };
 
-// define function to validate if blank
+/**
+ * Validates if the input is blank.
+ * @param {string} userInput - The input text from the user.
+ * @param {HTMLElement} inputBox - The input box element.
+ * @returns {boolean} - True if not blank, false otherwise.
+ */
 function validateIfBlank(userInput, inputBox) {
 
   try {
@@ -259,7 +290,11 @@ function validateIfBlank(userInput, inputBox) {
   };
 };
 
-// add function for showing validation error on page
+/**
+ * Shows an error message for an input box entry.
+ * @param {HTMLElement} inputBox - The input box element.
+ * @param {string} message - The error message to display.
+ */
 function showError(inputBox, message) {
 
   // add the "error" class styles to the input box to highlight
@@ -285,7 +320,10 @@ function showError(inputBox, message) {
 
 };
 
-// define function for clearing the error shown on page
+/**
+ * Clears the error message and styles related to an erroneous input box entry.
+ * @param {HTMLElement} inputBox - The input box element.
+ */
 function clearError(inputBox) {
 
   // remove the error class from the input box to remove highlighting
@@ -304,7 +342,10 @@ function clearError(inputBox) {
   };
 };
 
-// define function for adding new items
+/**
+ * Adds a new item to a category on the grocery list.
+ * @param {Event} event - The event object.
+ */
 function addItem(event) {
 
   try {
@@ -351,7 +392,10 @@ function addItem(event) {
   }
 };
 
-// define Delete function for delete button
+/**
+ * Deletes a list item from the grocery list.
+ * @param {Event} event - The event object.
+ */
 function deleteItem(event) {
 
   try {
@@ -367,7 +411,10 @@ function deleteItem(event) {
   }
 }
 
-// define Tick function for items that have been fulfilled
+/**
+ * Toggles the completion status of an item in the grocery list.
+ * @param {Event} event - The event object.
+ */
 function tickItem(event) {
 
   try {
@@ -393,7 +440,10 @@ function tickItem(event) {
   }
 };
 
-// define function for adding a new category
+/**
+ * Adds a new category to the grocery list.
+ * @param {Event} event - The event object.
+ */
 function addCategory(event) {
 
   try {
@@ -451,7 +501,10 @@ function addCategory(event) {
   };
 };
 
-// Define function for toggling category list visibility
+/**
+ * Toggles the visibility of the item list in a category.
+ * @param {Event} event - The event object.
+ */
 function toggleList(event) {
 
   try {
@@ -468,7 +521,10 @@ function toggleList(event) {
   };
 };
 
-// define Delete category function
+/**
+ * Deletes a category from the grocery list.
+ * @param {Event} event - The event object.
+ */
 function deleteCategory(event) {
 
   try {
@@ -486,7 +542,10 @@ function deleteCategory(event) {
   };
 };
 
-// define a function to handle keyboard events
+/**
+ * Handles key events for input fields.
+ * @param {Event} event - The event object.
+ */
 function handleKeyEvents(event) {
 
   try {
@@ -504,7 +563,9 @@ function handleKeyEvents(event) {
   };
 };
 
-// define reusable function for updating event listeners when new buttons are added
+/**
+ * Updates event listeners for buttons and input fields.
+ */
 function updateEventListeners() {
 
   try {
