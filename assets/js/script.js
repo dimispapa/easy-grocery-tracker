@@ -183,7 +183,7 @@ function populateListFromData(categoryName, items) {
 // ****** FUNCTIONALITY CODE FOR MANIPULATING THE DOM *******
 
 // define function to check for duplicate list item
-function validateIfDuplicateItem(userInput, ulElement) {
+function validateIfDuplicateItem(userInput, ulElement, inputBox) {
 
   try {
     // get array of li elements in ul
@@ -197,7 +197,9 @@ function validateIfDuplicateItem(userInput, ulElement) {
 
         // check for a case insesitive match
         if (item.textContent.toLowerCase().trim() === userInput.toLowerCase().trim()) {
-          alert('This item already exists in the list!');
+          // call show error function for the error to appear on page
+          showError(inputBox, 'This item already exists in the list!');
+          // invalidate input
           return false;
         };
       };
@@ -210,7 +212,7 @@ function validateIfDuplicateItem(userInput, ulElement) {
 };
 
 // define function to check for duplicate category
-function validateIfDuplicateCategory(userInput) {
+function validateIfDuplicateCategory(userInput, inputBox) {
 
   try {
     // get array of category heading names
@@ -221,7 +223,9 @@ function validateIfDuplicateCategory(userInput) {
 
       // check for a case insesitive match
       if (categoryName.textContent.toLowerCase().trim() === userInput.toLowerCase().trim()) {
-        alert('This category already exists in the list!');
+        // call show error function for the error to appear on page
+        showError(inputBox, 'This category already exists in the list!');
+        // invalidate the input
         return false;
       };
     };
@@ -290,10 +294,13 @@ function clearError(inputBox) {
   // get the error container element and parent
   let parentElement = inputBox.parentElement;
   let errorContainer = parentElement.nextElementSibling;
-  // check if the errorContainer exists and if it contains the "error-message" class
-  if (errorContainer && errorContainer.classList.contains('error-message')) {
+
+  // check if the errorContainer exists
+  if (errorContainer) {
+
     // hide the error container
     errorContainer.style.display = 'none';
+
   };
 };
 
@@ -311,17 +318,17 @@ function addItem(event) {
     let userInput = inputBox.value.trim();
 
     // Validate input
-    if (validateIfBlank(userInput, inputBox) && validateIfDuplicateItem(userInput, ul)) {
+    if (validateIfBlank(userInput, inputBox) && validateIfDuplicateItem(userInput, ul, inputBox)) {
 
       // define the list item along with a delete button,
       // using template literal with the user input text
       let newLi = `
-    <li>
-      <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
-      <span>${userInput}</span>
-      <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
-    </li>
-    `;
+      <li>
+        <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
+        <span>${userInput}</span>
+        <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
+      </li>
+      `;
 
       // append the new li item to the ul
       ul.insertAdjacentHTML('beforeend', newLi);
@@ -401,7 +408,7 @@ function addCategory(event) {
     let userInput = inputBox.value.trim();
 
     // Validate input
-    if (validateIfBlank(userInput, inputBox) && validateIfDuplicateCategory(userInput)) {
+    if (validateIfBlank(userInput, inputBox) && validateIfDuplicateCategory(userInput, inputBox)) {
 
       // define the HTML for a new category to be added, with areas to add new items/categories
       let newCat = `
@@ -550,6 +557,12 @@ function updateEventListeners() {
     // add enter keydown event listeners to input boxes
     for (let input of inputBoxes) {
       input.addEventListener("keypress", handleKeyEvents);
+      // add an event listener to clear the error when the user loses focus from the input box
+      input.addEventListener("focusout", function (event) {
+        clearError(event.target);
+        // also clear the input box to avoid text lingering
+        event.target.value = '';
+      });
     };
 
   } catch (error) {
