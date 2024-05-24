@@ -287,6 +287,22 @@ li {
   margin: 5px 0;
 }
 
+/* Error input field styles */
+input.error {
+  border-color: #D32F2F;
+  background-color: #ffe6e6;
+}
+
+/* Error message styles */
+.error-message {
+  color: #D32F2F;
+  font-size: 0.9em;
+  margin-top: 5px;
+  display: none;
+  padding: 0 16px;
+}
+
+
 /* Media query: laptops and larger (>=992px) */
 @media screen and (min-width: 992px) {
 
@@ -309,21 +325,6 @@ li {
   /* add category input box */
   .add-category {
     width: 80%;
-  }
-
-  /* Error input field styles */
-  input.error {
-    border-color: #D32F2F;
-    background-color: #ffe6e6;
-  }
-
-  /* Error message styles */
-  .error-message {
-    color: #D32F2F;
-    font-size: 0.9em;
-    margin-top: 5px;
-    display: none;
-    padding: 0 16px;
   }
 
 }
