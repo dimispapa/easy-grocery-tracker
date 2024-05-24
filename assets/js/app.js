@@ -1,3 +1,14 @@
+import {
+  db,
+  ref,
+  set,
+  get,
+  child,
+  update,
+  remove,
+  onValue
+} from "./firebase";
+
 // ****** FUNCTIONS FOR SAVING/LOADING USER DATA AND RECREATING THE DOM AS THE USER LEFT IT ******
 
 /**
@@ -21,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /**
  * Saves data to local storage.
  * @param {string} key - The key under which the data is stored.
- * @param {any} data - The data to be stored.
+ * @param {Array} data - The data to be stored.
  */
 function saveDataToLocalStorage(key, data) {
 
@@ -31,6 +42,50 @@ function saveDataToLocalStorage(key, data) {
   } catch (error) {
     console.error('Error saving to local storage:', error);
   };
+};
+
+/**
+ * Saves the grocery list data to Firebase.
+ * @param {Array} groceryList - The grocery list to save.
+ */
+function saveDataToFirebase(groceryList) {
+
+  const dbRef = ref(database, 'groceryList');
+  set(dbRef, groceryList)
+    // add error handling
+    .then(function () {
+      console.log('Grocery list successfully saved on firebase.');
+    })
+    .catch(function (error) {
+      console.error('Error saving grocery list:', error)
+    })
+}
+
+/**
+ * Loads the grocery list data from Firebase by listening to changes to data.
+ * @param {string} dataPath - The path under which the data is stored.
+ * @returns {any} - The loaded data or null if not found.
+ */
+function loadDataFromFirebase(dataPath) {
+
+  const dbRef = ref(database, dataPath);
+  // set up event listener to read static snapshots on data path
+  onValue(dbRef, (snapshot) => {
+
+      // retrieve data in the snapshot if exists
+      if (snapshot.exists()) {
+        const DATA = snapshot.val();
+        return DATA;
+      } else {
+        console.log('No data available on firebase.');
+        return;
+      };
+
+    })
+    // add error handling
+    .catch(function (error) {
+      console.error('Error loading data from firebase', error);
+    })
 };
 
 /**
@@ -100,8 +155,11 @@ function saveGroceryList() {
 
     };
 
-    // finally save the grocery list data to local storage
-    saveDataToLocalStorage('grocery_list', groceryList)
+    // save the grocery list data to local storage as a backup
+    saveDataToLocalStorage('grocery_list', groceryList);
+
+    // save data to firebase
+    saveDataToFirebase(groceryList);
 
   } catch (error) {
     console.error('Error saving grocery list:', error);
@@ -113,17 +171,41 @@ function saveGroceryList() {
  */
 function loadGroceryList() {
 
+  // attempt to load data from firebase db
   try {
-    // attempt to load data from local storage using the key "grocery_list"
-    const GROCERYLIST = loadDataFromLocalStorage('grocery_list');
-    // if no data exists, then return nothing
-    if (!GROCERYLIST) return;
 
-    // loop through the categories in the data
-    for (let categoryData of GROCERYLIST) {
+    const GROCERYLIST = loadDataFromFirebase('groceryList');
 
-      // call the function that populates the DOM with containing the data
-      populateListFromData(categoryData.category, categoryData.items);
+    // if data exists, then loop through to populate the list
+    if (GROCERYLIST) {
+
+      // loop through the categories in the data
+      for (let categoryData of GROCERYLIST) {
+
+        // call the function that populates the DOM with containing the data
+        populateListFromData(categoryData.category, categoryData.items);
+
+      };
+
+      console.log('Data loaded from firebase.')
+
+      // if data does not exist on firebase, attempt to load from local storage
+    } else {
+      const GROCERYLIST = loadDataFromLocalStorage('groceryList');
+
+      // if data does not exist, then return
+      if (!GROCERYLIST) {
+        console.log('Data not found on firebase or local storage.')
+        return;
+      }
+
+      // loop through the categories in the data
+      for (let categoryData of GROCERYLIST) {
+
+        // call the function that populates the DOM with containing the data
+        populateListFromData(categoryData.category, categoryData.items);
+
+      };
 
     };
 
