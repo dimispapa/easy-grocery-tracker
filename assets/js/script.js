@@ -59,7 +59,7 @@ function saveGroceryList() {
     for (let category of CATEGORIES) {
 
       // extract the category heading name
-      let categoryName = category.querySelector('.category-heading').textContent.trim();
+      let categoryName = category.querySelector('.category-name').textContent.trim();
       // create an empty items array to store data
       let items = [];
 
@@ -129,7 +129,9 @@ function populateListFromData(categoryName, items) {
     // build the html structure using template literal with the category name from the data
     let loadCat = `
     <section class="category-area" id="${categoryName}-area">
-      <h2 class="category-heading"><button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button> ${categoryName} 
+      <h2 class="category-heading">
+        <button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button>
+        <span class="category-name">${categoryName}</span>
         <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
       </h2>
       <ul class="shop-list"></ul>
@@ -181,7 +183,8 @@ function populateListFromData(categoryName, items) {
 // ****** FUNCTIONALITY CODE FOR MANIPULATING THE DOM *******
 
 // define function to check for duplicate list item
-function validateIfDuplicate(userInput, ulElement) {
+function validateIfDuplicateItem(userInput, ulElement) {
+
   try {
     // get array of li elements in ul
     let items = ulElement.getElementsByTagName('span');
@@ -202,7 +205,32 @@ function validateIfDuplicate(userInput, ulElement) {
     // default return as true if no duplicate found in loop
     return true;
   } catch (error) {
-    console.error('Error validating user input for duplicates:', error)
+    console.error('Error validating list item user input for duplicates:', error)
+  };
+};
+
+// define function to check for duplicate category
+function validateIfDuplicateCategory(userInput) {
+
+  try {
+    // get array of category heading names
+    let categoryNames = document.getElementsByClassName('category-name');
+
+    // loop through li elements to check if new text input exists
+    for (let categoryName of categoryNames) {
+
+      // check for a case insesitive match
+      if (categoryName.textContent.toLowerCase().trim() === userInput.toLowerCase().trim()) {
+        alert('This category already exists in the list!');
+        return false;
+      };
+    };
+
+    // default return as true if no duplicate found in loop
+    return true;
+
+  } catch (error) {
+    console.error('Error validating category user input for duplicates:', error)
   };
 };
 
@@ -236,7 +264,7 @@ function addItem(event) {
     let userInput = inputBox.value.trim();
 
     // Validate input
-    if (validateIfBlank(userInput) && validateIfDuplicate(userInput, ul)) {
+    if (validateIfBlank(userInput) && validateIfDuplicateItem(userInput, ul)) {
 
       // define the list item along with a delete button,
       // using template literal with the user input text
@@ -312,6 +340,7 @@ function tickItem(event) {
 function addCategory(event) {
 
   try {
+
     // Get the parent of the btn that triggered the event
     let triggerElement = event.currentTarget;
     let newCatArea = triggerElement.parentElement;
@@ -321,25 +350,27 @@ function addCategory(event) {
     let userInput = inputBox.value.trim();
 
     // Validate input
-    if (validateIfBlank(userInput)) {
+    if (validateIfBlank(userInput) && validateIfDuplicateCategory(userInput)) {
 
       // define the HTML for a new category to be added, with areas to add new items/categories
       let newCat = `
-    <div class="add-category-area" id="${userInput}-area">
-      <input type="text" name="category" class="add-category" placeholder="Add new category">
-      <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
-    </div>
-    <section class="category-area">
-      <h2 class="category-heading"><button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button> ${userInput} 
-        <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
-      </h2>
-      <ul class="shop-list"></ul>
-      <div class="add-item-area">
-        <input type="text" name="item" class="add-item" placeholder="Add grocery item">
-        <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+      <div class="add-category-area" id="${userInput}-area">
+        <input type="text" name="category" class="add-category" placeholder="Add new category">
+        <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
       </div>
-    </section>
-    `;
+      <section class="category-area">
+        <h2 class="category-heading">
+          <button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button>
+          <span class="category-name">${userInput}</span>
+          <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
+        </h2>
+        <ul class="shop-list"></ul>
+        <div class="add-item-area">
+          <input type="text" name="item" class="add-item" placeholder="Add grocery item">
+          <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+        </div>
+      </section>
+      `;
 
       // append the new li item to the ul
       newCatArea.insertAdjacentHTML('beforebegin', newCat);
