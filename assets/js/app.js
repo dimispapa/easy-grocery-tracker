@@ -74,16 +74,24 @@ function loadDataFromFirebase(dataPath) {
 
       // retrieve data in the snapshot if exists
       if (snapshot.exists()) {
+        // evaluate data from snapshot
         let data = snapshot.val();
-        console.log('Grocery list successfully loaded from firebase.');
+        console.log('Data loaded from firebase db.');
         console.log(data);
+        // resolve promise with data
         resolve(data);
+
+        // if snapshot does not exist
       } else {
         console.log('No data available on firebase.');
+        // resolve promise with null
         resolve(null);
       }
+
+      // promise rejected if an error occurs
     }, (error) => {
       console.error('Error loading data from firebase:', error);
+      // reject promise with error
       reject(error);
     });
   });
@@ -172,49 +180,48 @@ function saveGroceryList() {
  */
 function loadGroceryList() {
 
-  // attempt to load data from firebase db
-  try {
-    debugger;
-    let groceryList = loadDataFromFirebase('groceryList1');
-    console.log(groceryList);
+  // wait for promise in loadDataFromFirebase to resolve
+  loadDataFromFirebase('groceryList1')
+    // wait for data to be loaded from firebase
+    .then((groceryList) => {
+      // if data exists, then loop through to populate the list
+      if (groceryList) {
 
-    // if data exists, then loop through to populate the list
-    if (groceryList) {
+        // loop through the categories in the data
+        for (let categoryData of groceryList) {
 
-      // loop through the categories in the data
-      for (let categoryData of groceryList) {
+          // call the function that populates the DOM with containing the data
+          populateListFromData(categoryData.category, categoryData.items);
 
-        // call the function that populates the DOM with containing the data
-        populateListFromData(categoryData.category, categoryData.items);
+        }
 
-      };
-
-      console.log('Data loaded from firebase.')
-
-      // if data does not exist on firebase, attempt to load from local storage
-    } else {
-      const GROCERYLIST = loadDataFromLocalStorage('groceryList');
-
-      // if data does not exist, then return
-      if (!GROCERYLIST) {
-        console.log('Data not found on firebase or local storage.')
-        return;
+        console.log('Grocery list populated from data on firebase.');
       }
+      // if data does not exist on firebase, attempt to load from local storage
+      else {
+        const GROCERYLIST = loadDataFromLocalStorage('groceryList');
 
-      // loop through the categories in the data
-      for (let categoryData of GROCERYLIST) {
+        // if data does not exist, then return
+        if (!GROCERYLIST) {
+          console.log('Data not found on firebase or local storage.');
+          return;
+        }
 
-        // call the function that populates the DOM with containing the data
-        populateListFromData(categoryData.category, categoryData.items);
+        // loop through the categories in the data
+        for (let categoryData of GROCERYLIST) {
+
+          // call the function that populates the DOM with containing the data
+          populateListFromData(categoryData.category, categoryData.items);
+
+          console.log('Grocery list populated from data on local storage.');
+
+        };
 
       };
 
-    };
-
-  } catch (error) {
-    console.error('Error loading grocery list:', error);
-  }
-
+    }).catch((error) => {
+      console.error('Error loading grocery list:', error);
+    });
 };
 
 /**
