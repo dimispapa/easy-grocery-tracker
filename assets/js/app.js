@@ -78,6 +78,7 @@ function loadDataFromFirebase(dataPath) {
         let data = snapshot.val();
         console.log('Data loaded from firebase db.');
         console.log(data);
+
         // resolve promise with data
         resolve(data);
 
@@ -118,18 +119,30 @@ function loadDataFromLocalStorage(key) {
 };
 
 /**
+ * Clears the grocery list from the DOM.
+ */
+function clearGroceryList() {
+  const mainAppArea = document.getElementById('app-area');
+
+  // clear all children of app area except the permament category area.
+  while (mainAppArea.lastChild.id !== "permanent-category-area") {
+    mainAppArea.removeChild(mainAppArea.lastChild);
+  };
+};
+
+/**
  * Saves the grocery list to local storage.
  */
 function saveGroceryList() {
 
   try {
     // parse the category areas into a node list
-    const CATEGORIES = document.querySelectorAll('.category-area');
+    const categories = document.querySelectorAll('.category-area');
     // create an empty grocery list array to store data
     let groceryList = [];
 
     // loop through each category area
-    for (let category of CATEGORIES) {
+    for (let category of categories) {
 
       // extract the category heading name
       let categoryName = category.querySelector('.category-name').textContent.trim();
@@ -137,10 +150,10 @@ function saveGroceryList() {
       let items = [];
 
       // get the list items from the DOM
-      const LISTITEMS = category.querySelectorAll('li');
+      const listItems = category.querySelectorAll('li');
 
       // loop through each list item
-      for (let li of LISTITEMS) {
+      for (let li of listItems) {
 
         // extract the item name from the span child
         let itemName = li.querySelector('span').textContent.trim();
@@ -164,9 +177,6 @@ function saveGroceryList() {
 
     };
 
-    // save the grocery list data to local storage as a backup
-    saveDataToLocalStorage('grocery_list', groceryList);
-
     // save data to firebase
     saveDataToFirebase(groceryList, 'groceryList1');
 
@@ -176,53 +186,28 @@ function saveGroceryList() {
 };
 
 /**
- * Loads the grocery list from local storage.
+ * Loads the grocery list from Firebase.
  */
 function loadGroceryList() {
-
-  // wait for promise in loadDataFromFirebase to resolve
   loadDataFromFirebase('groceryList1')
-    // wait for data to be loaded from firebase
-    .then((groceryList) => {
-      // if data exists, then loop through to populate the list
-      if (groceryList) {
-
-        // loop through the categories in the data
-        for (let categoryData of groceryList) {
-
-          // call the function that populates the DOM with containing the data
+    .then((data) => {
+      if (data) {
+        // Clear the DOM before re-populating 
+        clearGroceryList();
+        // Loop through categorical data and populate list
+        for (let categoryData of data) {
           populateListFromData(categoryData.category, categoryData.items);
-
         }
-
-        console.log('Grocery list populated from data on firebase.');
+        // Update event listeners to new DOM
+        updateEventListeners();
+      } else {
+        console.log('No data available on Firebase.');
       }
-      // if data does not exist on firebase, attempt to load from local storage
-      else {
-        const GROCERYLIST = loadDataFromLocalStorage('groceryList');
-
-        // if data does not exist, then return
-        if (!GROCERYLIST) {
-          console.log('Data not found on firebase or local storage.');
-          return;
-        }
-
-        // loop through the categories in the data
-        for (let categoryData of GROCERYLIST) {
-
-          // call the function that populates the DOM with containing the data
-          populateListFromData(categoryData.category, categoryData.items);
-
-          console.log('Grocery list populated from data on local storage.');
-
-        };
-
-      };
-
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.error('Error loading grocery list:', error);
     });
-};
+}
 
 /**
  * Populates html for a list category and its items from locally stored data.
