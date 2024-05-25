@@ -44,11 +44,13 @@ function saveDataToLocalStorage(key, data) {
  * Saves the grocery list data to Firebase.
  * @param {Array} groceryList - The grocery list to save.
  */
-function saveDataToFirebase(groceryList) {
+function saveDataToFirebase(groceryList, dataPath) {
 
-  const dbRef = ref(db, 'groceryList');
+  // get reference to the database path
+  const dbRef = ref(db, dataPath);
+  // write the data to the db
   set(dbRef, groceryList)
-    // add error handling
+    // add error handling by adding completion callback
     .then(function () {
       console.log('Grocery list successfully saved on firebase.');
     })
@@ -64,24 +66,21 @@ function saveDataToFirebase(groceryList) {
  */
 function loadDataFromFirebase(dataPath) {
 
+  // get reference to the database path
   const dbRef = ref(db, dataPath);
   // set up event listener to read static snapshots on data path
   onValue(dbRef, (snapshot) => {
 
-      // retrieve data in the snapshot if exists
-      if (snapshot.exists()) {
-        const DATA = snapshot.val();
-        return DATA;
-      } else {
-        console.log('No data available on firebase.');
-        return;
-      };
-
-    })
-    // add error handling
-    .catch(function (error) {
-      console.error('Error loading data from firebase', error);
-    })
+    // retrieve data in the snapshot if exists
+    if (snapshot.exists()) {
+      const DATA = snapshot.val();
+      console.log('Grocery list successfully loaded from firebase.');
+      return DATA;
+    } else {
+      console.log('No data available on firebase.');
+      return;
+    };
+  });
 };
 
 /**
@@ -155,7 +154,7 @@ function saveGroceryList() {
     saveDataToLocalStorage('grocery_list', groceryList);
 
     // save data to firebase
-    saveDataToFirebase(groceryList);
+    saveDataToFirebase(groceryList, 'groceryList1');
 
   } catch (error) {
     console.error('Error saving grocery list:', error);
@@ -170,7 +169,7 @@ function loadGroceryList() {
   // attempt to load data from firebase db
   try {
 
-    const GROCERYLIST = loadDataFromFirebase('groceryList');
+    const GROCERYLIST = loadDataFromFirebase('groceryList1');
 
     // if data exists, then loop through to populate the list
     if (GROCERYLIST) {
