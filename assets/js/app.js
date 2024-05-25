@@ -66,20 +66,26 @@ function saveDataToFirebase(groceryList, dataPath) {
  */
 function loadDataFromFirebase(dataPath) {
 
-  // get reference to the database path
-  const dbRef = ref(db, dataPath);
-  // set up event listener to read static snapshots on data path
-  onValue(dbRef, (snapshot) => {
+  return new Promise((resolve, reject) => {
+    // get reference to the database path
+    const dbRef = ref(db, dataPath);
+    // set up event listener to read static snapshots on data path
+    onValue(dbRef, (snapshot) => {
 
-    // retrieve data in the snapshot if exists
-    if (snapshot.exists()) {
-      const DATA = snapshot.val();
-      console.log('Grocery list successfully loaded from firebase.');
-      return DATA;
-    } else {
-      console.log('No data available on firebase.');
-      return;
-    };
+      // retrieve data in the snapshot if exists
+      if (snapshot.exists()) {
+        let data = snapshot.val();
+        console.log('Grocery list successfully loaded from firebase.');
+        console.log(data);
+        resolve(data);
+      } else {
+        console.log('No data available on firebase.');
+        resolve(null);
+      }
+    }, (error) => {
+      console.error('Error loading data from firebase:', error);
+      reject(error);
+    });
   });
 };
 
@@ -168,14 +174,15 @@ function loadGroceryList() {
 
   // attempt to load data from firebase db
   try {
-
-    const GROCERYLIST = loadDataFromFirebase('groceryList1');
+    debugger;
+    let groceryList = loadDataFromFirebase('groceryList1');
+    console.log(groceryList);
 
     // if data exists, then loop through to populate the list
-    if (GROCERYLIST) {
+    if (groceryList) {
 
       // loop through the categories in the data
-      for (let categoryData of GROCERYLIST) {
+      for (let categoryData of groceryList) {
 
         // call the function that populates the DOM with containing the data
         populateListFromData(categoryData.category, categoryData.items);
