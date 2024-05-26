@@ -242,7 +242,7 @@ function populateListFromData(categoryName, items) {
     mainAppArea.insertAdjacentHTML('beforeend', loadCat);
 
     // check if there are any items
-    if (items.length !== 0) {
+    if (items != null) {
       // get the ul element by referring to the last child (newly inserted category area) of the app area
       let ul = document.getElementById(`${categoryName}-area`).querySelector('ul');
 
@@ -252,12 +252,12 @@ function populateListFromData(categoryName, items) {
         // define li element using item variable names and ticked-off status
         // use a ternary operator within the template literal to conditionally set the ticked-off class
         let loadLi = `
-      <li>
-        <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
-        <span class="${item.isTicked ? 'ticked-off': ''}">${item.item_name}</span>
-        <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
-      </li> 
-      `;
+        <li>
+          <button class="tick-item-btn li-btn"><i class="${item.ticked ? 'fa-regular fa-circle-check ticked-shadow' : 'fa-regular fa-circle'}"></i></button>
+          <span class="${item.ticked ? 'ticked-off': ''}">${item.item_name}</span>
+          <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
+        </li> 
+        `;
 
         // insert the li element in the ul list
         ul.insertAdjacentHTML('beforeend', loadLi);
