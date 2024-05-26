@@ -12,18 +12,82 @@ import {
  * Sets up the real-time listener and updates event listeners.
  */
 document.addEventListener('DOMContentLoaded', function () {
-
   try {
-    // Set up real-time listener to load the grocery list when the page is loaded
-    setupRealtimeListener(dataPath);
-
-    // update the event listeners for key functionality
-    updateEventListeners();
-
+    // Initial fetch of data from Firebase when the page loads
+    loadInitialGroceryList('groceryList1');
   } catch (error) {
     console.error('Error during initialization:', error);
-  };
+  }
 });
+
+/**
+ * Loads the initial grocery list from Firebase.
+ */
+async function loadInitialGroceryList(dataPath) {
+  try {
+    const data = await fetchDataFromFirebase(dataPath);
+    if (data) {
+      populateGroceryList(data);
+    } else {
+      console.log('No data available on Firebase.');
+    }
+    // Set up the real-time listener after the initial load
+    setupRealtimeListener(dataPath);
+  } catch (error) {
+    console.error('Error loading initial grocery list:', error);
+  }
+}
+
+/**
+ * Fetches data from Firebase.
+ * @param {string} dataPath - The path under which the data is stored.
+ * @returns {Promise<any>} - A promise that resolves with the fetched data.
+ */
+function fetchDataFromFirebase(dataPath) {
+  return new Promise((resolve, reject) => {
+    const dbRef = ref(db, dataPath);
+    onValue(dbRef, (snapshot) => {
+      if (snapshot.exists()) {
+        resolve(snapshot.val());
+      } else {
+        resolve(null);
+      }
+    }, (error) => {
+      reject(error);
+    });
+  });
+}
+
+/**
+ * Sets up the real-time listener for the grocery list data from Firebase.
+ */
+function setupRealtimeListener(dataPath) {
+  fetchDataFromFirebase(dataPath)
+    .then((data) => {
+      if (data) {
+        console.log('Grocery list updated from Firebase.');
+        populateGroceryList(data);
+      } else {
+        console.log('No data available on Firebase.');
+        clearGroceryList(); // Clear the list if no data is available
+      }
+    })
+    .catch((error) => {
+      console.error('Error loading data from Firebase:', error);
+    });
+}
+
+/**
+ * Populates the grocery list from Firebase data.
+ * @param {Array} data - The data to populate the list with.
+ */
+function populateGroceryList(data) {
+  clearGroceryList();
+  for (let categoryData of data) {
+    populateListFromData(categoryData.category, categoryData.items);
+  };
+  updateEventListeners();
+}
 
 /**
  * Saves data to local storage.
@@ -57,32 +121,6 @@ function saveDataToFirebase(groceryList, dataPath) {
     .catch(function (error) {
       console.error('Error saving grocery list:', error)
     })
-}
-
-/**
- * Sets up the real-time listener for the grocery list data from Firebase.
- */
-function setupRealtimeListener(dataPath) {
-  const dbRef = ref(db, dataPath);
-  onValue(dbRef, (snapshot) => {
-    if (snapshot.exists()) {
-      const data = snapshot.val();
-      console.log('Grocery list successfully loaded from Firebase.');
-      // Clear the DOM before re-populating
-      clearGroceryList();
-      // Loop through categorical data and populate list
-      for (let categoryData of data) {
-        populateListFromData(categoryData.category, categoryData.items);
-      }
-      // Update event listeners to new DOM
-      updateEventListeners();
-    } else {
-      console.log('No data available on Firebase.');
-      clearGroceryList(); // Clear the list if no data is available
-    }
-  }, (error) => {
-    console.error('Error loading data from Firebase:', error);
-  });
 }
 
 /**
