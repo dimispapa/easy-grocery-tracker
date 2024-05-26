@@ -762,8 +762,6 @@ function updateEventListeners() {
       // add an event listener to clear the error when the user loses focus from the input box
       input.addEventListener("focusout", function (event) {
         clearError(event.target);
-        // also clear the input box to avoid text lingering
-        event.target.value = '';
       });
     };
 
