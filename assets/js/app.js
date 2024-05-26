@@ -28,11 +28,10 @@ async function loadInitialGroceryList(dataPath) {
     const data = await fetchDataFromFirebase(dataPath);
     if (data) {
       populateGroceryList(data);
+      console.log('Initial grocery list loaded!')
     } else {
       console.log('No data available on Firebase.');
     }
-    // Set up the real-time listener after the initial load
-    setupRealtimeListener(dataPath);
   } catch (error) {
     console.error('Error loading initial grocery list:', error);
   }
@@ -49,8 +48,10 @@ function fetchDataFromFirebase(dataPath) {
     onValue(dbRef, (snapshot) => {
       if (snapshot.exists()) {
         resolve(snapshot.val());
+        console.log('Data fetched from firebase.')
       } else {
         resolve(null);
+        console.log('Unable to fetch data.')
       }
     }, (error) => {
       reject(error);
@@ -770,3 +771,5 @@ function updateEventListeners() {
     console.error('Error adding event listeners:', error)
   };
 };
+
+setTimeout(setupRealtimeListener('groceryList1'), 5000);
