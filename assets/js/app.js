@@ -9,13 +9,13 @@ import {
 
 /**
  * Initializes the application.
- * Loads the grocery list and sets up event listeners.
+ * Sets up the real-time listener and updates event listeners.
  */
 document.addEventListener('DOMContentLoaded', function () {
 
   try {
-    // load the grocery list when the page is loaded
-    loadGroceryList();
+    // Set up real-time listener to load the grocery list when the page is loaded
+    setupRealtimeListener(dataPath);
 
     // update the event listeners for key functionality
     updateEventListeners();
@@ -57,6 +57,32 @@ function saveDataToFirebase(groceryList, dataPath) {
     .catch(function (error) {
       console.error('Error saving grocery list:', error)
     })
+}
+
+/**
+ * Sets up the real-time listener for the grocery list data from Firebase.
+ */
+function setupRealtimeListener(dataPath) {
+  const dbRef = ref(db, dataPath);
+  onValue(dbRef, (snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      console.log('Grocery list successfully loaded from Firebase.');
+      // Clear the DOM before re-populating
+      clearGroceryList();
+      // Loop through categorical data and populate list
+      for (let categoryData of data) {
+        populateListFromData(categoryData.category, categoryData.items);
+      }
+      // Update event listeners to new DOM
+      updateEventListeners();
+    } else {
+      console.log('No data available on Firebase.');
+      clearGroceryList(); // Clear the list if no data is available
+    }
+  }, (error) => {
+    console.error('Error loading data from Firebase:', error);
+  });
 }
 
 /**
