@@ -14,7 +14,6 @@ import {
 document.addEventListener('DOMContentLoaded', function () {
   try {
     // Initial fetch of data from Firebase when the page loads
-    // loadInitialGroceryList('groceryList1');
     loadData('groceryList1');
   } catch (error) {
     console.error('Error during initialization:', error);
@@ -22,22 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /**
- * Loads the initial grocery list from Firebase.
+ * Loads data from Firebase initially and then loads again every time a change is detected.
  */
-async function loadInitialGroceryList(dataPath) {
-  try {
-    const data = await fetchDataFromFirebase(dataPath);
-    if (data) {
-      populateGroceryList(data);
-      console.log('Initial grocery list loaded!')
-    } else {
-      console.log('No data available on Firebase.');
-    }
-  } catch (error) {
-    console.error('Error loading initial grocery list:', error);
-  }
-}
-
 function loadData(dataPath) {
   const dbRef = ref(db, dataPath);
   onValue(dbRef, (snapshot) => {
@@ -61,21 +46,6 @@ function populateGroceryList(data) {
 }
 
 /**
- * Saves data to local storage.
- * @param {string} key - The key under which the data is stored.
- * @param {Array} data - The data to be stored.
- */
-function saveDataToLocalStorage(key, data) {
-
-  try {
-    localStorage.setItem(key, JSON.stringify(data));
-
-  } catch (error) {
-    console.error('Error saving to local storage:', error);
-  };
-};
-
-/**
  * Saves the grocery list data to Firebase.
  * @param {Array} groceryList - The grocery list to save.
  */
@@ -93,65 +63,6 @@ function saveDataToFirebase(groceryList, dataPath) {
       console.error('Error saving grocery list:', error)
     })
 }
-
-/**
- * Loads the grocery list data from Firebase by listening to changes to data.
- * @param {string} dataPath - The path under which the data is stored.
- * @returns {any} - The loaded data or null if not found.
- */
-function loadDataFromFirebase(dataPath) {
-
-  return new Promise((resolve, reject) => {
-    // get reference to the database path
-    const dbRef = ref(db, dataPath);
-    // set up event listener to read static snapshots on data path
-    onValue(dbRef, (snapshot) => {
-
-      // retrieve data in the snapshot if exists
-      if (snapshot.exists()) {
-        // evaluate data from snapshot
-        let data = snapshot.val();
-        console.log('Data loaded from firebase db.');
-        console.log(data);
-
-        // resolve promise with data
-        resolve(data);
-
-        // if snapshot does not exist
-      } else {
-        console.log('No data available on firebase.');
-        // resolve promise with null
-        resolve(null);
-      }
-
-      // promise rejected if an error occurs
-    }, (error) => {
-      console.error('Error loading data from firebase:', error);
-      // reject promise with error
-      reject(error);
-    });
-  });
-};
-
-/**
- * Loads data from local storage.
- * @param {string} key - The key under which the data is stored.
- * @returns {any} - The loaded data or null if not found.
- */
-function loadDataFromLocalStorage(key) {
-
-  try {
-    // get data item from local storage
-    const LOCALDATA = localStorage.getItem(key);
-
-    // return data parse from json if it exists otherwise return null
-    return LOCALDATA ? JSON.parse(LOCALDATA) : null;
-
-  } catch (error) {
-    console.error('Error loading from local storage:', error);
-    return null;
-  };
-};
 
 /**
  * Clears the grocery list from the DOM.
@@ -219,30 +130,6 @@ function saveGroceryList() {
     console.error('Error saving grocery list:', error);
   }
 };
-
-/**
- * Loads the grocery list from Firebase.
- */
-function loadGroceryList() {
-  loadDataFromFirebase('groceryList1')
-    .then((data) => {
-      if (data) {
-        // Clear the DOM before re-populating 
-        clearGroceryList();
-        // Loop through categorical data and populate list
-        for (let categoryData of data) {
-          populateListFromData(categoryData.category, categoryData.items);
-        }
-        // Update event listeners to new DOM
-        updateEventListeners();
-      } else {
-        console.log('No data available on Firebase.');
-      }
-    })
-    .catch((error) => {
-      console.error('Error loading grocery list:', error);
-    });
-}
 
 /**
  * Populates html for a list category and its items from locally stored data.
