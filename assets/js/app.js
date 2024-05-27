@@ -13,7 +13,7 @@ import {
  */
 document.addEventListener('DOMContentLoaded', function () {
   try {
-    // Initial fetch of data from Firebase when the page loads
+    // Initial fetch of data from Firebase when the page loads, setting up listener
     loadData('groceryList1');
   } catch (error) {
     console.error('Error during initialization:', error);
@@ -53,15 +53,13 @@ function saveDataToFirebase(groceryList, dataPath) {
 
   // get reference to the database path
   const dbRef = ref(db, dataPath);
-  // write the data to the db
-  set(dbRef, groceryList)
-    // add error handling by adding completion callback
-    .then(function () {
-      console.log('Grocery list successfully saved on firebase.');
-    })
-    .catch(function (error) {
-      console.error('Error saving grocery list:', error)
-    })
+  try {
+    // write the data to the db
+    set(dbRef, groceryList);
+    console.log('Grocery list successfully saved on firebase.');
+  } catch {
+    console.error('Error saving grocery list:', error)
+  }
 }
 
 /**
