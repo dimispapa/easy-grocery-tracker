@@ -14,7 +14,8 @@ import {
 document.addEventListener('DOMContentLoaded', function () {
   try {
     // Initial fetch of data from Firebase when the page loads
-    loadInitialGroceryList('groceryList1');
+    // loadInitialGroceryList('groceryList1');
+    loadData('groceryList1');
   } catch (error) {
     console.error('Error during initialization:', error);
   }
@@ -37,45 +38,13 @@ async function loadInitialGroceryList(dataPath) {
   }
 }
 
-/**
- * Fetches data from Firebase.
- * @param {string} dataPath - The path under which the data is stored.
- * @returns {Promise<any>} - A promise that resolves with the fetched data.
- */
-function fetchDataFromFirebase(dataPath) {
-  return new Promise((resolve, reject) => {
-    const dbRef = ref(db, dataPath);
-    onValue(dbRef, (snapshot) => {
-      if (snapshot.exists()) {
-        resolve(snapshot.val());
-        console.log('Data fetched from firebase.')
-      } else {
-        resolve(null);
-        console.log('Unable to fetch data.')
-      }
-    }, (error) => {
-      reject(error);
-    });
-  });
-}
-
-/**
- * Sets up the real-time listener for the grocery list data from Firebase.
- */
-function setupRealtimeListener(dataPath) {
-  fetchDataFromFirebase(dataPath)
-    .then((data) => {
-      if (data) {
-        console.log('Grocery list updated from Firebase.');
-        populateGroceryList(data);
-      } else {
-        console.log('No data available on Firebase.');
-        clearGroceryList(); // Clear the list if no data is available
-      }
-    })
-    .catch((error) => {
-      console.error('Error loading data from Firebase:', error);
-    });
+function loadData(dataPath) {
+  const dbRef = ref(db, dataPath);
+  onValue(dbRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log('Data loaded from firebase db:', data)
+    populateGroceryList(data);
+  })
 }
 
 /**
@@ -88,6 +57,7 @@ function populateGroceryList(data) {
     populateListFromData(categoryData.category, categoryData.items);
   };
   updateEventListeners();
+  console.log('List populated.')
 }
 
 /**
@@ -769,5 +739,3 @@ function updateEventListeners() {
     console.error('Error adding event listeners:', error)
   };
 };
-
-setTimeout(setupRealtimeListener('groceryList1'), 5000);
