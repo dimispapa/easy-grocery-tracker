@@ -423,9 +423,6 @@ function addItem(event) {
       // clear the input box
       inputBox.value = "";
 
-      // clear the error if exists
-      clearError(inputBox);
-
       // update event listeners based on latest DOM
       updateEventListeners();
 
@@ -529,9 +526,6 @@ function addCategory(event) {
 
       // clear the input box
       inputBox.value = "";
-
-      // clear the error if exists
-      clearError(inputBox);
 
       // update event listeners based on latest DOM
       updateEventListeners();
