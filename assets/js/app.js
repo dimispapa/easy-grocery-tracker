@@ -41,15 +41,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /**
  * Loads data from Firebase initially and then loads again every time a change is detected.
+ * @param {userId} - the unique user identifier of the current user
  */
 function setupRealtimeListener(userId) {
+  // get reference to database and user list
   const dbRef = ref(db, `groceryLists/${userId}`);
+  // implement onValue listener for changes to db
   onValue(
     dbRef,
     (snapshot) => {
+      // evaluate snapshot data
       const data = snapshot.val();
+      // check if data exists
       if (data) {
         console.log("Data loaded from firebase db:", data);
+        // populate data on the DOM
         populateGroceryList(data);
       } else {
         console.log("No data available on firebase.");
@@ -66,8 +72,11 @@ function setupRealtimeListener(userId) {
  * @param {Array} data - The data to populate the list with.
  */
 function populateGroceryList(data) {
+  // clear the DOM from items/categories first
   clearGroceryList();
+  // loop through the categories in the data
   for (let categoryData of data) {
+    // populate the list from the categorical data
     populateListFromData(categoryData.category, categoryData.items);
   }
   console.log("List populated.");
@@ -76,6 +85,7 @@ function populateGroceryList(data) {
 /**
  * Saves the grocery list data to Firebase.
  * @param {Array} groceryList - The grocery list to save.
+ * @param {userId} - the unique user identifier of the current user
  */
 function saveDataToFirebase(groceryList, userId) {
   // get reference to the database path
@@ -352,7 +362,7 @@ function showError(inputBox, message) {
 
   // write the message in the error container and make visible
   errorContainer.textContent = message;
-  errorContainer.style.display = "block";
+  errorContainer.classList.remove("hidden");
 }
 
 /**
@@ -369,7 +379,7 @@ function clearError(inputBox) {
   // check if an element exists and if it is the errorContainer (to avoid hiding the next category-area)
   if (errorContainer?.classList.contains("error-message")) {
     // hide the error container
-    errorContainer.style.display = "none";
+    errorContainer.classList.add("hidden");
   }
 }
 
@@ -654,11 +664,12 @@ function updateEventListeners() {
   }
 }
 
-// Add event listener for Sign out button
+// Add click event listener for Sign out button
 document.getElementById("sign-out-btn").addEventListener("click", () => {
   signOut(auth)
     .then(() => {
       console.log("User signed out.");
+      // redirect to the index page after sign out
       window.location.href = "index.html";
     })
     .catch((error) => {
