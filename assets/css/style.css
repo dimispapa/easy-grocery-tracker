@@ -46,7 +46,6 @@ h2 {
   margin: 5px 0;
   display: none;
   padding: 0 16px;
-  background: rgb(255 255 255 / 50%);
 }
 
 /* hidden style */
@@ -118,6 +117,11 @@ h2 {
   max-width: 300px;
   font-size: 16px;
   padding: 1px;
+}
+
+/* login error container */
+#login-error {
+  background: rgb(255 255 255 / 70%);
 }
 
 /* Media query: tablets and larger (>=768px) */
