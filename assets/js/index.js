@@ -2,6 +2,7 @@ import { auth } from "./firebase.js";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 /**
@@ -47,6 +48,15 @@ document.getElementById("sign-up-btn").addEventListener("click", () => {
 });
 
 /**
+ * Event listener for the Reset Password button.
+ * Captures email input value and calls resetPassword function.
+ */
+document.getElementById("reset-password-btn").addEventListener("click", () => {
+  const email = document.getElementById("email").value;
+  resetPassword(email);
+});
+
+/**
  * Displays an error message below the input fields.
  * @param {string} message - The error message to display.
  */
@@ -59,4 +69,20 @@ function showError(message) {
   errorMessageElement.textContent = cleanedMessage;
   // unhide the error container
   errorMessageElement.style.display = "block";
+}
+
+/**
+ * Resets the password for the user.
+ * @param {string} email - The email address of the user.
+ */
+function resetPassword(email) {
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      console.log("Password reset email sent.");
+      showError("Password reset email sent. Please check your inbox.");
+    })
+    .catch((error) => {
+      console.error("Error resetting password:", error);
+      showError(error.message);
+    });
 }
