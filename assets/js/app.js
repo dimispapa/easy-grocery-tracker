@@ -362,15 +362,16 @@ function showError(inputBox, message) {
 
   // write the message in the error container and make visible
   errorContainer.textContent = message;
-  errorContainer.classList.remove("hidden");
+  errorContainer.style.display = "block";
 }
 
 /**
  * Clears the error message and styles related to an erroneous input box entry.
  * @param {HTMLElement} inputBox - The input box element.
  */
-function clearError(inputBox) {
+function clearError(event) {
   // remove the error class from the input box to remove highlighting
+  let inputBox =  event.currentTarget.parentElement.querySelector('input')
   inputBox.classList.remove("error");
 
   // get next sibling of the add-category-area
@@ -379,7 +380,7 @@ function clearError(inputBox) {
   // check if an element exists and if it is the errorContainer (to avoid hiding the next category-area)
   if (errorContainer?.classList.contains("error-message")) {
     // hide the error container
-    errorContainer.classList.add("hidden");
+    errorContainer.style.display = "none";
   }
 }
 
@@ -615,6 +616,8 @@ function updateEventListeners() {
         // add event listener for adding list item
         case button.classList.contains("add-item-btn"):
           button.addEventListener("click", addItem);
+          debugger;
+          button.addEventListener("focusout", clearError);
           break;
 
         // add event listener for deleting list item
@@ -635,6 +638,8 @@ function updateEventListeners() {
         // add event listener for adding category
         case button.classList.contains("add-category-btn"):
           button.addEventListener("click", addCategory);
+          debugger;
+          button.addEventListener("focusout", clearError);
           break;
 
         // add event listener for deleting category
@@ -651,13 +656,17 @@ function updateEventListeners() {
     // get the latest array of input boxes
     let inputBoxes = document.getElementsByTagName("input");
 
-    // add enter keydown event listeners to input boxes
+    // loop through the array of input boxes
     for (let input of inputBoxes) {
+      // add enter keypress event listeners to input boxes
       input.addEventListener("keypress", handleKeyEvents);
       // add an event listener to clear the error when the user loses focus from the input box
-      input.addEventListener("focusout", function (event) {
-        clearError(event.target);
-      });
+      if (!input.hasAttribute("data-has-focus-out-listener")) {
+        input.setAttribute("data-has-focus-out-listener", "true");
+        input.addEventListener("focusout", function (event) {
+          clearError(event);
+        });
+      }
     }
   } catch (error) {
     console.error("Error adding event listeners:", error);
