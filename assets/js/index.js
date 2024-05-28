@@ -86,3 +86,12 @@ function resetPassword(email) {
       showError(error.message);
     });
 }
+
+// Add event listener on the window for the keypress event
+window.addEventListener('keypress', (event) => {
+  // Check if the Enter key is pressed
+  if (event.key === "Enter") {
+    // Simulate a click on the "sign-in-btn"
+    document.getElementById("sign-in-btn").click();
+  }
+})
