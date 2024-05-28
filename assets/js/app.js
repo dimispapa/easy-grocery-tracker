@@ -1,15 +1,36 @@
-import { db, ref, set, onValue } from "./firebase.js";
+import { db, auth } from "./firebase.js";
+
+import {
+  ref,
+  set,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
+
+import {
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
 // ****** FUNCTIONS FOR SAVING/LOADING USER DATA AND RECREATING THE DOM AS THE USER LEFT IT ******
-
 /**
  * Initializes the application.
  * Sets up the real-time listener and updates event listeners.
  */
 document.addEventListener("DOMContentLoaded", function () {
   try {
-    // Initial fetch of data from Firebase when the page loads, setting up listener
-    loadData("groceryList1");
+    // Check user authentication status
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is signed in:", user);
+        // Load grocery list for the authenticated user
+        setupRealtimeListener(user.uid);
+      } else {
+        console.log("No user is signed in.");
+        window.location.href = "index.html";
+      }
+    });
+    // Update event listeners for key functionality
+    updateEventListeners();
   } catch (error) {
     console.error("Error during initialization:", error);
   }
@@ -18,13 +39,23 @@ document.addEventListener("DOMContentLoaded", function () {
 /**
  * Loads data from Firebase initially and then loads again every time a change is detected.
  */
-function loadData(dataPath) {
-  const dbRef = ref(db, dataPath);
-  onValue(dbRef, (snapshot) => {
-    const data = snapshot.val();
-    console.log("Data loaded from firebase db:", data);
-    populateGroceryList(data);
-  });
+function setupRealtimeListener(userId) {
+  const dbRef = ref(db, `groceryLists/${userId}`);
+  onValue(
+    dbRef,
+    (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        console.log("Data loaded from firebase db:", data);
+        populateGroceryList(data);
+      } else {
+        console.log("No data available on firebase.");
+      }
+    },
+    (error) => {
+      console.error("Error loading data from firebase:", error);
+    }
+  );
 }
 
 /**
@@ -36,7 +67,6 @@ function populateGroceryList(data) {
   for (let categoryData of data) {
     populateListFromData(categoryData.category, categoryData.items);
   }
-  updateEventListeners();
   console.log("List populated.");
 }
 
@@ -44,9 +74,9 @@ function populateGroceryList(data) {
  * Saves the grocery list data to Firebase.
  * @param {Array} groceryList - The grocery list to save.
  */
-function saveDataToFirebase(groceryList, dataPath) {
+function saveDataToFirebase(groceryList, userId) {
   // get reference to the database path
-  const dbRef = ref(db, dataPath);
+  const dbRef = ref(db, `groceryLists/${userId}`);
   try {
     // write the data to the db
     set(dbRef, groceryList);
@@ -73,49 +103,53 @@ function clearGroceryList() {
  */
 function saveGroceryList() {
   try {
-    // parse the category areas into a node list
-    const categories = document.querySelectorAll(".category-area");
-    // create an empty grocery list array to store data
-    let groceryList = [];
+    // get authenticated user
+    const user = auth.currentUser;
+    if (user) {
+      // parse the category areas into a node list
+      const categories = document.querySelectorAll(".category-area");
+      // create an empty grocery list array to store data
+      let groceryList = [];
 
-    // loop through each category area
-    for (let category of categories) {
-      // extract the category heading name
-      let categoryName = category
-        .querySelector(".category-name")
-        .textContent.trim();
-      // create an empty items array to store data
-      let items = [];
+      // loop through each category area
+      for (let category of categories) {
+        // extract the category heading name
+        let categoryName = category
+          .querySelector(".category-name")
+          .textContent.trim();
+        // create an empty items array to store data
+        let items = [];
 
-      // get the list items from the DOM
-      const listItems = category.querySelectorAll("li");
+        // get the list items from the DOM
+        const listItems = category.querySelectorAll("li");
 
-      // loop through each list item
-      for (let li of listItems) {
-        // extract the item name from the span child
-        let itemName = li.querySelector("span").textContent.trim();
+        // loop through each list item
+        for (let li of listItems) {
+          // extract the item name from the span child
+          let itemName = li.querySelector("span").textContent.trim();
 
-        // get the state of the item if it is ticked-off or not
-        let isTicked = li
-          .querySelector("span")
-          .classList.contains("ticked-off");
+          // get the state of the item if it is ticked-off or not
+          let isTicked = li
+            .querySelector("span")
+            .classList.contains("ticked-off");
 
-        // store the item object in the items array
-        items.push({
-          item_name: itemName,
-          ticked: isTicked,
+          // store the item object in the items array
+          items.push({
+            item_name: itemName,
+            ticked: isTicked,
+          });
+        }
+
+        // store the category object with the nested items array, in the overarching grocery list array
+        groceryList.push({
+          category: categoryName,
+          items: items,
         });
       }
 
-      // store the category object with the nested items array, in the overarching grocery list array
-      groceryList.push({
-        category: categoryName,
-        items: items,
-      });
+      // save data to firebase
+      saveDataToFirebase(groceryList, user.uid);
     }
-
-    // save data to firebase
-    saveDataToFirebase(groceryList, "groceryList1");
   } catch (error) {
     console.error("Error saving grocery list:", error);
   }
@@ -488,7 +522,7 @@ function addCategory(event) {
       // update event listeners based on latest DOM
       updateEventListeners();
 
-      // save the list to local storage
+      // save the list data
       saveGroceryList();
     }
   } catch (error) {
@@ -521,7 +555,6 @@ function toggleList(event) {
  * @param {Event} event - The event object.
  */
 function deleteCategory(event) {
-  debugger;
   try {
     // target the category area and the addCategory area preceding it
     let catArea = event.currentTarget.parentElement.parentElement;
@@ -529,7 +562,7 @@ function deleteCategory(event) {
     newCatAreaAbove.remove();
     catArea.remove();
 
-    // save the list to local storage
+    // save the list
     saveGroceryList();
   } catch (error) {
     console.error("Error deleting category:", error);
@@ -617,3 +650,15 @@ function updateEventListeners() {
     console.error("Error adding event listeners:", error);
   }
 }
+
+// Add event listener for Sign out button
+document.getElementById("sign-out-btn").addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      console.log("User signed out.");
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      console.error("Error signing out:", error);
+    });
+});

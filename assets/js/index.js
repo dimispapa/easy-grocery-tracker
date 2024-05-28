@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
+// Sign In
 document.getElementById("sign-in-btn").addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -20,6 +21,7 @@ document.getElementById("sign-in-btn").addEventListener("click", () => {
     });
 });
 
+// Sign Up
 document.getElementById("sign-up-btn").addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
