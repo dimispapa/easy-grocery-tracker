@@ -616,7 +616,7 @@ function updateEventListeners() {
         // add event listener for adding list item
         case button.classList.contains("add-item-btn"):
           button.addEventListener("click", addItem);
-          debugger;
+          // also clear the relevant input box from any error msg when focus moves out of the button
           button.addEventListener("focusout", clearError);
           break;
 
@@ -638,7 +638,7 @@ function updateEventListeners() {
         // add event listener for adding category
         case button.classList.contains("add-category-btn"):
           button.addEventListener("click", addCategory);
-          debugger;
+          // also clear the relevant input box from any error msg when focus moves out of the button
           button.addEventListener("focusout", clearError);
           break;
 
