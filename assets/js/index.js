@@ -18,6 +18,7 @@ document.getElementById("sign-in-btn").addEventListener("click", () => {
     })
     .catch((error) => {
       console.error("Error signing in:", error);
+      showError(error.message);
     });
 });
 
@@ -35,5 +36,12 @@ document.getElementById("sign-up-btn").addEventListener("click", () => {
     })
     .catch((error) => {
       console.error("Error signing up:", error);
+      showError(error.message);
     });
 });
+
+function showError(message) {
+  const errorMessageElement = document.getElementById("login-error");
+  errorMessageElement.textContent = message;
+  errorMessageElement.style.display = "block";
+}
