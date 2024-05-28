@@ -80,7 +80,7 @@ h2 {
   color: #b2ebf2;
 }
 
-/* button */
+/* buttons */
 .cta-button {
   background-color: #8bc34a;
   color: #fcfcfc;
@@ -98,6 +98,12 @@ h2 {
 
 .cta-button:hover {
   background-color: #477116;
+}
+
+/* signout button */
+#sign-out-btn {
+  padding: 5px 10px;
+  font-size: 0.6em;
 }
 
 /* credits div */
