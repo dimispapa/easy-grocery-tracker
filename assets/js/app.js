@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("User is signed in:", user);
         // Load grocery list for the authenticated user
         setupRealtimeListener(user.uid);
+        // unhide app area and sign-out button
+        document.getElementById("app-area").classList.remove("hidden");
+        document.getElementById("sign-out-btn").classList.remove("hidden");
       } else {
         console.log("No user is signed in.");
         window.location.href = "index.html";
