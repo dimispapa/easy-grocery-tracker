@@ -1,5 +1,5 @@
 /* Google Fonts import */
-@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Martel+Sans:wght@200;300;400;600;700;800;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Martel+Sans:wght@200;300;400;600;700;800;900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 /* General wildcard styles to override browser defaults */
 * {
@@ -17,7 +17,7 @@ body {
   font-weight: 400;
   font-style: normal;
   text-align: center;
-  background-color: #FCFCFC;
+  background-color: #fcfcfc;
   width: 100%;
   overflow-x: hidden;
   /* prevent horizontal overflow */
@@ -29,8 +29,7 @@ h1 {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: italic;
-  font-variation-settings:
-    "wdth"100;
+  font-variation-settings: "wdth" 100;
 }
 
 /* secondary header text */
@@ -46,7 +45,8 @@ h2 {
   align-items: flex-start;
   justify-content: center;
   height: 100vh;
-  background: url('../images/grocery-basket-hero-img.webp') no-repeat center center/cover;
+  background: url("../images/grocery-basket-hero-img.webp") no-repeat center
+    center/cover;
 }
 
 /* hero section */
@@ -55,21 +55,21 @@ h2 {
   /* Dark overlay for better text readability */
   padding: 20px;
   border-radius: 10px;
-  color: #FCFCFC;
+  color: #fcfcfc;
 }
 
-#hero-content>h1 {
-  color: #FFEB3B;
+#hero-content > h1 {
+  color: #ffeb3b;
 }
 
-#hero-content>p {
-  color: #B2EBF2;
+#hero-content > p {
+  color: #b2ebf2;
 }
 
 /* button */
-#cta-button {
-  background-color: #8BC34A;
-  color: #FCFCFC;
+.cta-button {
+  background-color: #8bc34a;
+  color: #fcfcfc;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
@@ -82,7 +82,7 @@ h2 {
   box-shadow: inset -11px 18px 10px 0px rgba(252, 252, 252, 0.3);
 }
 
-#cta-button:hover {
+.cta-button:hover {
   background-color: #477116;
 }
 
@@ -93,12 +93,11 @@ h2 {
 }
 
 #credits a {
-  color: #FCFCFC;
+  color: #fcfcfc;
 }
 
 /* Media query: tablets and larger (>=768px) */
 @media screen and (min-width: 768px) {
-
   /* landing page div */
   #hero-section {
     width: 70%;
@@ -106,17 +105,17 @@ h2 {
   }
 
   /* hero content */
-  #hero-content>h1 {
+  #hero-content > h1 {
     font-size: 3em;
   }
 
-  #hero-content>p {
+  #hero-content > p {
     font-size: 1.5em;
   }
 
   /* button */
-  #cta-button {
-    font-size: 1.8em;
+  .cta-button {
+    font-size: 1.5em;
   }
 
   /* credits div */
@@ -124,32 +123,31 @@ h2 {
     margin-top: 20px;
     font-size: 0.8em;
   }
-
 }
 
 /* Media query: laptops and larger (>=992px) */
 @media screen and (min-width: 992px) {
-
   /* landing page div */
   #hero-section {
     padding: 20px 10px;
   }
 
   /* hero content */
-  #hero-content>h1 {
+  #hero-content > h1 {
     font-size: 5em;
     padding-bottom: 10px;
   }
 
-  #hero-content>p {
+  #hero-content > p {
     font-size: 2.5em;
     padding-bottom: 10px;
   }
 
   /* button */
-  #cta-button {
-    font-size: 3em;
-    padding: 30px 15px;
+  .cta-button {
+    font-size: 2em;
+    padding: 20px 10px;
+    margin: 0 20px;
   }
 
   /* credits div */
@@ -157,13 +155,12 @@ h2 {
     margin-top: 50px;
     font-size: 1.2em;
   }
-
 }
 
 /* TRACKER PAGE */
 header {
   background-color: rgb(255, 235, 59, 0.3);
-  color: #37474F;
+  color: #37474f;
   padding: 10px 5px;
 }
 
@@ -178,14 +175,13 @@ header {
 /* category area */
 .category-area {
   margin: 10px 0;
-  border: solid #B2EBF2;
-  ;
+  border: solid #b2ebf2;
 }
 
 /* category heading */
 .category-heading {
   margin-bottom: 10px;
-  background-color: #B2EBF2;
+  background-color: #b2ebf2;
   width: 100%;
   height: 35px;
   display: inline-flex;
@@ -217,12 +213,12 @@ header {
 /* ticked-off item style */
 .ticked-off {
   text-decoration: line-through;
-  text-shadow: 1px 1px 15px #8BC34A;
+  text-shadow: 1px 1px 15px #8bc34a;
 }
 
 /* to modify the ticked icon */
 .ticked-shadow {
-  text-shadow: 1px 1px 15px #8BC34A;
+  text-shadow: 1px 1px 15px #8bc34a;
 }
 
 /* button generic styles */
@@ -232,30 +228,30 @@ button {
   font-size: 16px;
   padding: 2px;
   vertical-align: baseline;
-  box-shadow: 1px 1px 5px 1px #37474F;
-  background-color: #FCFCFC;
+  box-shadow: 1px 1px 5px 1px #37474f;
+  background-color: #fcfcfc;
   border: none;
 }
 
 /* add category button */
 .add-category-btn,
 .add-item-btn {
-  color: #8BC34A;
+  color: #8bc34a;
 }
 
 /* delete button */
 .dlt-category-btn,
 .dlt-item-btn {
-  color: #D32F2F;
+  color: #d32f2f;
   background: none;
   border-radius: 40%;
 }
 
 /* toggle list button */
 .toggle-list-btn {
-  color: #37474F;
-  box-shadow: 1px 1px 5px 1px #37474F;
-  background: none
+  color: #37474f;
+  box-shadow: 1px 1px 5px 1px #37474f;
+  background: none;
 }
 
 /* category heading btns */
@@ -269,7 +265,7 @@ button {
 /* tick item btn */
 .tick-item-btn {
   box-shadow: none;
-  text-shadow: 1px 1px 4px #37474F;
+  text-shadow: 1px 1px 4px #37474f;
 }
 
 /* list item btns */
@@ -289,23 +285,21 @@ li {
 
 /* Error input field styles */
 input.error {
-  border-color: #D32F2F;
+  border-color: #d32f2f;
   background-color: #ffe6e6;
 }
 
 /* Error message styles */
 .error-message {
-  color: #D32F2F;
+  color: #d32f2f;
   font-size: 0.9em;
   margin-top: 5px;
   display: none;
   padding: 0 16px;
 }
 
-
 /* Media query: laptops and larger (>=992px) */
 @media screen and (min-width: 992px) {
-
   /* main */
   main {
     display: grid;
@@ -326,5 +320,4 @@ input.error {
   .add-category {
     width: 80%;
   }
-
 }
