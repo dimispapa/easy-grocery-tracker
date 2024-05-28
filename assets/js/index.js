@@ -41,7 +41,12 @@ document.getElementById("sign-up-btn").addEventListener("click", () => {
 });
 
 function showError(message) {
+  // get the login-error container
   const errorMessageElement = document.getElementById("login-error");
-  errorMessageElement.textContent = message;
+  // Remove "Firebase: " from the error message
+  const cleanedMessage = message.replace("Firebase: ", "");
+  // apply the message to the container's text content
+  errorMessageElement.textContent = cleanedMessage;
+  // unhide the error container
   errorMessageElement.style.display = "block";
 }
