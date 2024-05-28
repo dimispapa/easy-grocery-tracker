@@ -4,7 +4,10 @@ import {
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
-// Sign In
+/**
+ * Event listener for the Sign In button.
+ * Captures email and password input values and calls signInUser function.
+ */
 document.getElementById("sign-in-btn").addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -22,7 +25,10 @@ document.getElementById("sign-in-btn").addEventListener("click", () => {
     });
 });
 
-// Sign Up
+/**
+ * Event listener for the Sign Up button.
+ * Captures email and password input values and calls signUpUser function.
+ */
 document.getElementById("sign-up-btn").addEventListener("click", () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -40,6 +46,10 @@ document.getElementById("sign-up-btn").addEventListener("click", () => {
     });
 });
 
+/**
+ * Displays an error message below the input fields.
+ * @param {string} message - The error message to display.
+ */
 function showError(message) {
   // get the login-error container
   const errorMessageElement = document.getElementById("login-error");
