@@ -259,7 +259,10 @@ function validateIfDuplicateItem(userInput, ulElement, inputBox) {
           userInput.toLowerCase().trim()
         ) {
           // call show error function for the error to appear on page
-          showError(inputBox, "This item already exists in the list!");
+          showError(
+            inputBox,
+            `"${userInput}" item already exists in the list!`
+          );
           // invalidate input
           return false;
         }
@@ -294,7 +297,10 @@ function validateIfDuplicateCategory(userInput, inputBox) {
         userInput.toLowerCase().trim()
       ) {
         // call show error function for the error to appear on page
-        showError(inputBox, "This category already exists in the list!");
+        showError(
+          inputBox,
+          `"${userInput}" category already exists in the list!`
+        );
         // invalidate the input
         return false;
       }
@@ -429,6 +435,9 @@ function addItem(event) {
 
       // save the list to local storage
       saveGroceryList();
+    } else {
+      // clear the input box if input is not validated
+      inputBox.value = "";
     }
   } catch (error) {
     console.error("Error adding item:", error);
@@ -536,6 +545,9 @@ function addCategory(event) {
 
       // save the list data
       saveGroceryList();
+    } else {
+      // clear the input box if input is not validated
+      inputBox.value = "";
     }
   } catch (error) {
     console.error("Error adding category:", error);
