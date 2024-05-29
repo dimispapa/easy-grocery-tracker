@@ -680,9 +680,7 @@ function updateEventListeners() {
       // add an event listener to clear the error when the user loses focus from the input box
       if (!input.hasAttribute("data-has-focus-out-listener")) {
         input.setAttribute("data-has-focus-out-listener", "true");
-        input.addEventListener("focusout", function (event) {
-          clearError(event);
-        });
+        input.addEventListener("focusout", clearError);
       }
     }
   } catch (error) {
