@@ -44,49 +44,78 @@ function signInUser(event) {
       console.log("Signed in:", user);
       window.location.href = "tracker.html";
     })
+    // handle errors
     .catch((error) => {
-      console.error("Error signing in:", error);
-      showError("Error signing in:", error.message);
+      // handle invalid credential error
+      if (error.code === "auth/invalid-credential") {
+        let errorMessage = "Error signing in: Invalid email and/or password.";
+        console.error(errorMessage);
+        showError(errorMessage);
+        // handle all other errors
+      } else {
+        console.error("Error signing in:", error);
+        showError("Error signing in:" + error.message);
+      }
     });
 }
 
 // Sign-up function
 function signUpUser(event) {
+  // prevent default submission
   event.preventDefault();
+
+  // get from values
   const email = document.getElementById("sign-up-email").value;
   const password = document.getElementById("sign-up-password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
 
+  // check if passwords match and show error
   if (password !== confirmPassword) {
-    showError("Error signing up:", "Passwords do not match!");
+    showError("Error signing up: Passwords do not match!");
     return;
   }
 
+  // call firebase function to create user
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("Signed up:", user);
       window.location.href = "tracker.html";
     })
+    // handle errors
     .catch((error) => {
-      console.error("Error signing up:", error);
-      showError("Error signing up:", error.message);
+      // handle email-already-in-use error
+      if (error.code === "auth/email-already-in-use") {
+        let errorMessage = "Error signing up: Email is already in use.";
+        console.error(errorMessage);
+        showError(errorMessage);
+
+        // handle all other errors
+      } else {
+        console.error("Error signing up:", error);
+        showError("Error signing up:" + error.message);
+      }
     });
 }
 
 // Reset password function
 function resetPassword(event) {
+  // prevent default submission
   event.preventDefault();
+  // get form value
   const email = document.getElementById("reset-email").value;
 
+  // call firebase function for sending reset password email
   sendPasswordResetEmail(auth, email)
     .then(() => {
       console.log("Password reset email sent.");
       showError("Password reset email sent. Please check your inbox.");
     })
+    // catch if any error.
+    // However due to Firebase's email enumeration protection feature, doesn't throw an error if email does not exist.
     .catch((error) => {
       console.error("Error resetting password:", error);
-      showError("Error resetting password:", error.message);
+      showError("Error resetting password:" + error.message);
     });
 }
 
@@ -110,8 +139,8 @@ function setUpToggleButtons() {
 // function that toggles between hidden/visible state of forms
 function toggleFormVisibility(formId) {
   const forms = document.querySelectorAll(".auth-form");
-  forms.forEach((form) => form.classList.add("hidden"));
-  document.getElementById(formId).classList.remove("hidden");
+  forms.forEach((form) => (form.style.display = "none"));
+  document.getElementById(formId).style.display = "flex";
 }
 
 /**
