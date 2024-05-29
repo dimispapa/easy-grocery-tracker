@@ -94,6 +94,7 @@ h2 {
   cursor: pointer;
   transition: background-color 0.3s ease;
   box-shadow: inset -11px 18px 10px 0px rgba(252, 252, 252, 0.3);
+  margin: 10px 10px;
 }
 
 .cta-button:hover {
@@ -116,10 +117,8 @@ h2 {
   color: #fcfcfc;
 }
 
-/* email, password input box */
-#email,
-#password,
-#confirm-password {
+/* input box */
+input {
   width: 70%;
   max-width: 300px;
   font-size: 16px;
@@ -131,9 +130,11 @@ h2 {
   background: rgb(255 255 255 / 70%);
 }
 
-/* reset pass btn */
-#reset-password-btn {
-  margin-top: 10px;
+/* auth-form */
+.auth-form {
+  display: none;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Media query: tablets and larger (>=768px) */
