@@ -80,6 +80,11 @@ h2 {
   color: #b2ebf2;
 }
 
+/* logo img */
+header img {
+  max-height: 40px;
+}
+
 /* buttons */
 .cta-button {
   background-color: #477116;
