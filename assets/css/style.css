@@ -86,7 +86,8 @@ h2 {
   color: #fcfcfc;
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 400;
+  font-weight: 800;
+  text-shadow: 2px 2px 8px #0b1a06;
   border: none;
   padding: 10px 30px;
   font-size: 1em;
