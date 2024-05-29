@@ -89,7 +89,14 @@
           sizes="(max-width: 768px) 40px, 80px"
         />
         EASY Grocery Tracker
-        <button id="sign-out-btn" class="hidden cta-button">Sign Out</button>
+        <!-- sign out button -->
+        <button
+          id="sign-out-btn"
+          class="hidden cta-button"
+          aria-label="Sign out of your account"
+        >
+          Sign Out
+        </button>
       </h1>
     </header>
 
@@ -103,10 +110,10 @@
           name="category"
           class="add-category"
           placeholder="Add new category"
+          aria-label="Enter new category name"
         />
-
         <!-- Add category button -->
-        <button class="add-category-btn">
+        <button class="add-category-btn" aria-label="Add new category">
           <i class="fa-solid fa-basket-shopping"></i
           ><i class="fa-solid fa-plus smaller-btn"></i>
         </button>

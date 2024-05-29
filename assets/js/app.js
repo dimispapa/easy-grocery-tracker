@@ -180,19 +180,19 @@ function populateListFromData(categoryName, items) {
     let loadCat = `
     <section class="category-area" id="${categoryName}-area">
       <h2 class="category-heading">
-        <button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button>
+        <button class="toggle-list-btn category-btn" aria-label="Toggle ${categoryName} list visibility"><i class="fa-solid fa-caret-down"></i></button>
         <span class="category-name">${categoryName}</span>
-        <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
+        <button class="dlt-category-btn category-btn" aria-label="Delete ${categoryName} category"><i class="fa-regular fa-trash-can"></i></button>
       </h2>
       <ul class="shop-list"></ul>
       <div class="add-item-area">
-        <input type="text" name="item" class="add-item" placeholder="Add grocery item">
-        <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+        <input type="text" name="item" class="add-item" placeholder="Add grocery item" aria-label="Add item to ${categoryName}">
+        <button class="add-item-btn" aria-label="Add item to ${categoryName}"><i class="fa-solid fa-cart-plus"></i></button>
       </div>
     </section>
     <div class="add-category-area">
-      <input type="text" name="category" class="add-category" placeholder="Add new category">
-      <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
+      <input type="text" name="category" class="add-category" placeholder="Add new category" aria-label="Add new category">
+      <button class="add-category-btn" aria-label="Add new category"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
     </div>
     `;
 
@@ -213,15 +213,19 @@ function populateListFromData(categoryName, items) {
         // use a ternary operator within the template literal to conditionally set the ticked-off class
         let loadLi = `
         <li>
-          <button class="tick-item-btn li-btn"><i class="${
-            item.ticked
-              ? "fa-regular fa-circle-check ticked-shadow"
-              : "fa-regular fa-circle"
-          }"></i></button>
+          <button class="tick-item-btn li-btn" aria-label="Tick-off ${
+            item.item_name
+          } item"><i class="${
+          item.ticked
+            ? "fa-regular fa-circle-check ticked-shadow"
+            : "fa-regular fa-circle"
+        }"></i></button>
           <span class="${item.ticked ? "ticked-off" : ""}">${
           item.item_name
         }</span>
-          <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
+          <button class="dlt-item-btn li-btn" aria-label="Delete ${
+            item.item_name
+          } item"><i class="fa-regular fa-trash-can"></i></button>
         </li> 
         `;
 
@@ -418,9 +422,9 @@ function addItem(event) {
       // using template literal with the user input text
       let newLi = `
       <li>
-        <button class="tick-item-btn li-btn"><i class="fa-regular fa-circle"></i></button>
+        <button class="tick-item-btn li-btn" aria-label="Tick-off ${userInput} item"><i class="fa-regular fa-circle"></i></button>
         <span>${userInput}</span>
-        <button class="dlt-item-btn li-btn"><i class="fa-regular fa-trash-can"></i></button>
+        <button class="dlt-item-btn li-btn" aria-label="Delete ${userInput} item"><i class="fa-regular fa-trash-can"></i></button>
       </li>
       `;
 
@@ -518,19 +522,19 @@ function addCategory(event) {
       let newCat = `
       <section class="category-area">
         <h2 class="category-heading">
-          <button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button>
+          <button class="toggle-list-btn category-btn" aria-label="Toggle ${userInput} list visibility"><i class="fa-solid fa-caret-down"></i></button>
           <span class="category-name">${userInput}</span>
-          <button class="dlt-category-btn category-btn"><i class="fa-regular fa-trash-can"></i></button>
+          <button class="dlt-category-btn category-btn" aria-label="Delete ${userInput} category"><i class="fa-regular fa-trash-can"></i></button>
         </h2>
         <ul class="shop-list"></ul>
         <div class="add-item-area">
-          <input type="text" name="item" class="add-item" placeholder="Add grocery item">
-          <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
+          <input type="text" name="item" class="add-item" placeholder="Add grocery item" aria-label="Add item to ${userInput}">
+          <button class="add-item-btn" aria-label="Add item to ${userInput}"><i class="fa-solid fa-cart-plus"></i></button>
         </div>
       </section>
       <div class="add-category-area" id="${userInput}-area">
-        <input type="text" name="category" class="add-category" placeholder="Add new category">
-        <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
+        <input type="text" name="category" class="add-category" placeholder="Add new category" aria-label="Add new category">
+        <button class="add-category-btn" aria-label="Add new category"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
       </div>
       `;
 
@@ -692,16 +696,16 @@ function updateEventListeners() {
  */
 function setUpSignoutBtn() {
   // add event listener on signout button
-document.getElementById("sign-out-btn").addEventListener("click", () => {
+  document.getElementById("sign-out-btn").addEventListener("click", () => {
     // call signout firebase function
-  signOut(auth)
-    .then(() => {
-      console.log("User signed out.");
-      // redirect to the index page after sign out
-      window.location.href = "index.html";
-    })
-    .catch((error) => {
-      console.error("Error signing out:", error);
-    });
-});
+    signOut(auth)
+      .then(() => {
+        console.log("User signed out.");
+        // redirect to the index page after sign out
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        console.error("Error signing out:", error);
+      });
+  });
 }
