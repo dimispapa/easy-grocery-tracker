@@ -246,7 +246,6 @@ header {
   max-width: 300px;
   font-size: 16px;
   padding: 1px;
-  margin-left: 5px;
 }
 
 /* grocery lists */
@@ -281,6 +280,7 @@ button {
 .add-category-btn,
 .add-item-btn {
   color: #8bc34a;
+  margin-left: 5px;
 }
 
 /* delete button */
