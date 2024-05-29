@@ -371,7 +371,7 @@ function showError(inputBox, message) {
  */
 function clearError(event) {
   // remove the error class from the input box to remove highlighting
-  let inputBox =  event.currentTarget.parentElement.querySelector('input')
+  let inputBox = event.currentTarget.parentElement.querySelector("input");
   inputBox.classList.remove("error");
 
   // get next sibling of the add-category-area
@@ -419,7 +419,7 @@ function addItem(event) {
 
       // append the new li item to the ul
       ul.insertAdjacentHTML("beforeend", newLi);
-      console.log(`List item "${userInput}" added onto list.`)
+      console.log(`List item "${userInput}" added onto list.`);
 
       // clear the input box
       inputBox.value = "";
@@ -443,7 +443,9 @@ function deleteItem(event) {
   try {
     // target the li element that the button is a child of
     let li = event.currentTarget.parentElement;
+    let liName = event.currentTarget.previousElementSibling;
     li.remove();
+    console.log(`List item "${liName.textContent}" deleted.`);
 
     // save the list to local storage
     saveGroceryList();
@@ -504,10 +506,6 @@ function addCategory(event) {
     ) {
       // define the HTML for a new category to be added, with areas to add new items/categories
       let newCat = `
-      <div class="add-category-area" id="${userInput}-area">
-        <input type="text" name="category" class="add-category" placeholder="Add new category">
-        <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
-      </div>
       <section class="category-area">
         <h2 class="category-heading">
           <button class="toggle-list-btn category-btn"><i class="fa-solid fa-caret-down"></i></button>
@@ -520,11 +518,15 @@ function addCategory(event) {
           <button class="add-item-btn"><i class="fa-solid fa-cart-plus"></i></button>
         </div>
       </section>
+      <div class="add-category-area" id="${userInput}-area">
+        <input type="text" name="category" class="add-category" placeholder="Add new category">
+        <button class="add-category-btn"><i class="fa-solid fa-basket-shopping"></i><i class="fa-solid fa-plus smaller-btn" id="smaller-btn"></i></button>
+      </div>
       `;
 
-      // append the new li item to the ul
-      newCatArea.insertAdjacentHTML("beforebegin", newCat);
-      console.log(`New category "${userInput}" added.`)
+      // append the new category item to the ul
+      newCatArea.insertAdjacentHTML("afterend", newCat);
+      console.log(`New category "${userInput}" added.`);
 
       // clear the input box
       inputBox.value = "";
@@ -566,11 +568,13 @@ function toggleList(event) {
  */
 function deleteCategory(event) {
   try {
-    // target the category area and the addCategory area preceding it
+    // target the category area and the addCategory area following it
     let catArea = event.currentTarget.parentElement.parentElement;
-    let newCatAreaAbove = catArea.previousElementSibling;
-    newCatAreaAbove.remove();
+    let catName = event.currentTarget.previousElementSibling;
+    let newCatAreaBelow = catArea.nextElementSibling;
+    newCatAreaBelow.remove();
     catArea.remove();
+    console.log(`Category "${catName.textContent}" deleted.`);
 
     // save the list
     saveGroceryList();
