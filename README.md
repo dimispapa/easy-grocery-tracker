@@ -3,36 +3,39 @@
 The "EASY Grocery Tracker" is a web application designed to meet the basic needs of managing a grocery list in the everyday life, which can be tedious task if you are not organised. It allows users to organise their grocery items in default or customised categories and allows adding/removing items required in each category. Importantly, the users can also tick-off items from their list once they are picked up in the grocery store while out shopping, which helps make the shopping experience more efficient and also allows keeping recurring items on the list instead of removing them completely.
 
 ## UX Design
+
 The design follows an analysis done using the five Ss: Strategy, Scope, Features, Structure, Skeleton, Surface.
 The following key elements were considered in the design process:
 
 ### Strategy
 
 #### User needs:
-* Manage the grocery list centrally on a web app by tracking/adding/removing items while at the household and at the grocery store.
-* Being able to add items to a list wherever they are and whenever they remember that they need something.
-* Able to define the quantity and units of the items on the list.
-* Easily refer back to the list by keeping items organised in categories.
-* Share the list with other members of the household if needed.
+
+- Manage the grocery list centrally on a web app by tracking/adding/removing items while at the household and at the grocery store.
+- Being able to add items to a list wherever they are and whenever they remember that they need something.
+- Able to define the quantity and units of the items on the list.
+- Easily refer back to the list by keeping items organised in categories.
+- Share the list with other members of the household if needed.
 
 #### Application goals:
-* Create a user-friendly tracker that allows the users to perform basic grocery list tracking and management, including adding/removing/editing categories and items.
-* Make a responsive a mobile-first design to ensure that it works well on the mobile, as the tracker is intended to be used at the grocery store while shopping to refer to and update the lists.
-* Have the ability to retain lists in memory when the user resumes the app or refreshes, at least on the same device and browser.
-* Having the option to share access to the list to other people or download the list in a shareable format.
+
+- Create a user-friendly tracker that allows the users to perform basic grocery list tracking and management, including adding/removing/editing categories and items.
+- Make a responsive a mobile-first design to ensure that it works well on the mobile, as the tracker is intended to be used at the grocery store while shopping to refer to and update the lists.
+- Have the ability to retain lists in memory when the user resumes the app or refreshes, at least on the same device and browser.
+- Having the option to share access to the list to other people or download the list in a shareable format.
 
 #### Analysis:
 
-| Application Feature  | Importance (scale 1-5) | Viability/Feasibility |
-| -------------------- | ---------------------- | --------------------- |
-| Create a basic application structure with section for each category and an editable list within each category | 5 | 5 |
-| For better UX, the category section to show/hide on user's demand | 3 | 3 |
-| Buttons are used to add/remove/tick list items and to add/remove category sections | 5 | 5 |
-| Have a quantity input field and unit of measurement dropdown with input validation | 2 | 4 |
-| Have a retainable list on local memory of a single device/browser | 5 | 3 |
-| Give access to the list on other devices | 2 | 2 |
-| Option to download/export the list in a shareable format | 3 | 3 |
-| **SUM OF IMPORTANCE / VIABILITY** | **25** | **25** |
+| Application Feature                                                                                           | Importance (scale 1-5) | Viability/Feasibility |
+| ------------------------------------------------------------------------------------------------------------- | ---------------------- | --------------------- |
+| Create a basic application structure with section for each category and an editable list within each category | 5                      | 5                     |
+| For better UX, the category section to show/hide on user's demand                                             | 3                      | 3                     |
+| Buttons are used to add/remove/tick list items and to add/remove category sections                            | 5                      | 5                     |
+| Have a quantity input field and unit of measurement dropdown with input validation                            | 2                      | 4                     |
+| Have a retainable list on local memory of a single device/browser                                             | 5                      | 3                     |
+| Give access to the list on other devices                                                                      | 2                      | 2                     |
+| Option to download/export the list in a shareable format                                                      | 3                      | 3                     |
+| **SUM OF IMPORTANCE / VIABILITY**                                                                             | **25**                 | **25**                |
 
 _The above analysis indicates that we are in a position to implement all features. However, we will follow an approach of implementing by order of importance/priority to ensure that the basic demands of the app are met in the timeframe and resources available._
 
@@ -41,58 +44,110 @@ _The above analysis indicates that we are in a position to implement all feature
 #### Usage Scenarios
 
 1. Primary household shopper:
-   * Adds items that are missing from their household, needed to buy from the grocery store. If a specific quantity is required, then specifies that next to the item, otherwise leaves the quantity box empty.
-   * Creates a new category if any of the default ones do not represent an item, otherwise adds an item to an existing one.
-   * Re-visits the list at the grocery store and ticks off items as they place them into their basket.
-   * Shares the list to another household members so that they can do the shopping or edit the list themselves.
+
+   - Adds items that are missing from their household, needed to buy from the grocery store. If a specific quantity is required, then specifies that next to the item, otherwise leaves the quantity box empty.
+   - Creates a new category if any of the default ones do not represent an item, otherwise adds an item to an existing one.
+   - Re-visits the list at the grocery store and ticks off items as they place them into their basket.
+   - Shares the list to another household members so that they can do the shopping or edit the list themselves.
 
 2. Secondary household member:
-   * Get access to the list shared by the primary household shopper to perform any of the above tasks on the behalf of the household.
-
-#### Selected Features
-
-#### Features assessed but Not selected due to resource constraints
+   - Get access to the list shared by the primary household shopper to perform any of the above tasks on the behalf of the household.
 
 ### Structure
 
 #### Main Audience:
+
 The average household grocery shopper with an access to a mobile phone and an interest in using technology to make their everyday life more efficient.
 
 #### Principles of organisation:
+
 The nature the app, its use and its audience, dictate a linear and simple structure to the app, wherea: a landing page initially informs the user what this is about and the actual app once clicked is on a single page in the form of an interactive list with intuitive navigation.
 
 ### Skeleton
+
 1. Index page:
-   * A landing page with a hero image showing some grocery bags and a button that clearly indicates to the user that if they proceed further, they will start making a list for grocery shopping.
+
+   - A landing page with a hero image showing some grocery bags and a button that clearly indicates to the user that if they proceed further, they will start making a list for grocery shopping.
+   - Authentication options on landing page to provide access to the app.
 
 2. Tracker page:
-   * The main application interface with the grocery list broken down into sections of categories with nested lists in each of them. 
-   * Buttons allow the user to hide/show each category section, add items to a section, tick/cross-off an item, delete an item and finally add a category.
+   - The main application interface with the grocery list broken down into sections of categories with nested lists in each of them.
+   - Buttons allow the user to hide/show each category section, add items to a section, tick/cross-off an item, delete an item and finally add a category.
 
 ### Colour Scheme
+
 The colour scheme was generated with the help of [coolors.co](https://coolors.co/8bc34a-37474f-b2ebf2-ffeb3b-d32f2f) colour palette generator. The choice was made on the basis of getting a few different colours to resemble how a grocery bag usually has different colours. A choice of vibrant colours with contrast where required to make some buttons and app elements stick out more for an easier and clearer use while on the go.
 
 ![screenshot](documentation/grocery-tracker-color-palette.png)
 
 ### Typography
+
 To explore various font options and combinations, [fontjoy.com](https://fontjoy.com/) was utilised with the choice of a balance contrast between fonts. [Google Fonts](https://fonts.google.com/) was used to source the fonts for the project.
 
-* [Asap](https://fonts.google.com/specimen/Asap) was used for primary headers.
-* [Raleway](https://fonts.google.com/specimen/Raleway) was used for secondary headers.
-* [Martel Sans](https://fonts.google.com/specimen/Martel+Sans) was used for main body text.
+- [Asap](https://fonts.google.com/specimen/Asap) was used for primary headers.
+- [Raleway](https://fonts.google.com/specimen/Raleway) was used for secondary headers.
+- [Martel Sans](https://fonts.google.com/specimen/Martel+Sans) was used for main body text.
 
 ## Wireframes
-Wireframes were developed using [Figma](https://www.figma.com/) for mobile, table and laptop/desktop screen sizes.
+
+Wireframes were developed using [Figma](https://www.figma.com/) focusing on mobile screen size, created with largely responsive mobile-first design and applying small changes to style/UX for larger screens.
 
 ### Mobile Wireframe
 
+The mobile wireframe was created for the Tracker page only with greater focus placed on the main app UX design.
+
+<details>
+<summary>Click here to see the Mobile Wireframe for the Tracker page (main app page)</summary>
 ![screenshot](documentation/grocery-tracker-wireframe-mobile.png)
+</details>
 
 ## Features
 
 ### Current Features
 
+#### Category areas
+
+1. Add a new category input box and button.
+2. A category section created for each new category, with an editable list within each category.
+3. Add a new category input box and button are created below each new category to allow adding categories in between.
+
+#### List Item areas
+
+1. Add list item input box and button to add items within each category.
+2. Dropdown button to show/hide a category list.
+3. Tick-off button to cross-off items from the list without deleting them.
+
+#### Delete buttons
+
+1. Delete button to delete a whole category.
+2. Delete button to delete a list item within a category.
+
+#### Input validation
+
+1. Validation checks for blank or duplicate user inputs, with error message prompt below the input box.
+2. Error message disappears when user focuses out of the input box.
+
+#### Authentication, Data Storage and User Access
+
+1. Authentication setup with signin/signup/reset password/signout options for user access management, data retention and allowing multiple lists/users served by the database. This also allows other users to access the same list if accessing with the same credentials and therefore sharing access.
+2. Real-time database backend service by Firebase, allows real-time changes to apply accross devices, to allow simultaneous changes accross devices.
+3. If once logged-in, internet access is lost, the app is still operational and any changes made are stored locally and updated with the database once connection is resumed.
+
+#### Further UX
+
+1. When user presses "Enter" key, the app responds with adding a category or item if the user is focused on an input box. When on the landing page, this will conditionally either submit a sign-in request or a sign-up request.
+
 ### Future Features
+
+#### Features assessed at design phase but Not Implemented due to resource constraints
+
+1. Quantity input field not implemented, as it was seen a lower priority compared to other features. Can be implemented in a future release.
+2. Downloading list in a shareable format not implemented due to time constraints and lower priority.
+
+#### Features not assessed on design phase but Considered for future releases
+
+1. An improvement of list-sharing will be the addition of a feature that allows users to invite user access on their list via email. This will be coupled with the capability of users being able to have multiple lists through their account and being able to select a list upon login.
+2. Another additional authentication feature for future release, is to make use of Firebase's Anonymous signup, whereas a user can use the app as a guest and then optionally signup by retaining the list they have created under their new account retrospectively.
 
 ## Tech Stack & Tools utilised
 
