@@ -107,15 +107,15 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 
 #### Category areas
 
-1. Add a new category input box and button.
+1. New category input box and button.
 2. A category section created for each new category, with an editable list within each category.
-3. Add a new category input box and button are created below each new category to allow adding categories in between.
+3. A new category input box and button are created below each newly-added category to allow adding categories in between, when a specific order is preferred.
 
 #### List Item areas
 
-1. Add list item input box and button to add items within each category.
+1. New item input box and button to add items within each category.
 2. Dropdown button to show/hide a category list.
-3. Tick-off button to cross-off items from the list without deleting them.
+3. Tick-off button to cross-off items from the list without deleting them. This can be reversed by clicking again to un-tick, a useful feature when grocery items are recurring.
 
 #### Delete buttons
 
@@ -124,18 +124,31 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 
 #### Input validation
 
-1. Validation checks for blank or duplicate user inputs, with error message prompt below the input box.
-2. Error message disappears when user focuses out of the input box.
+1. Validation checks for blank or duplicate user inputs, with error message prompt below the input box. The duplicate validation check is case-insensitive.
+2. Error message disappears when user focuses out of the input box, allowing for a better UX.
 
 #### Authentication, Data Storage and User Access
 
-1. Authentication setup with signin/signup/reset password/signout options for user access management, data retention and allowing multiple lists/users served by the database. This also allows other users to access the same list if accessing with the same credentials and therefore sharing access.
+1. Authentication setup allows options for user access management, data retention and allowing multiple lists/users served by the database. This also allows other users to access the same list if accessing with the same credentials and therefore sharing access.
 2. Real-time database backend service by Firebase, allows real-time changes to apply accross devices, to allow simultaneous changes accross devices.
 3. If once logged-in, internet access is lost, the app is still operational and any changes made are stored locally and updated with the database once connection is resumed.
+4. The index/landing page authentication options allow the user to choose between "Sign In", "Sign Up" and "Reset Password". The appropriate form becomes visible when the user toggles between the options.
 
-#### Further UX
+#### Saving/Loading/Populating Lists
 
-1. When user presses "Enter" key, the app responds with adding a category or item if the user is focused on an input box. When on the landing page, this will conditionally either submit a sign-in request or a sign-up request.
+1. Functions are set-up to read data from the DOM elements and parse them into a nested data structure with arrays/objects, that represend categories and their corresponding items.
+2. Other functions are used to load data from the Firebase real-time database, using the "onValue" listener function to listen for any changes on the database that triggers the data load and re-populates the list. (e.g. on the case of shared lists and use on multiple devices).
+3. A function clears the main app area from all elements except a permanent "add-category" input box and its button.
+4. Some other functions are also used to populate the DOM with the fetched data, with the use of template literals and variables to dynamically generate HTML, by looping through categories and items.
+
+#### Event Listeners
+
+1. When user presses "Enter" key, the app responds with adding a category or item if the user is focused on an input box. When on the landing page, this will conditionally submit the form that is unhidden i.e. the form that the user chose to submit.
+2. Event listeners get updated via a function that loops through buttons on the DOM, each time a new category or item is added, therefore requiring "click" event listeners on its corresponding buttons. The appropriate event listener and handler function gets applied based on classes or ids of elements.
+
+#### Error handling
+
+1. Errors get handled in each function, logging the error in the console and showing an error on page to notify the user if necessary.
 
 ### Future Features
 
@@ -155,15 +168,26 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 - **CSS** was utilised mainly for styling, design, layout and limited interactivity.
 - **JavaScript** was utilised for:
   - Targetting HTML elements
-  - DOM manipulation by UI interaction
-  - CSS flexible styling of HTML elements
+  - DOM manipulation by UI interaction from the user
+  - CSS flexible styling of HTML elements based on user interaction
   - Communication with the database for:
     - retrieving data from the DB and populating the DOM
     - authenticating and handling user access
     - processing data from the DOM and storing on the DB
-  - Setting up event listeners and functions
+  - Setting up event listeners and functionality
   - Validating user inputs and error messages
   - Controlling the general flow of the web app
+- **Git** was utilised for version control, using mainly "stage", "commit" and "push" for developed features and "stash" for partly-developed features for future deployment.
+- **Gitpod** was used as a cloud-based workspace to host development.
+- **VS Code Desktop** was utilised as the IDE connected to the Gitpod workspace.
+- **GitHub** was utilised for storing the web app resources in a secure cloud depository along with documentation.
+- **GitHub Pages** was utilised for the live deployment of the website.
+- **Chrome DevTools** was used for CSS styling experimentation, JavaScript debugging/testing and frequent preview of changes before committing.
+- **Figma** was used for designing wireframes.
+- **ChatGPT4** was used for mundane tasks such as generating docstrings for functions and help brainstorm solutions.
+- **Convertio.co** was utilised to convert jpeg/png images to webp format.
+- **FontAwesome** kit was used for icons.
+- **Firebase** BaaS was utilised, specificaly the "Realtime Database" and "Authentication" service products.
 
 ## Testing
 
