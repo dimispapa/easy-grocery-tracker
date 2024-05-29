@@ -151,6 +151,20 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 
 ## Tech Stack & Tools utilised
 
+- **HTML** was utilised for the main site architecture and content.
+- **CSS** was utilised mainly for styling, design, layout and limited interactivity.
+- **JavaScript** was utilised for:
+  - Targetting HTML elements
+  - DOM manipulation by UI interaction
+  - CSS flexible styling of HTML elements
+  - Communication with the database for:
+    - retrieving data from the DB and populating the DOM
+    - authenticating and handling user access
+    - processing data from the DOM and storing on the DB
+  - Setting up event listeners and functions
+  - Validating user inputs and error messages
+  - Controlling the general flow of the web app
+
 ## Testing
 
 ### Code Validation
