@@ -118,7 +118,8 @@ h2 {
 
 /* email, password input box */
 #email,
-#password {
+#password,
+#confirm-password {
   width: 70%;
   max-width: 300px;
   font-size: 16px;
