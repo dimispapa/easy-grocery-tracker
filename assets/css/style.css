@@ -81,7 +81,7 @@ h2 {
 }
 
 /* logo img */
-header img {
+h1 > img {
   max-height: 40px;
 }
 
