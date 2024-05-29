@@ -7,128 +7,78 @@ import {
 
 //
 document.addEventListener("DOMContentLoaded", () => {
-  // add event listener on signup btn to first unhide the confirm password field
-  const signUpBtn = document.getElementById("sign-up-btn");
-  signUpBtn.addEventListener("click", unhideConfirmPassword);
+  // initialize event listeners
+  setUpAuthForms();
 
-  // add event listener for signin btn
-  setUpSignInBtn();
-
-  // add event listener for reset password btn
-  setUpRestPasswordBtn();
-
+  setUpToggleButtons();
   // add event listener for enter key to submit signin
   setUpEnterKeypress();
 });
 
-/**
- * Add event listener to unhide
- */
-function unhideConfirmPassword() {
-  const confirmPassword = document.getElementById("confirm-password");
-
-  // unhide confirm password field and prompt user to confirm password
-  confirmPassword.classList.remove("hidden");
-  showError("Please confirm password and then click Sign Up.");
-
-  // set up sign up event listener
-  setUpSignUpBtn();
-}
-
-/**
- * Event listener for the Sign In button.
- * Captures email and password input values and calls signInUser function.
- */
-function setUpSignInBtn() {
-  // add an event listener for signin submission
-  document.getElementById("sign-in-btn").addEventListener("click", () => {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    // call the function of firebase to signin
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("Signed in:", user);
-        window.location.href = "tracker.html";
-      })
-      .catch((error) => {
-        console.error("Error signing in:", error);
-        showError(error.message);
-      });
-  });
-}
-
-/**
- * Event listener for the Sign Up button.
- * Captures email and password input values and calls signUpUser function.
- */
-function setUpSignUpBtn() {
-  const signUpBtn = document.getElementById("sign-up-btn");
-  // remove existing event listener before adding a new one
-  signUpBtn.removeEventListener("click", unhideConfirmPassword, false);
-
-  // add a new event listener for signup submission
-  signUpBtn.addEventListener("click", () => {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
-
-    // check if passwords match
-    if (password !== confirmPassword) {
-      showError("Passwords do not match!");
-      return;
-    }
-
-    // create new user using firebase auth function
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log("Signed up:", user);
-        window.location.href = "tracker.html";
-      })
-      .catch((error) => {
-        console.error("Error signing up:", error);
-        showError(error.message);
-      });
-  });
-}
-
-/**
- * Event listener for the Reset Password button.
- * Captures email input value and calls resetPassword function.
- */
-function setUpRestPasswordBtn() {
+function setUpAuthForms() {
+  // Set up Sign In form submission event listener
   document
-    .getElementById("reset-password-btn")
-    .addEventListener("click", () => {
-      const email = document.getElementById("email").value;
-      resetPassword(email);
+    .getElementById("sign-in-form")
+    .addEventListener("submit", signInUser);
+
+  // Set up Sign Up form submission event listener
+  document
+    .getElementById("sign-up-form")
+    .addEventListener("submit", signUpUser);
+
+  // Set up Reset Password form submission event listener
+  document
+    .getElementById("reset-password-form")
+    .addEventListener("submit", resetPassword);
+}
+
+// Sign-in function
+function signInUser(event) {
+  event.preventDefault();
+  const email = document.getElementById("sign-in-email").value;
+  const password = document.getElementById("sign-in-password").value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log("Signed in:", user);
+      window.location.href = "tracker.html";
+    })
+    .catch((error) => {
+      console.error("Error signing in:", error);
+      showError("Error signing in:", error.message);
     });
 }
 
-/**
- * Displays an error message below the input fields.
- * @param {string} message - The error message to display.
- */
-function showError(message) {
-  // get the login-error container
-  const errorMessageElement = document.getElementById("login-error");
-  // Remove "Firebase: " from the error message
-  const cleanedMessage = message.replace("Firebase: ", "");
-  // apply the message to the container's text content
-  errorMessageElement.textContent = cleanedMessage;
-  // unhide the error container
-  errorMessageElement.style.display = "block";
+// Sign-up function
+function signUpUser(event) {
+  event.preventDefault();
+  const email = document.getElementById("sign-up-email").value;
+  const password = document.getElementById("sign-up-password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  if (password !== confirmPassword) {
+    showError("Error signing up:", "Passwords do not match!");
+    return;
+  }
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      console.log("Signed up:", user);
+      window.location.href = "tracker.html";
+    })
+    .catch((error) => {
+      console.error("Error signing up:", error);
+      showError("Error signing up:", error.message);
+    });
 }
 
-/**
- * Resets the password for the user.
- * @param {string} email - The email address of the user.
- */
-function resetPassword(email) {
+// Reset password function
+function resetPassword(event) {
+  event.preventDefault();
+  const email = document.getElementById("reset-email").value;
+
   sendPasswordResetEmail(auth, email)
     .then(() => {
       console.log("Password reset email sent.");
@@ -136,28 +86,55 @@ function resetPassword(email) {
     })
     .catch((error) => {
       console.error("Error resetting password:", error);
-      showError(error.message);
+      showError("Error resetting password:", error.message);
     });
+}
+
+// set up button listeners that show/hide forms
+function setUpToggleButtons() {
+  document.getElementById("show-sign-in").addEventListener("click", () => {
+    toggleFormVisibility("sign-in-form");
+  });
+
+  document.getElementById("show-sign-up").addEventListener("click", () => {
+    toggleFormVisibility("sign-up-form");
+  });
+
+  document
+    .getElementById("show-reset-password")
+    .addEventListener("click", () => {
+      toggleFormVisibility("reset-password-form");
+    });
+}
+
+// function that toggles between hidden/visible state of forms
+function toggleFormVisibility(formId) {
+  const forms = document.querySelectorAll(".auth-form");
+  forms.forEach((form) => form.classList.add("hidden"));
+  document.getElementById(formId).classList.remove("hidden");
+}
+
+/**
+ * Displays an error message below the input fields.
+ * @param {string} message - The error message to display.
+ */
+function showError(message) {
+  // get the error container
+  const errorMessageElement = document.getElementById("login-error");
+  // Remove "Firebase: " from the error message and apply to text content
+  errorMessageElement.textContent = message.replace("Firebase: ", "");
+  // unhide the error container
+  errorMessageElement.style.display = "block";
 }
 
 // Add event listener on the window for the keypress event
 function setUpEnterKeypress() {
-  const confirmPassword = document.getElementById("confirm-password");
-
-  // add event listener
   window.addEventListener("keypress", (event) => {
-    // Check if the Enter key is pressed and confirm that the signup btn wasn't pressed before
-    if (event.key === "Enter" && confirmPassword.classList.contains("hidden")) {
-      // Simulate a click on the "sign-in-btn"
-      document.getElementById("sign-in-btn").click();
-    }
-    // check if the enter key was pressed and if the signup btn was pressed
-    else if (
-      event.key === "Enter" &&
-      !confirmPassword.classList.contains("hidden")
-    ) {
-      // Simulate a click on the "sign-up-btn"
-      document.getElementById("sign-up-btn").click();
+    if (event.key === "Enter") {
+      const visibleForm = document.querySelector(".auth-form:not(.hidden)");
+      if (visibleForm) {
+        visibleForm.querySelector("button[type='submit']").click();
+      }
     }
   });
 }
