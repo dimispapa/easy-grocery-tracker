@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     // Update event listeners for key functionality
     updateEventListeners();
+    setUpSignoutBtn();
   } catch (error) {
     console.error("Error during initialization:", error);
   }
@@ -685,8 +686,14 @@ function updateEventListeners() {
   }
 }
 
-// Add click event listener for Sign out button
+/**
+ * Sets up the Invite User button with an event listener.
+ * When clicked, the current authenticated user's UID is used to invite another user to share the list.
+ */
+function setUpSignoutBtn() {
+  // add event listener on signout button
 document.getElementById("sign-out-btn").addEventListener("click", () => {
+    // call signout firebase function
   signOut(auth)
     .then(() => {
       console.log("User signed out.");
@@ -697,3 +704,4 @@ document.getElementById("sign-out-btn").addEventListener("click", () => {
       console.error("Error signing out:", error);
     });
 });
+}
