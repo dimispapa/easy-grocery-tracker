@@ -66,7 +66,6 @@ function setUpSignInBtn() {
  */
 function setUpSignUpBtn() {
   const signUpBtn = document.getElementById("sign-up-btn");
-  debugger;
   // remove existing event listener before adding a new one
   signUpBtn.removeEventListener("click", unhideConfirmPassword, false);
 
