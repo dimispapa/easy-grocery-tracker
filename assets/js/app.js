@@ -419,6 +419,7 @@ function addItem(event) {
 
       // append the new li item to the ul
       ul.insertAdjacentHTML("beforeend", newLi);
+      console.log(`List item "${userInput}" added onto list.`)
 
       // clear the input box
       inputBox.value = "";
@@ -523,6 +524,7 @@ function addCategory(event) {
 
       // append the new li item to the ul
       newCatArea.insertAdjacentHTML("beforebegin", newCat);
+      console.log(`New category "${userInput}" added.`)
 
       // clear the input box
       inputBox.value = "";
