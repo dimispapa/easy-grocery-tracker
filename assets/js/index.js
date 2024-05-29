@@ -5,16 +5,17 @@ import {
   sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 
-//
+// Add event listener when DOM content loads
 document.addEventListener("DOMContentLoaded", () => {
   // initialize event listeners
   setUpAuthForms();
-
   setUpToggleButtons();
-  // add event listener for enter key to submit signin
   setUpEnterKeypress();
 });
 
+/**
+ * Sets up event listeners for authentication forms.
+ */
 function setUpAuthForms() {
   // Set up Sign In form submission event listener
   document
@@ -32,7 +33,10 @@ function setUpAuthForms() {
     .addEventListener("submit", resetPassword);
 }
 
-// Sign-in function
+/**
+ * Handles the Sign In form submission.
+ * @param {Event} event - The event object.
+ */
 function signInUser(event) {
   event.preventDefault();
   const email = document.getElementById("sign-in-email").value;
@@ -59,7 +63,10 @@ function signInUser(event) {
     });
 }
 
-// Sign-up function
+/**
+ * Handles the Sign Up form submission.
+ * @param {Event} event - The event object.
+ */
 function signUpUser(event) {
   // prevent default submission
   event.preventDefault();
@@ -98,7 +105,10 @@ function signUpUser(event) {
     });
 }
 
-// Reset password function
+/**
+ * Handles the Reset Password form submission.
+ * @param {Event} event - The event object.
+ */
 function resetPassword(event) {
   // prevent default submission
   event.preventDefault();
@@ -119,7 +129,9 @@ function resetPassword(event) {
     });
 }
 
-// set up button listeners that show/hide forms
+/**
+ * Sets up the event listeners for the toggle buttons to show/hide forms.
+ */
 function setUpToggleButtons() {
   document.getElementById("show-sign-in").addEventListener("click", () => {
     toggleFormVisibility("sign-in-form");
@@ -136,7 +148,10 @@ function setUpToggleButtons() {
     });
 }
 
-// function that toggles between hidden/visible state of forms
+/**
+ * Toggles the visibility of authentication forms.
+ * @param {string} formId - The ID of the form to show.
+ */
 function toggleFormVisibility(formId) {
   const forms = document.querySelectorAll(".auth-form");
   forms.forEach((form) => (form.style.display = "none"));
@@ -156,7 +171,9 @@ function showError(message) {
   errorMessageElement.style.display = "block";
 }
 
-// Add event listener on the window for the keypress event
+/**
+ * Sets up the event listener for the Enter key press to submit the visible form.
+ */
 function setUpEnterKeypress() {
   window.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
