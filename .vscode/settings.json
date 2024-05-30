@@ -23,7 +23,8 @@
   "files.autoSave": "onFocusChange",
   "workbench.colorTheme": "Default Dark+",
   "terminal.integrated.gpuAcceleration": "canvas",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "NikolaosGeorgiou.html-fmt-vscode",
   "editor.formatOnSave": true,
-  "prettier.trailingComma": "none"
+  "prettier.trailingComma": "none",
+  "html-fmt-vscode.indentSize": 2
 }

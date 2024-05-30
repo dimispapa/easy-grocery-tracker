@@ -195,6 +195,13 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 
 #### HTML
 
+HTML files were validated using the recommended [HTML W3C Validator](https://validator.w3.org).
+
+| Page    | W3C URL                                                                                                    | Screenshot                                                       | Notes           |
+| ------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------- |
+| About   | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimispapa.github.io%2Fcy_boulder_fest%2Findex.html)   | ![screenshot](documentation/testing/html-validation-index.png)   | Pass: No Errors |
+| Gallery | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimispapa.github.io%2Fcy_boulder_fest%2Fgallery.html) | ![screenshot](documentation/testing/html-validation-gallery.png) | Pass: No Errors |
+
 #### CSS
 
 #### JavaScript
