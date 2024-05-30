@@ -216,6 +216,18 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 1. An improvement of list-sharing will be the addition of a feature that allows users to invite user access on their list via email. This will be coupled with the capability of users being able to have multiple lists through their account and being able to select a list upon login.
 2. Another additional authentication feature for future release, is to make use of Firebase's Anonymous signup, whereas a user can use the app as a guest and then optionally signup by retaining the list they have created under their new account retrospectively.
 
+### Process Flow
+
+I created a flowchart using [draw.io](https://www.drawio.com/), focused mainly on the biggest JavaScript code (app.js), explaining the process flow at a high-level.
+
+<details>
+<summary>
+Flowchart (main functionalities)
+</summary>
+
+![screenshot](documentation/grocery-flowchart.drawio.png)
+</details>
+
 ## Tech Stack & Tools utilised
 
 - **HTML** was utilised for the main site architecture and content.
@@ -242,6 +254,7 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 - **Convertio.co** was utilised to convert jpeg/png images to webp format.
 - **FontAwesome** kit was used for icons.
 - **Firebase** BaaS was utilised, specificaly the "Realtime Database" and "Authentication" service products.
+- **draw.io** was used to create a process flowchart.
 
 ## Testing
 
