@@ -199,10 +199,15 @@ HTML files were validated using the recommended [HTML W3C Validator](https://val
 
 | Page    | W3C URL                                                                                                    | Screenshot                                                       | Notes           |
 | ------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | --------------- |
-| About   | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimispapa.github.io%2Fcy_boulder_fest%2Findex.html)   | ![screenshot](documentation/testing/html-validation-index.png)   | Pass: No Errors |
-| Gallery | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimispapa.github.io%2Fcy_boulder_fest%2Fgallery.html) | ![screenshot](documentation/testing/html-validation-gallery.png) | Pass: No Errors |
+| Index   | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimispapa.github.io%2Feasy-grocery-tracker%2Findex.html)   | ![screenshot](documentation/testing/html-w3c-validation-index.png)   | Pass: No Errors |
+| Tracker | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimispapa.github.io%2Feasy-grocery-tracker%2Ftracker.html) | ![screenshot](documentation/testing/html-w3c-validation-tracker.png) | Pass: No Errors |
 
 #### CSS
+The CSS stylesheet was validated using the recommended [W3C CSS "Jigsaw" Validator](https://jigsaw.w3.org/css-validator).
+
+| File      | Jigsaw URL | Screenshot | Notes | Comment |
+| --------- | ---------- | ---------- | ----- | ------- |
+| style.css | [Jigsaw](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdimispapa.github.io%2Feasy-grocery-tracker%2Findex.html) | ![screenshot](documentation/testing/css-w3c-validation.png) | Three identical errors: Property font-optical-sizing doesn't exist : auto | This CSS property does exist as documented by [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-optical-sizing). <details><summary> This style rule is associated with the "Asap" and "Raleway" font properties as pulled from Google Fonts.</summary> ![screenshot](documentation/testing/asap-googlefonts.png) ![screenshot](documentation/testing/asap-googlefonts.png)</details>
 
 #### JavaScript
 
