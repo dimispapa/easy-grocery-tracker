@@ -102,6 +102,7 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 
 <details>
 <summary>Click here to see the Mobile Wireframe for the Tracker page (main app page)</summary>
+
 ![screenshot](documentation/grocery-tracker-wireframe-mobile.png)
 </details>
 
@@ -170,7 +171,7 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 1. Authentication setup allows options for user access management, data retention and allowing multiple lists/users served by the database. This also allows other users to access the same list if accessing with the same credentials and therefore sharing access.
 2. Real-time database backend service by Firebase, allows real-time changes to apply accross devices, to allow simultaneous changes accross devices.
 3. If once logged-in, internet access is lost, the app is still operational and any changes made are stored locally and updated with the database once connection is resumed.
-3. Authentication errors aree shown on page with clear reasons for errror.  <details><summary>Screenshot</summary>
+3. Authentication errors are shown on page with clear reasons for errror.  <details><summary>Screenshot</summary>
 
    ![screenshot](documentation/email-already-in-use.png)
    ![screenshot](documentation/invalid-email-password.png)
