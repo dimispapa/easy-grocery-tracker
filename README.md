@@ -76,7 +76,7 @@ The nature the app, its use and its audience, dictate a linear and simple struct
 
 ### Colour Scheme
 
-The colour scheme was generated with the help of [coolors.co](https://coolors.co/8bc34a-61854d-37474f-b2ebf2-ffeb3b-d32f2f) colour palette generator. The choice was made on the basis of getting a few different colours to resemble how a grocery bag usually has different colours. A choice of vibrant colours with contrast where required to make some buttons and app elements stick out more for an easier and clearer use while on the go.
+The colour scheme was generated with the help of [coolors.co](https://coolors.co/8bc34a-477116-37474f-b2ebf2-ffeb3b-d32f2f) colour palette generator. The choice was made on the basis of getting a few different colours to resemble how a grocery bag usually has different colours. A choice of vibrant colours with contrast where required to make some buttons and app elements stick out more for an easier and clearer use while on the go.
 
 ![screenshot](documentation/grocery-tracker-color-palette-final.png)
 
@@ -231,6 +231,15 @@ A test was carried out on the deployed website, for the relevant areas using the
 | Tracker           | Desktop | ![screenshot](documentation/testing/lighthouse-audit-grocery-tracker-desktop.png)   | No major problems   |
 
 ### Browser Compatibility
+
+The deployed project was tested on Chrome and Safari for compatibility issues.
+
+| Browser | Index | Tracker | Notes |
+| ------- | ------|---------|-------|
+| Chrome Mobile |![screenshot](documentation/testing/grocery-chrome-mobile-index.png)|![screenshot](documentation/testing/grocery-chrome-mobile-tracker.png)|No issues noted |
+| Chrome Desktop |            |            |         |
+| Safari Mobile  | ![screenshot](documentation/testing/grocery-safari-mobile-index.png)| ![screenshot](documentation/testing/grocery-safari-mobile-tracker.png) | No issues noted         |
+| Safari Desktop |            |            |         |
 
 ### Device Bug Testing - Responsiveness
 
