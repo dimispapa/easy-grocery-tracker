@@ -2,6 +2,10 @@
 
 The "EASY Grocery Tracker" is a web application designed to meet the basic needs of managing a grocery list in the everyday life, which can be tedious task if you are not organised. It allows users to organise their grocery items in default or customised categories and allows adding/removing items required in each category. Importantly, the users can also tick-off items from their list once they are picked up in the grocery store while out shopping, which helps make the shopping experience more efficient and also allows keeping recurring items on the list instead of removing them completely.
 
+![screenshot](documentation/responsive-mockup-grocery.png)
+
+[View the Live website](https://dimispapa.github.io/easy-grocery-tracker/)
+
 ## UX Design
 
 The design follows an analysis done using the five Ss: Strategy, Scope, Features, Structure, Skeleton, Surface.
@@ -107,15 +111,40 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 
 #### Category areas
 
-1. New category input box and button.
-2. A category section created for each new category, with an editable list within each category.
-3. A new category input box and button are created below each newly-added category to allow adding categories in between, when a specific order is preferred.
+1. New category input box and button.  <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/add-category-area.png)
+
+</details>
+
+2. A category section created for each new category, with an editable list within each category
+3. A new category input box and button are created below each newly-added category to allow adding categories in between, when a specific order is preferred. <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/category-area.png)
+
+</details>
 
 #### List Item areas
 
-1. New item input box and button to add items within each category.
-2. Dropdown button to show/hide a category list.
-3. Tick-off button to cross-off items from the list without deleting them. This can be reversed by clicking again to un-tick, a useful feature when grocery items are recurring.
+1. New item input box and button to add items within each category.   <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/add-item.png)
+
+</details>
+
+2. Dropdown button to show/hide a category list. <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/dropdown-button.png)
+   ![screenshot](documentation/unhide-dropdown.png)
+
+</details>
+
+3. Tick-off button to cross-off items from the list without deleting them. This can be reversed by clicking again to un-tick, a useful feature when grocery items are recurring.  <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/tick-button.png)
+   ![screenshot](documentation/untick-button.png)
+
+</details>
 
 #### Delete buttons
 
@@ -124,7 +153,16 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 
 #### Input validation
 
-1. Validation checks for blank or duplicate user inputs, with error message prompt below the input box. The duplicate validation check is case-insensitive.
+1. Validation checks for blank or duplicate user inputs, with error message prompt below the input box. The duplicate validation check is case-insensitive.   <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/grocery-item-blank-validation.png)
+   ![screenshot](documentation/grocery-item-duplicate-validation.png)
+   ![screenshot](documentation/case-insesitive-val-check.png)
+   ![screenshot](documentation/category-blank-validation.png)
+   ![screenshot](documentation/category-duplicate-validation.png)
+
+</details>
+
 2. Error message disappears when user focuses out of the input box, allowing for a better UX.
 
 #### Authentication, Data Storage and User Access
@@ -132,7 +170,23 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 1. Authentication setup allows options for user access management, data retention and allowing multiple lists/users served by the database. This also allows other users to access the same list if accessing with the same credentials and therefore sharing access.
 2. Real-time database backend service by Firebase, allows real-time changes to apply accross devices, to allow simultaneous changes accross devices.
 3. If once logged-in, internet access is lost, the app is still operational and any changes made are stored locally and updated with the database once connection is resumed.
-4. The index/landing page authentication options allow the user to choose between "Sign In", "Sign Up" and "Reset Password". The appropriate form becomes visible when the user toggles between the options.
+3. Authentication errors aree shown on page with clear reasons for errror.  <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/email-already-in-use.png)
+   ![screenshot](documentation/invalid-email-password.png)
+   ![screenshot](documentation/password-reset.png)
+   ![screenshot](documentation/passwords-no-match.png)
+
+</details>
+
+4. The index/landing page authentication options allow the user to choose between "Sign In", "Sign Up" and "Reset Password". The appropriate form becomes visible when the user toggles between the options. <details><summary>Screenshot</summary>
+
+   ![screenshot](documentation/landing-page.png)
+   ![screenshot](documentation/signin-toggle.png)
+   ![screenshot](documentation/signup-toggle.png)
+   ![screenshot](documentation/reset-toggle.png)
+
+</details>
 
 #### Saving/Loading/Populating Lists
 
@@ -146,9 +200,9 @@ The mobile wireframe was created for the Tracker page only with greater focus pl
 1. When user presses "Enter" key, the app responds with adding a category or item if the user is focused on an input box. When on the landing page, this will conditionally submit the form that is unhidden i.e. the form that the user chose to submit.
 2. Event listeners get updated via a function that loops through buttons on the DOM, each time a new category or item is added, therefore requiring "click" event listeners on its corresponding buttons. The appropriate event listener and handler function gets applied based on classes or ids of elements.
 
-#### Error handling
+#### Error handling principles
 
-1. Errors get handled in each function, logging the error in the console and showing an error on page to notify the user if necessary.
+1. Errors get handled in each function, deliberately logging the error in the console and showing an error on page to notify the user if necessary.
 
 ### Future Features
 
@@ -279,12 +333,27 @@ The site was deployed to GitHub Pages. The steps to deploy were as follows:
 | [Bouldering Favicon by Icons8](https://icons8.com) | Favicon on page head | Multiple resolutions used to avoid rendering issues |
 | [Fontjoy](https://fontjoy.com/) | Font Pairing | Used to generate font combinations |
 | [Google Fonts](https://fonts.google.com/) | Imported Fonts | Imported in stylesheet |
+| [Firebase - Realtime Database](https://firebase.google.com/docs/database/web/start?hl=en&authuser=0) | For storing lists and retrieving data | Online resources read for: Setup, Configuration, Data Structure, Database Rules, Read/Write Data, Realtime listener |
+| [Firebase - Authentication](https://firebase.google.com/docs/auth/web/start?hl=en&authuser=0) | For authenticating user access and access to list data of user. Allow list access from multiple devices | Online resources read for: Setup, Configuration, Email/Password Authentication, Reset Email Password |
+| [Medium.com](https://medium.com/@somaia_khalil/how-to-structure-your-javascript-code-into-different-files-21034102c7f3) | How to structure JS code in multiple files | Used method 2 with ES6 modules allowing export/import of functions/parameters |
+| [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)| Use of Arrow functions | Allows for simpler/more concise code |
+| [30secondsofcode](https://www.30secondsofcode.org/js/s/arrow-function-event-listeners/) | Use of Arrow functions as the call-back for an event listener | Used at times instead of anonymous function |
+| [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) | querySelector() method | Used to easily target specific DOM elements when other methods require more complex chaining |
+| [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) | querySelectorAll() method | Used to easily target a group of DOM elements when other methods require more complex chaining |
+|[freecodecamp](https://www.freecodecamp.org/news/javascript-insertadjacenthtml-method-efficient-dom-manipulation/#:~:text=insertAdjacentHTML%20is%20a%20method%20in,of%20a%20web%20page%20dynamically.)| insertAdjacentHTML() method | Used to populate/manipulate the grocery list DOM |
+| [Rory Patrick Sheridan](https://github.com/Ri-Dearg) | Switch Case | Use of Switch Case instead of If Else in long/complex conditional statements |
+| [Medium.com](https://medium.com/@michellekwong2/switch-vs-if-else-1d458e7b0711) | Switch Case vs If Else | Understanding what's better to use when|
+| [Rory Patrick Sheridan](https://github.com/Ri-Dearg) | Input Errors | Encouraged to show errors on page instead of alerts for better UX/accessibility |
+| [zuko.io](https://www.zuko.io/blog/a-guide-to-error-messages-in-online-forms) | Dos/Dont's for errors on forms | General guide for UX on errors |
+
+### Content
+| Source | Use | Notes | 
+| ---- | ---- | ----|
 | [FontAwesome](https://fontawesome.com/) | Icons | For buttons |
 | [Unsplash](https://unsplash.com/) | Images | Hero image |
 | [Icons8](https://icons8.com/) | Icons | Grocery Icon/Logo |
-| [Rory Patrick Sheridan](https://github.com/Ri-Dearg) | Header | Use of sticky position property |
-
-
-### Content
 
 ## Acknowledgements
+* I would like to thank my Code Institute mentor, Rory Patrick Sheridan, for the support, useful tips and comprehensive (considering the limited timeframe) reviews during this project.
+* I would like to also thank my partner, Georgina Christou, for the useful opinion when it comes to the colour scheme, fixing the overall design aesthetics and also for some basic user testing.
+* I would also like to thank Code Institute for the great JavaScript content that inspired me to go out there and research further to build on my skills!
