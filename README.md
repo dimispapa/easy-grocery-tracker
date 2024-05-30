@@ -76,9 +76,9 @@ The nature the app, its use and its audience, dictate a linear and simple struct
 
 ### Colour Scheme
 
-The colour scheme was generated with the help of [coolors.co](https://coolors.co/8bc34a-37474f-b2ebf2-ffeb3b-d32f2f) colour palette generator. The choice was made on the basis of getting a few different colours to resemble how a grocery bag usually has different colours. A choice of vibrant colours with contrast where required to make some buttons and app elements stick out more for an easier and clearer use while on the go.
+The colour scheme was generated with the help of [coolors.co](https://coolors.co/8bc34a-61854d-37474f-b2ebf2-ffeb3b-d32f2f) colour palette generator. The choice was made on the basis of getting a few different colours to resemble how a grocery bag usually has different colours. A choice of vibrant colours with contrast where required to make some buttons and app elements stick out more for an easier and clearer use while on the go.
 
-![screenshot](documentation/grocery-tracker-color-palette.png)
+![screenshot](documentation/grocery-tracker-color-palette-final.png)
 
 ### Typography
 
