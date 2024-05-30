@@ -1,188 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Grocery list tracker application. Allows users to sign-up, create their grocery list and track their grocery items. Users can retain their lists on account and share theri account with others, supporting multi-device real-time editing."
-    />
-    <meta
-      name="keywords"
-      content="grocery list tracker, grocery list, grocery tracking, grocery management, shopping tick list, grocery task manager, grocery shopping"
-    />
-    <title>EASY Grocery Tracker</title>
-    <!-- Favicons -->
-    <link
-      type="image/png"
-      sizes="16x16"
-      rel="icon"
-      href="assets/favicons/web/icons8-grocery-office-m-16.png"
-    />
-    <link
-      type="image/png"
-      sizes="32x32"
-      rel="icon"
-      href="assets/favicons/web/icons8-grocery-office-m-32.png"
-    />
-    <link
-      type="image/png"
-      sizes="96x96"
-      rel="icon"
-      href="assets/favicons/web/icons8-grocery-office-m-96.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="72x72"
-      href="assets/favicons/chrome/icons8-grocery-office-m-72.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="assets/favicons/chrome/icons8-grocery-office-m-96.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/png"
-      sizes="57x57"
-      href="assets/favicons/ios/icons8-grocery-office-m-57.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/png"
-      sizes="60x60"
-      href="assets/favicons/ios/icons8-grocery-office-m-60.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/png"
-      sizes="72x72"
-      href="assets/favicons/ios/icons8-grocery-office-m-72.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/png"
-      sizes="76x76"
-      href="assets/favicons/ios/icons8-grocery-office-m-76.png"
-    />
-    <meta
-      name="msapplication-square70x70logo"
-      content="assets/favicons/windows/icons8-grocery-office-m-70.png"
-    />
-    <meta name="msapplication-TileColor" content="#C0FFEE" />
-    <meta name="application-name" content="Beautiful application name" />
-    <!-- Font Awesome kit -->
-    <script
-      src="https://kit.fontawesome.com/3f60c2fc78.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- CSS styles link -->
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
-
-  <body>
-    <main id="landing-page">
-      <section id="hero-section">
-        <!-- Hero content -->
-        <div id="hero-content">
-          <h1>
-            <img
-              src="assets/images/icons8-grocery-logo-80.webp"
-              alt="grocery basket logo"
-              srcset="
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Grocery list tracker application. Allows users to sign-up, create their grocery list and track their grocery items. Users can retain their lists on account and share theri account with others, supporting multi-device real-time editing.">
+        <meta name="keywords" content="grocery list tracker, grocery list, grocery tracking, grocery management, shopping tick list, grocery task manager, grocery shopping">
+        <title>EASY Grocery Tracker</title>
+        <!-- Favicons -->
+        <link
+            type="image/png"
+            sizes="16x16"
+            rel="icon"
+            href="assets/favicons/web/icons8-grocery-office-m-16.png"
+        >
+        <link
+            type="image/png"
+            sizes="32x32"
+            rel="icon"
+            href="assets/favicons/web/icons8-grocery-office-m-32.png"
+        >
+        <link
+            type="image/png"
+            sizes="96x96"
+            rel="icon"
+            href="assets/favicons/web/icons8-grocery-office-m-96.png"
+        >
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="72x72"
+            href="assets/favicons/chrome/icons8-grocery-office-m-72.png"
+        >
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="assets/favicons/chrome/icons8-grocery-office-m-96.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            type="image/png"
+            sizes="57x57"
+            href="assets/favicons/ios/icons8-grocery-office-m-57.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            type="image/png"
+            sizes="60x60"
+            href="assets/favicons/ios/icons8-grocery-office-m-60.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            type="image/png"
+            sizes="72x72"
+            href="assets/favicons/ios/icons8-grocery-office-m-72.png"
+        >
+        <link
+            rel="apple-touch-icon"
+            type="image/png"
+            sizes="76x76"
+            href="assets/favicons/ios/icons8-grocery-office-m-76.png"
+        >
+        <meta name="msapplication-square70x70logo" content="assets/favicons/windows/icons8-grocery-office-m-70.png">
+        <meta name="msapplication-TileColor" content="#C0FFEE">
+        <meta name="application-name" content="Beautiful application name">
+        <!-- Font Awesome kit -->
+        <script src="https://kit.fontawesome.com/3f60c2fc78.js" crossorigin="anonymous"></script>
+        <!-- CSS styles link -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+    <body>
+        <main id="landing-page">
+            <section id="hero-section">
+                <!-- Hero content -->
+                <div id="hero-content">
+                    <h1>
+                        <img
+                            src="assets/images/icons8-grocery-logo-80.webp"
+                            alt="grocery basket logo"
+                            srcset="
                 assets/images/icons8-grocery-logo-40.webp 40w,
                 assets/images/icons8-grocery-logo-80.webp 80w
               "
-              sizes="(max-width: 768px) 40px, 80px"
-            />
-            EASY Grocery Tracker
-          </h1>
-          <p id="hero-paragraph">Manage your grocery shopping effortlessly</p>
-
-          <!-- Sign In Form -->
-          <form id="sign-in-form" class="auth-form">
-            <input
-              type="email"
-              id="sign-in-email"
-              placeholder="Email"
-              required
-            />
-            <input
-              type="password"
-              id="sign-in-password"
-              placeholder="Password"
-              required
-            />
-            <button type="submit" class="cta-button">Submit</button>
-          </form>
-
-          <!-- Sign Up Form -->
-          <form id="sign-up-form" class="auth-form">
-            <input
-              type="email"
-              id="sign-up-email"
-              placeholder="Email"
-              required
-            />
-            <input
-              type="password"
-              id="sign-up-password"
-              placeholder="Password"
-              required
-            />
-            <input
-              type="password"
-              id="confirm-password"
-              placeholder="Confirm Password"
-              required
-            />
-            <button type="submit" class="cta-button">Submit</button>
-          </form>
-
-          <!-- Reset Password Form -->
-          <form id="reset-password-form" class="auth-form">
-            <input type="email" id="reset-email" placeholder="Email" required />
-            <button type="submit" class="cta-button">Submit</button>
-          </form>
-
-          <!-- Error container -->
-          <p class="error-message" id="login-error"></p>
-        </div>
-
-        <!-- Toggle Buttons -->
-        <div>
-          <button id="show-sign-in" class="cta-button">Sign In</button>
-          <button id="show-sign-up" class="cta-button">Sign Up</button>
-          <button id="show-reset-password" class="cta-button">
-            Reset Password
-          </button>
-        </div>
-
-        <!-- Icons8 favicon credits link -->
-        <div id="credits">
-          <p>
-            <a target="_blank" href="https://icons8.com/icon/36143/ingredients"
-              >Grocery</a
+                            sizes="(max-width: 768px) 40px, 80px"
+                        >
+                        EASY Grocery Tracker
+                    </h1>
+                    <p id="hero-paragraph">Manage your grocery shopping effortlessly</p>
+                    <!-- Sign In Form -->
+                    <form id="sign-in-form" class="auth-form">
+                        <input
+                            type="email"
+                            id="sign-in-email"
+                            placeholder="Email"
+                            required
+                        >
+                        <input
+                            type="password"
+                            id="sign-in-password"
+                            placeholder="Password"
+                            required
+                        >
+                        <button type="submit" class="cta-button">Submit</button>
+                    </form>
+                    <!-- Sign Up Form -->
+                    <form id="sign-up-form" class="auth-form">
+                        <input
+                            type="email"
+                            id="sign-up-email"
+                            placeholder="Email"
+                            required
+                        >
+                        <input
+                            type="password"
+                            id="sign-up-password"
+                            placeholder="Password"
+                            required
+                        >
+                        <input
+                            type="password"
+                            id="confirm-password"
+                            placeholder="Confirm Password"
+                            required
+                        >
+                        <button type="submit" class="cta-button">Submit</button>
+                    </form>
+                    <!-- Reset Password Form -->
+                    <form id="reset-password-form" class="auth-form">
+                        <input
+                            type="email"
+                            id="reset-email"
+                            placeholder="Email"
+                            required
+                        >
+                        <button type="submit" class="cta-button">Submit</button>
+                    </form>
+                    <!-- Error container -->
+                    <p class="error-message" id="login-error"></p>
+                </div>
+                <!-- Toggle Buttons -->
+                <div>
+                    <button id="show-sign-in" class="cta-button">Sign In</button>
+                    <button id="show-sign-up" class="cta-button">Sign Up</button>
+                    <button id="show-reset-password" class="cta-button">
+                        Reset Password
+                    </button>
+                </div>
+                <!-- Icons8 favicon credits link -->
+                <div id="credits">
+                    <p>
+                        <a target="_blank" href="https://icons8.com/icon/36143/ingredients">
+                            Grocery
+                        </a
             >
-            icon by <a target="_blank" href="https://icons8.com">Icons8</a>,
+                        icon by
+                        <a target="_blank" href="https://icons8.com">Icons8</a>
+                        ,
             Hero image by
-            <a
-              href="https://unsplash.com/@norevisions?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-              >No Revisions</a
+                        <a href="https://unsplash.com/@norevisions?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+                            No Revisions
+                        </a
             >
-            on
-            <a
-              href="https://unsplash.com/photos/great-value-green-beans-can-ixS7UCRJTdM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-              >Unsplash</a
+                        on
+                        <a href="https://unsplash.com/photos/great-value-green-beans-can-ixS7UCRJTdM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+                            Unsplash
+                        </a
             >
-          </p>
-        </div>
-      </section>
-    </main>
-    <!-- Javascript code for signin/signup functionality -->
-    <script type="module" src="assets/js/index.js"></script>
-  </body>
+                    </p>
+                </div>
+            </section>
+        </main>
+        <!-- Javascript code for signin/signup functionality -->
+        <script type="module" src="assets/js/index.js"></script>
+    </body>
 </html>
