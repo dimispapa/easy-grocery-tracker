@@ -237,9 +237,9 @@ The deployed project was tested on Chrome and Safari for compatibility issues.
 | Browser | Index | Tracker | Notes |
 | ------- | ------|---------|-------|
 | Chrome Mobile |![screenshot](documentation/testing/grocery-chrome-mobile-index.png)|![screenshot](documentation/testing/grocery-chrome-mobile-tracker.png)|No issues noted |
-| Chrome Desktop |            |            |         |
+| Chrome Desktop | ![screenshot](documentation/testing/grocery-chrome-desktop-index.png)   | ![screenshot](documentation/testing/grocery-chrome-desktop-tracker.png)   |  No issues noted        |
 | Safari Mobile  | ![screenshot](documentation/testing/grocery-safari-mobile-index.png)| ![screenshot](documentation/testing/grocery-safari-mobile-tracker.png) | No issues noted         |
-| Safari Desktop |            |            |         |
+| Safari Desktop | ![screenshot](documentation/testing/grocery-safari-desktop-index.png)             | ![screenshot](documentation/testing/grocery-safari-desktop-tracker.png)             |  No issues noted       |
 
 ### Device Bug Testing - Responsiveness
 
