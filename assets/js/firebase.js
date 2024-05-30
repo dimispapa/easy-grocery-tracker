@@ -1,11 +1,12 @@
 // import required SDKs needed
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
 import {
-  getDatabase,
-  ref,
-  set,
-  onValue,
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js";
+import {
+  getAuth
+} from "https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js";
+import {
+  getDatabase
 } from "https://www.gstatic.com/firebasejs/10.12.1/firebase-database.js";
 
 // Project configuration
@@ -18,8 +19,7 @@ const firebaseConfig = {
   messagingSenderId: "442203934572",
   appId: "1:442203934572:web:8dcefeebdc8d4b9a09ed49",
   measurementId: "G-XQMGRZ6KG0",
-  databaseURL:
-    "https://easy-grocery-tracker-default-rtdb.europe-west1.firebasedatabase.app/",
+  databaseURL: "https://easy-grocery-tracker-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 // Initialize Firebase
@@ -27,4 +27,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getDatabase(app);
 
-export { db, auth };
+export {
+  db,
+  auth
+};

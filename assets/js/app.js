@@ -95,7 +95,7 @@ function saveDataToFirebase(groceryList, userId) {
     // write the data to the db
     set(dbRef, groceryList);
     console.log("Grocery list successfully saved on firebase.");
-  } catch {
+  } catch(error) {
     console.error("Error saving grocery list:", error);
   }
 }
@@ -214,17 +214,12 @@ function populateListFromData(categoryName, items) {
         let loadLi = `
         <li>
           <button class="tick-item-btn li-btn" aria-label="Tick-off ${
-            item.item_name
-          } item"><i class="${
-          item.ticked
-            ? "fa-regular fa-circle-check ticked-shadow"
-            : "fa-regular fa-circle"
-        }"></i></button>
-          <span class="${item.ticked ? "ticked-off" : ""}">${
           item.item_name
-        }</span>
-          <button class="dlt-item-btn li-btn" aria-label="Delete ${
-            item.item_name
+          } item"><i class="${item.ticked ? "fa-regular fa-circle-check ticked-shadow" : "fa-regular fa-circle"
+          }"></i></button>
+          <span class="${item.ticked ? "ticked-off" : ""}">${item.item_name
+          }</span>
+          <button class="dlt-item-btn li-btn" aria-label="Delete ${item.item_name
           } item"><i class="fa-regular fa-trash-can"></i></button>
         </li> 
         `;
@@ -407,9 +402,7 @@ function addItem(event) {
 
     // Get the input box element. Use ternary operator to capture the case where the enter key was used instead of the button
     let inputBox =
-      triggerElement.className === "add-item-btn"
-        ? triggerElement.previousElementSibling
-        : triggerElement;
+      triggerElement.className === "add-item-btn" ? triggerElement.previousElementSibling : triggerElement;
     // get the user input text and apply trim method to ensure no spaces.
     let userInput = inputBox.value.trim();
 
@@ -507,9 +500,7 @@ function addCategory(event) {
 
     // Get the input box element. Use ternary operator to capture the case where the enter key was used instead of the button
     let inputBox =
-      triggerElement.className === "add-category-btn"
-        ? triggerElement.previousElementSibling
-        : triggerElement;
+      triggerElement.className === "add-category-btn" ? triggerElement.previousElementSibling : triggerElement;
     // get the user input text and apply trim method to ensure no spaces
     let userInput = inputBox.value.trim();
 
