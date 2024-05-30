@@ -203,6 +203,7 @@ HTML files were validated using the recommended [HTML W3C Validator](https://val
 | Tracker | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdimispapa.github.io%2Feasy-grocery-tracker%2Ftracker.html) | ![screenshot](documentation/testing/html-w3c-validation-tracker.png) | Pass: No Errors. |
 
 #### CSS
+
 The CSS stylesheet was validated using the recommended [W3C CSS "Jigsaw" Validator](https://jigsaw.w3.org/css-validator).
 
 | File      | Jigsaw URL | Screenshot | Notes | Comment |
@@ -210,6 +211,7 @@ The CSS stylesheet was validated using the recommended [W3C CSS "Jigsaw" Validat
 | style.css | [Jigsaw](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdimispapa.github.io%2Feasy-grocery-tracker%2Findex.html) | ![screenshot](documentation/testing/css-w3c-validation.png) | Three identical errors: Property font-optical-sizing doesn't exist : auto | This CSS property does exist as documented by [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-optical-sizing). <details><summary> This style rule is associated with the "Asap" and "Raleway" font properties as pulled from Google Fonts.</summary> ![screenshot](documentation/testing/asap-googlefonts.png) ![screenshot](documentation/testing/asap-googlefonts.png)</details> Pass: No issues.
 
 #### JavaScript
+
 The JavaScript scripts were validated using the recommended [JSHint Validator](https://jshint.com/).
 
 | File      | Screenshot | Notes | Comment |
@@ -219,6 +221,14 @@ The JavaScript scripts were validated using the recommended [JSHint Validator](h
 | app.js | ![screenshot](documentation/testing/jshint-validation-app.png) | Pass: No issues. | One warning: 'Optional chaining' used in line 387 (used for clearer and concise code, avoids an extra nested if) is only available in ES11.
 
 ### Lighthouse Audit
+
+A test was carried out on the deployed website, for the relevant areas using the Lighthouse Audit tool within Chrome Dev Tools:
+| Page             | Size    | Screenshot                                                        | Notes               |
+| ---------------- | ------- | ----------------------------------------------------------------- | ------------------- |
+| Index             | Mobile  | ![screenshot](documentation/testing/lighthouse-audit-grocery-index-mobile.png) | No major problems  |
+| Index             | Desktop | ![screenshot](documentation/testing/lighthouse-audit-grocery-index-desktop.png)    | No major problems   |
+| Tracker           | Mobile  | ![screenshot](documentation/testing/lighthouse-audit-grocery-tracker-mobile.png)    | No major problems   |
+| Tracker           | Desktop | ![screenshot](documentation/testing/lighthouse-audit-grocery-tracker-desktop.png)   | No major problems   |
 
 ### Browser Compatibility
 
