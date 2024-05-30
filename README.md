@@ -243,11 +243,47 @@ The deployed project was tested on Chrome and Safari for compatibility issues.
 
 ### Device Bug Testing - Responsiveness
 
+The web app responsiveness and functionality was tested on the following physical devices, in addition to testing on Chrome DevTools on a variety of devices:
+
+* iPhone 12 Pro - iOS 17.4.1:
+    | Index | Tracker | 
+    | ---------- | ---------- | 
+    |![screenshot](documentation/testing/grocery-iphone12pro-index.png) |   ![screenshot](documentation/testing/grocery-iphone12pro-tracker.png) |
+
+Result: Operates as expected
+
+* MacBook Pro 15-inch 2018- macOS Sonoma 14.3.1:
+    | Index | Tracker | 
+    | ---------- | ---------- | 
+    |![screenshot](documentation/testing/grocery-mac-index.png) |   ![screenshot](documentation/testing/grocery-mac-tracker.png) |
+
+Result: Operates as expected
+
 ## Deployment
+The site was deployed to GitHub Pages. The steps to deploy were as follows:
+* Navigate to the "Settings" tab in the [GitHub repository](https://github.com/dimispapa/cy_boulder_fest).
+* Go to "Pages" in the "Code and automation" section.
+* Under the "Build and deployment" section, select the **Main** branch in the dropdown, ensure the "root" folder is selected, and then click "Save".
+* The page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
+* The page might take a few minutes to be fully deployed and live. Can monitor the "Deployments" ribbon back in the main GitHub repository.
+
+[Click here to view the live deployed website](https://dimispapa.github.io/easy-grocery-tracker/)
+
 
 ## Credits
 
 ### Technical
+| Source                                        | Use                       | Notes                                                  |
+| --------------------------------------------- | ------------------------- | ------------------------------------------------------ |
+| [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/#summary) | Version Control | Help write Git commit messages |
+| [Bouldering Favicon by Icons8](https://icons8.com) | Favicon on page head | Multiple resolutions used to avoid rendering issues |
+| [Fontjoy](https://fontjoy.com/) | Font Pairing | Used to generate font combinations |
+| [Google Fonts](https://fonts.google.com/) | Imported Fonts | Imported in stylesheet |
+| [FontAwesome](https://fontawesome.com/) | Icons | For buttons |
+| [Unsplash](https://unsplash.com/) | Images | Hero image |
+| [Icons8](https://icons8.com/) | Icons | Grocery Icon/Logo |
+| [Rory Patrick Sheridan](https://github.com/Ri-Dearg) | Header | Use of sticky position property |
+
 
 ### Content
 
